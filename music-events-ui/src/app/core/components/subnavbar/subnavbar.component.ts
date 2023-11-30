@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
+import { AuthService } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'core-subnavbar',
@@ -21,15 +23,27 @@ import { Router } from '@angular/router';
     ]),
   ],
 })
-export class SubnavbarComponent {
+export class SubnavbarComponent implements OnInit {
   @Input() expanded: boolean
+  isLogged: boolean
+  
+  private logSubscription?: Subscription;
 
-  constructor(private router: Router) {
-    this.expanded = true;
+  constructor(private auth: AuthService, private router: Router) {
+    this.expanded = false;
+    this.isLogged = false;
+  }
+
+  ngOnInit(): void {
+    this.logSubscription = this.auth.isLoggedIn$.subscribe( res => this.isLogged = res );
+  }
+
+  ngOnDestroy(): void {
+    this.logSubscription?.unsubscribe();
   }
 
   logout(): void {
-    //after logout
+    this.auth.logout();
     this.redirect('home');
   }
 

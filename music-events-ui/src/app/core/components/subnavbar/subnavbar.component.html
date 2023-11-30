@@ -6,7 +6,7 @@
     </div>
     
     <div>
-        <!-- <button mat-flat-button class="subnav-btn" id="log-btn" (click)="redirect('login')">Log in</button> -->
-        <!-- <button mat-flat-button class="subnav-btn" id="log-btn" (click)="logout()">Log out</button> -->
+        <button mat-flat-button class="subnav-btn" id="log-btn" *ngIf="!isLogged" (click)="redirect('login')">Log in</button>
+        <button mat-flat-button class="subnav-btn" id="log-btn" *ngIf="isLogged" (click)="logout()">Log out</button>
     </div>
 </div>

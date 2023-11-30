@@ -1,0 +1,45 @@
+.input {
+    width: 100%;
+    font-weight: 500;
+}
+
+.input-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-bottom: 0.25rem;
+}
+
+.form-container {
+    margin: 1.5rem !important;
+    margin-top: 2rem !important
+}
+
+.submit-button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#form-card {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    width: 30%;
+    margin-top: 5%;
+    background-color: var(--secondary);
+}
+
+.mat-form-field ::ng-deep .mat-form-field-outline-start,
+.mat-form-field ::ng-deep .mat-form-field-outline-gap,
+.mat-form-field ::ng-deep .mat-form-field-outline-end {
+  color: black;
+  border-width: 1px !important;
+  background-color: var(--primary);
+  opacity: 0.1;
+}
+
+::ng-deep .mat-form-field-appearance-outline 
+::ng-deep .mat-form-field-infix {
+    padding: 0.5rem 0 0.5rem 0 !important;
+}

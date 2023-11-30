@@ -1,0 +1,28 @@
+<mat-card id="form-card">
+    <div class="form-container"> 
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="input-container">   
+                <mat-form-field class="input" appearance="outline">
+                    <input type="text" matInput formControlName="email" placeholder="E-mail">
+                    <mat-error *ngIf="email?.hasError('email')">
+                        "Invalid email adress format."
+                    </mat-error>
+                    <mat-error *ngIf="email?.hasError('required')">
+                        "Enter your e-mail."
+                    </mat-error> 
+                </mat-form-field> 
+            </div>
+            <div class="input-container">
+                <mat-form-field class="input" appearance="outline">
+                    <input type="password" matInput formControlName="password" placeholder="Password">
+                    <mat-error *ngIf="password?.hasError('required')">
+                        "Enter your password."
+                    </mat-error> 
+                </mat-form-field>
+            </div>     
+            <div class="input-container">
+                <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="isRequestPending">Log in</button> 
+            </div>
+        </form>   
+    </div>   
+</mat-card>
