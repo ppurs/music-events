@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { EventsFilterComponent } from './components/events-filter/EventsFilterComponent';
+import { EventsFilterComponent } from './components/events-filter/events-filter.component';
 import { EventsListItemComponent } from './components/events-list-item/events-list-item.component';
 import { EventsPageComponent } from './components/events-page/events-page.component';
 import { EventsRoutingModule } from './events-routing.module';

@@ -6,6 +6,7 @@ import { DATE_FORMATS } from 'src/app/shared/models/date-formats';
 import { FormBuilder } from '@angular/forms';
 import { MusicEventsFilter } from '../../models/music-events-filter';
 import { MusicEventsFilterOptions } from '../../models/music-events-filter-options';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'events-filter',
@@ -59,7 +60,12 @@ export class EventsFilterComponent implements OnInit {
 
   ngOnInit(): void {
     //obczaic co zrobic z podwojna data xd
-    this.filterForm.valueChanges.subscribe(() => this.applyfilter.emit(this.getFilter()));
+    this.filterForm.valueChanges
+        .pipe(
+          debounceTime(500),
+          distinctUntilChanged(),
+        )
+        .subscribe(() => this.applyfilter.emit(this.getFilter()));
   }
 
   getFilter(): MusicEventsFilter {
