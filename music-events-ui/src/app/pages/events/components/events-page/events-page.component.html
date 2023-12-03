@@ -1,0 +1,10 @@
+<app-filtrable-page-layout>
+    <ng-template #filterRef>
+        <events-filter [options]="filterOptions" (applyfilter)="applyFilter($event)"></events-filter>
+    </ng-template>
+    <ng-template #contentRef>
+        <div *ngFor="let musicEvent of events$ | async" class="list-elem">
+            <events-list-item [event]="musicEvent"></events-list-item>
+        </div>
+    </ng-template>
+</app-filtrable-page-layout>

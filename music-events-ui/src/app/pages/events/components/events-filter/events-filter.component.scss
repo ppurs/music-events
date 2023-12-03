@@ -1,0 +1,36 @@
+.multi-item {
+    height: 1.75rem !important;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-date-range-input {
+    display: inline-block;
+    width: 85%;
+}
+
+.mat-datepicker-toggle {
+    width: 15%;
+    display: inline-block;
+}
+
+
+.mat-form-field ::ng-deep .mat-form-field-outline-start,
+.mat-form-field ::ng-deep .mat-form-field-outline-gap,
+.mat-form-field ::ng-deep .mat-form-field-outline-end {
+  color: black;
+  border-width: 1px !important;
+  background-color: var(--primary);
+  opacity: 0.1;
+}
+
+::ng-deep .mat-form-field-appearance-outline 
+::ng-deep .mat-form-field-infix {
+    padding: 0 !important;
+}
+
+#date-filter {
+    margin-top: 0.5rem
+}
