@@ -1,9 +1,15 @@
-<app-list-item class="event-list-item">
+<app-list-item class="event-list-item" (click)="openDetails()">
     <ng-template #imgRef>
         <img class="event-img" src="assets\img\example.png">
     </ng-template>
     <ng-template #descRef>
-        <h2 *ngIf="event.performer; else title">{{event.performer}} | {{event.title}}</h2>
+        <h2 *ngIf="event.performer; else title">
+            {{event.performer}} | {{event.title}}
+            <div id="tags">
+                <app-tag>{{event.type}}</app-tag>
+                <app-tag>{{event.genre}}</app-tag>
+            </div>
+        </h2>
         <h3 class="desc-item">
             <mat-icon class="desc-icon">calendar_today</mat-icon>
             {{event.date | date:"dd MMM yyyy 'at' hh:mm a"}}
@@ -12,8 +18,8 @@
             <mat-icon class="desc-icon">location_on</mat-icon>
             {{event.city}}
         </h3>
-        <h3 class="desc-item">
-            <mat-icon class="desc-icon"> attach_money</mat-icon>
+        <h3 class="desc-item" *ngIf="event.price; else free">
+            <mat-icon class="desc-icon">attach_money</mat-icon>
             {{event.price}}
         </h3>
     </ng-template>
@@ -21,6 +27,13 @@
 
 <ng-template #title>
     <h2>{{event.title}}</h2>
+</ng-template>
+
+<ng-template #free>
+    <h3 class="desc-item">
+        <mat-icon class="desc-icon">attach_money</mat-icon>
+        Free entry
+    </h3>
 </ng-template>
 
 

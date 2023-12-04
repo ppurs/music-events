@@ -1,14 +1,9 @@
 .list-card {
     background-color: var(--secondary);
     padding: 0;
-    cursor: pointer;
     height: 100%;
     width: 100%;
     display: flex;
-}
-
-.list-card:hover {
-    box-shadow: 5px 5px 5px lightgrey;
 }
 
 .img-container {

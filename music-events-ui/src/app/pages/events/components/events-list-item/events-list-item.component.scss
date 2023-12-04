@@ -7,6 +7,11 @@
 .event-list-item {
     height: 11rem;
     display: block;
+    cursor: pointer;
+}
+
+.event-list-item:hover {
+    box-shadow: 5px 5px 5px lightgrey;
 }
 
 .desc-item {
@@ -17,3 +22,9 @@
 .desc-icon {
     margin-right: 0.5rem;
 }
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+

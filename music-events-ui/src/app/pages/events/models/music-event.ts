@@ -4,7 +4,7 @@ export interface MusicEvent {
     description?: string,
     performer?: string,
     city: string,
-    place: string,
+    location: string,
     date: Date, 
     type: string,
     genre?: string,  //???
