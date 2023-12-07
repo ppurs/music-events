@@ -3,8 +3,8 @@
         <img class="event-img" src="assets\img\example.png">
     </ng-template>
     <ng-template #descRef>
-        <h2 *ngIf="event.performer; else title">
-            {{event.performer}} | {{event.title}}
+        <h2>
+            {{event.title}}
             <div id="tags">
                 <app-tag>{{event.type}}</app-tag>
                 <app-tag>{{event.genre}}</app-tag>
@@ -24,10 +24,6 @@
         </h3>
     </ng-template>
 </app-list-item>
-
-<ng-template #title>
-    <h2>{{event.title}}</h2>
-</ng-template>
 
 <ng-template #free>
     <h3 class="desc-item">

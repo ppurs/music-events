@@ -4,8 +4,8 @@
     </ng-template>
 
     <ng-template #detailsRef>
-        <h1 *ngIf="data.performer; else title" id="dialog-title">
-            {{data.performer}} | {{data.title}}
+        <h1 id="dialog-title">
+            {{data.title}}
             <div id="tags">
                 <app-tag>{{data.type}}</app-tag>
                 <app-tag>{{data.genre}}</app-tag>
@@ -23,6 +23,10 @@
             <mat-icon class="desc-icon">attach_money</mat-icon>
             {{data.price}}
         </h3>
+        <h3 class="desc-item" *ngIf="data.performers">
+            <mat-icon class="desc-icon">grade</mat-icon>
+            {{data.performers.join(', ')}}
+        </h3>
     </ng-template>
 
     <ng-template #descRef>
@@ -33,11 +37,6 @@
         <button mat-raised-button [mat-dialog-close] [color]="'primary'">BUY TICKET</button>
     </ng-template>  
 </app-details-dialog>
-
-
-<ng-template #title>
-    <h1>{{data.title}}</h1>
-</ng-template>
 
 <ng-template #free>
     <h3 class="desc-item">

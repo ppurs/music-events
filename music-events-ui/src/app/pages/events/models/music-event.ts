@@ -2,7 +2,7 @@ export interface MusicEvent {
     id: number,
     title: string,
     description?: string,
-    performer?: string,
+    performers?: string[],     
     city: string,
     location: string,
     date: Date, 
