@@ -6,7 +6,7 @@
         </button>
     </mat-form-field>
 
-    <app-filter-item [title]="'Cities'">
+    <app-filter-item [title]="'City'">
         <mat-selection-list #citiesList [color]="'primary'" formControlName="cities">
             <mat-list-option *ngFor="let city of options.cities" 
                             [checkboxPosition]="'before'"
