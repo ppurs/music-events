@@ -5,12 +5,14 @@ import { EventsPageComponent } from './components/events-page/events-page.compon
 import { EventsRoutingModule } from './events-routing.module';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EventDetailsDialogComponent } from './components/event-details-dialog/event-details-dialog.component';
 
 @NgModule({
   declarations: [
     EventsPageComponent,
     EventsFilterComponent,
-    EventsListItemComponent
+    EventsListItemComponent,
+    EventDetailsDialogComponent
   ],
   imports: [
     CommonModule,

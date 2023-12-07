@@ -16,21 +16,59 @@
     display: inline-block;
 }
 
-
-.mat-form-field ::ng-deep .mat-form-field-outline-start,
-.mat-form-field ::ng-deep .mat-form-field-outline-gap,
-.mat-form-field ::ng-deep .mat-form-field-outline-end {
-  color: black;
-  border-width: 1px !important;
-  background-color: var(--primary);
-  opacity: 0.1;
-}
-
 ::ng-deep .mat-form-field-appearance-outline 
 ::ng-deep .mat-form-field-infix {
     padding: 0 !important;
 }
 
-#date-filter {
+#search-icon {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+#search-input {
+    line-height: 1.3rem;
+    color: var(--light-text);
+}
+
+::ng-deep .date-field {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--dark-text);
+        border-width: 1px !important;
+        background-color: var(--primary);
+        opacity: 0.1;
+    }
     margin-top: 0.5rem
+}
+
+::ng-deep .search-field {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--light-text) !important;
+        border-width: 1px !important;
+        background-color: var(--primary);
+    }
+
+    .mat-input-element::placeholder {
+        opacity: 0.9;
+        color: var(--light-text) !important;
+    }
+
+    .mat-input-element {
+        caret-color: var(--light-text);
+    }
+
+    .mat-icon {
+        opacity: 0.9;
+    }
+
+    .mat-form-field-wrapper {
+        padding-bottom: 1rem;
+    }
+
+    margin-top: -0.25rem !important;
+    color: var(--light-text);
 }

@@ -1,6 +1,11 @@
-<!-- search po nazwie ? -->
-
 <form [formGroup]="filterForm">
+    <mat-form-field [appearance]="'outline'" [ngClass]="'search-field'">
+        <input matInput formControlName="search" placeholder="Search" id="search-input">
+        <button mat-icon-button matSuffix id="search-icon" (click)="applySearch()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+
     <app-filter-item [title]="'Cities'">
         <mat-selection-list #citiesList [color]="'primary'" formControlName="cities">
             <mat-list-option *ngFor="let city of options.cities" 
@@ -13,7 +18,7 @@
     </app-filter-item>
 
     <app-filter-item [title]="'Date'">
-        <mat-form-field [appearance]="'outline'" id="date-filter">
+        <mat-form-field [appearance]="'outline'" [ngClass]="'date-field'">
             <mat-date-range-input [rangePicker]="picker">
             <input matStartDate [placeholder]="'Start date'" formControlName="startDate">
             <input matEndDate [placeholder]="'End date'" formControlName="endDate">
