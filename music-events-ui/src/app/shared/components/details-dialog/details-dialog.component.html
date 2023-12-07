@@ -1,0 +1,21 @@
+<button mat-icon-button class="close-btn" (click)="onClose()" [disableRipple]="true">
+    <mat-icon>close</mat-icon>
+</button>
+<mat-dialog-content>
+    <div>
+        <div class="img-dialog-container">
+            <ng-container *ngTemplateOutlet="imgTemplate"></ng-container>  
+        </div>
+        <div class="details-container">
+            <ng-container *ngTemplateOutlet="detailsTemplate"></ng-container>  
+        </div>
+    </div>
+
+    <div class="description-container">
+        <ng-container *ngTemplateOutlet="descTemplate"></ng-container> 
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <ng-container *ngTemplateOutlet="actionsTemplate ?? null"></ng-container>
+</mat-dialog-actions>

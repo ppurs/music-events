@@ -1,0 +1,27 @@
+.img-dialog-container {
+    display: inline-block;
+    width: 16%;
+}
+
+.details-container {
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: top;
+    width: 80%;
+}
+
+.description-container {
+    margin-top: 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+::ng-deep .cdk-overlay-pane {
+    min-width: 80vw;
+}
+
+.close-btn {
+    margin-right: 0;
+    margin-left: auto;
+    display: block;
+}
