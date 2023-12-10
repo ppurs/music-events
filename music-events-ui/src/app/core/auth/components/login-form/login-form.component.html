@@ -5,10 +5,10 @@
                 <mat-form-field class="input" appearance="outline" [hideRequiredMarker]="true">
                     <input type="text" matInput formControlName="email" placeholder="E-mail">
                     <mat-error *ngIf="email?.hasError('email')">
-                        "Invalid email adress format."
+                        Invalid email adress format.
                     </mat-error>
                     <mat-error *ngIf="email?.hasError('required')">
-                        "Enter your e-mail."
+                        Enter your e-mail.
                     </mat-error> 
                 </mat-form-field> 
             </div>
@@ -16,7 +16,7 @@
                 <mat-form-field class="input" appearance="outline" [hideRequiredMarker]="true">
                     <input type="password" matInput formControlName="password" placeholder="Password">
                     <mat-error *ngIf="password?.hasError('required')">
-                        "Enter your password."
+                        Enter your password.
                     </mat-error> 
                 </mat-form-field>
             </div>     

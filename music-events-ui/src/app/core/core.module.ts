@@ -12,10 +12,10 @@ import { SubnavbarComponent } from './components/subnavbar/subnavbar.component';
     SubnavbarComponent
   ],
   imports: [
+    AuthModule,
     CommonModule,
     MatButtonModule,
-    MatIconModule,
-    AuthModule
+    MatIconModule
   ],
   exports: [
     NavbarComponent,

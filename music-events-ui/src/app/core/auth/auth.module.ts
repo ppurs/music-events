@@ -3,10 +3,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthRoutingModule } from './auth-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { ForRolesDirective } from './for-roles.directive';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,12 +15,9 @@ import { authStrategyProvider } from './services/strategy/auth.strategy';
 @NgModule({
   declarations: [
     LoginFormComponent,
-    ForRolesDirective
   ],
   imports: [
     AuthRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -34,7 +28,6 @@ import { authStrategyProvider } from './services/strategy/auth.strategy';
     ReactiveFormsModule
   ],
   exports: [
-    ForRolesDirective
   ],
   providers: [
     {
