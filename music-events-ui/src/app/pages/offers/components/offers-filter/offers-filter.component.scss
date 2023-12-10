@@ -16,17 +16,7 @@
     display: inline-block;
 }
 
-#search-icon {
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-}
-
-#search-input {
-    line-height: 1.3rem;
-    color: var(--light-text);
-}
-
-::ng-deep .date-field {
+::ng-deep .date-field-offer {
     .mat-form-field-outline-start,
     .mat-form-field-outline-gap,
     .mat-form-field-outline-end {
