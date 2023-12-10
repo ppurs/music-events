@@ -1,0 +1,83 @@
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    font-weight: 500;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+#dialog-title {
+    font-weight: 500;
+}
+
+#location {
+    font-weight: 400;
+    display: block;
+}
+
+.event-img {
+    width: 100%;
+    height: auto;
+}
+
+#apply-offer-section {
+    padding-top: 1rem;
+
+    p {
+        font-style: italic;
+    }
+}
+
+#apply-btn {
+    margin-left: 2rem;
+    vertical-align: top;
+    margin-top: 0.25rem;
+}
+
+#login-msg {
+    padding-top: 1rem;
+
+    h4 {
+        font-weight: bold;
+        text-align: center;
+    }
+    
+}
+
+::ng-deep .not-logged {
+    .mat-dialog-actions {
+        display: none !important;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+::ng-deep .dialog-form-field {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--dark-text);
+        border-width: 1px !important;
+        background-color: var(--primary);
+        opacity: 0.1;
+    }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding-top: 0.35rem;
+        padding-bottom: 0.6rem;
+    }
+}
+
+#offer-status {
+    padding-right: 1.5rem;
+}

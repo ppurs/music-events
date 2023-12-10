@@ -25,3 +25,12 @@
     margin-left: auto;
     display: block;
 }
+
+::ng-deep .mat-dialog-container {
+    overflow-x: hidden;
+}
+
+::ng-deep .mat-dialog-actions { 
+    min-height: 0;
+    padding-bottom: 1rem;
+}

@@ -1,0 +1,29 @@
+<app-list-item class="event-list-item" [ngClass]="isUpdating ? 'item-updating' : ''" (click)="openDetails()">
+    <ng-template #imgRef>
+        <img class="event-img" src="assets\img\example.png">
+    </ng-template>
+    <ng-template #descRef>
+        <div class="offer-header">
+            <h2>
+                {{offer.title}}
+                <div id="tags">
+                    <app-tag>{{offer.type}}</app-tag>
+                    <app-tag>{{offer.genre}}</app-tag>
+                </div>
+            </h2>
+            <button mat-icon-button class="delete-btn" *forRoles="ADMIN_ROLE" (click)="onDeleteClick($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">calendar_today</mat-icon>
+            {{offer.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">location_on</mat-icon>
+            {{offer.city}}
+        </h3>
+    </ng-template>
+</app-list-item>
+

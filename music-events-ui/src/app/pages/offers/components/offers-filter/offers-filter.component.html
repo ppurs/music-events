@@ -1,0 +1,51 @@
+<form [formGroup]="filterForm">
+    <app-filter-item [title]="'City'">
+        <mat-selection-list #citiesList [color]="'primary'" formControlName="cities">
+            <mat-list-option *ngFor="let city of options.cities" 
+                            [checkboxPosition]="'before'"
+                            class="multi-item"
+                            value={{city}}>
+                            {{city}}
+            </mat-list-option>  
+        </mat-selection-list>
+    </app-filter-item>
+
+    <app-filter-item [title]="'Date'">
+        <mat-form-field [appearance]="'outline'" [ngClass]="'date-field'">
+            <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate [placeholder]="'Start date'" formControlName="startDate">
+            <input matEndDate [placeholder]="'End date'" formControlName="endDate">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker" class="mat-mdc-icon-button"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker>
+                <mat-date-range-picker-actions>
+                    <button mat-button matDateRangePickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                  </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+        </mat-form-field>
+    </app-filter-item>
+
+    <app-filter-item [title]="'Type'">
+        <mat-selection-list #typesList [color]="'primary'" formControlName="types">
+            <mat-list-option *ngFor="let type of options.types" 
+                            [checkboxPosition]="'before'"
+                            class="multi-item"
+                            value={{type}}>
+                            {{type}}
+            </mat-list-option>  
+        </mat-selection-list>
+    </app-filter-item>
+
+    <app-filter-item [title]="'Genre'">
+        <mat-selection-list #genresList [color]="'primary'" formControlName="genres">
+            <mat-list-option *ngFor="let genre of options.genres" 
+                            [checkboxPosition]="'before'"
+                            class="multi-item"
+                            value={{genre}}>
+                            {{genre}}
+            </mat-list-option>  
+        </mat-selection-list>
+    </app-filter-item>
+</form>

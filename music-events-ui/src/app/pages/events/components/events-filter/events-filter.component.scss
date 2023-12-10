@@ -16,11 +16,6 @@
     display: inline-block;
 }
 
-::ng-deep .mat-form-field-appearance-outline 
-::ng-deep .mat-form-field-infix {
-    padding: 0 !important;
-}
-
 #search-icon {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
@@ -40,6 +35,12 @@
         background-color: var(--primary);
         opacity: 0.1;
     }
+
+    .mat-form-field-appearance-outline 
+    .mat-form-field-infix {
+        padding: 0 !important;
+    }
+    
     margin-top: 0.5rem
 }
 
@@ -50,6 +51,11 @@
         color: var(--light-text) !important;
         border-width: 1px !important;
         background-color: var(--primary);
+    }
+
+    .mat-form-field-appearance-outline 
+    .mat-form-field-infix {
+        padding: 0 !important;
     }
 
     .mat-input-element::placeholder {
