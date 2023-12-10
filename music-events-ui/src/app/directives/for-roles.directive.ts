@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
-import { AuthService } from './services/auth.service';
-import { Role } from './models/role';
+import { AuthService } from '../core/auth/services/auth.service';
+import { Role } from '../core/auth/models/role';
 
 @Directive({
   selector: '[forRoles]'
