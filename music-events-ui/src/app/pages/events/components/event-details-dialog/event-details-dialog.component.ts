@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MusicEvent } from '../../models/music-event';
 
 @Component({
-  selector: 'app-event-details-dialog',
+  selector: 'event-details-dialog',
   templateUrl: './event-details-dialog.component.html',
   styleUrls: ['./event-details-dialog.component.scss']
 })

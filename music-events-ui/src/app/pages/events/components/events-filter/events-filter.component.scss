@@ -16,11 +16,6 @@
     display: inline-block;
 }
 
-::ng-deep .mat-form-field-appearance-outline 
-::ng-deep .mat-form-field-infix {
-    padding: 0 !important;
-}
-
 #search-icon {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
@@ -31,7 +26,7 @@
     color: var(--light-text);
 }
 
-::ng-deep .date-field {
+::ng-deep .date-field-event {
     .mat-form-field-outline-start,
     .mat-form-field-outline-gap,
     .mat-form-field-outline-end {
@@ -40,6 +35,12 @@
         background-color: var(--primary);
         opacity: 0.1;
     }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding: 0 !important;
+    }
+    
     margin-top: 0.5rem
 }
 
@@ -67,6 +68,11 @@
 
     .mat-form-field-wrapper {
         padding-bottom: 1rem;
+    }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding: 0 !important;
     }
 
     margin-top: -0.25rem !important;

@@ -1,0 +1,80 @@
+<app-details-dialog>
+    <ng-template #imgRef>
+        <img class="event-img" src="assets\img\example.png">
+    </ng-template>
+
+    <ng-template #detailsRef>
+        <h1 id="dialog-title">
+            {{data.offer.title}}
+            <div id="tags">
+                <app-tag>{{data.offer.type}}</app-tag>
+                <app-tag>{{data.offer.genre}}</app-tag>
+            </div>
+        </h1>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">calendar_today</mat-icon>
+            {{data.offer.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">location_on</mat-icon>
+            {{data.offer.city}}<span id="location" *ngIf="data.offer.location">,&nbsp; {{data.offer.location}}</span>
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">info</mat-icon>
+            Organized by {{data.offer.organizer}}
+        </h3>
+    </ng-template>
+
+    <ng-template #descRef>
+        <h4>{{data.offer.description}}</h4>
+
+        <mat-divider></mat-divider>
+
+        <ng-container *ngIf="isLogged; else logInfo">
+            <div id="apply-offer-section" *forRoles="USER_ROLE">
+                <p>Use your 
+                    <a href="" (click)="changeStrategy('profile'); false">music profile</a> 
+                    to apply for this offer or 
+                    <a href="" (click)="changeStrategy('form'); false">fill the application form</a>.
+                </p>
+
+                <form [formGroup]="strategy.profileForm">
+                    <mat-form-field *ngIf="!isFormExpanded; else profileForm" 
+                                    [appearance]="'outline'" 
+                                    [ngClass]="'dialog-form-field'"
+                                    floatLabel="always">
+                        <mat-label>Music profile</mat-label>
+                        <mat-select formControlName="profileId" placeholder="Choose your profile">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let profile of data.musicProfiles" [value]="profile.id">{{profile.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="strategy.profileForm.get('profileId')?.hasError('required')">
+                            Choose profile or fill the form.
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
+        </ng-container>
+    </ng-template>
+
+    <ng-template #actionsRef *forRoles="USER_ROLE">
+        <app-status-info [hidden]="!isSubmitted" id="offer-status" #statusRef></app-status-info>
+        <button *ngIf="!isSubmitted" 
+                mat-raised-button 
+                (click)="onSubmit()" 
+                [color]="'primary'" 
+                [ngClass]="!isLogged ? 'not-logged' : ''">
+                APPLY
+        </button>
+    </ng-template>  
+</app-details-dialog>
+
+<ng-template #logInfo>
+    <div id="login-msg">
+        <h4>You must be logged in to apply for this offer. <a href="/login">Click to log in.</a></h4>
+    </div>
+</ng-template>
+
+<ng-template #profileForm>
+
+</ng-template>

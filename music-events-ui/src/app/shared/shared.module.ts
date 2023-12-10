@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { DetailsDialogComponent } from './components/details-dialog/details-dialog.component';
+import { DirectivesModule } from '../directives/directives.module';
 import { FilterItemComponent } from './components/filters/filter-item/filter-item.component';
 import { FiltrablePageLayoutComponent } from './layouts/filtrable-page-layout/filtrable-page-layout.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
@@ -14,8 +15,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StatusInfoComponent } from './components/status-info/status-info.component';
 import { TagComponent } from './components/tag/tag.component';
 
 @NgModule({
@@ -24,10 +27,12 @@ import { TagComponent } from './components/tag/tag.component';
     FiltrablePageLayoutComponent,
     ListItemComponent,
     TagComponent,
-    DetailsDialogComponent
+    DetailsDialogComponent,
+    StatusInfoComponent,
   ],
   imports: [
     CommonModule,
+    DirectivesModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -38,10 +43,12 @@ import { TagComponent } from './components/tag/tag.component';
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
   exports: [
     DetailsDialogComponent,
+    DirectivesModule,
     FilterItemComponent,
     FiltrablePageLayoutComponent,
     ListItemComponent,
@@ -56,6 +63,7 @@ import { TagComponent } from './components/tag/tag.component';
     MatListModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    StatusInfoComponent,
     TagComponent
   ],
 })

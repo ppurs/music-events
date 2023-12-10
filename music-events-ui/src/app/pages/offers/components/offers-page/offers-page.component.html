@@ -1,0 +1,10 @@
+<app-filtrable-page-layout>
+    <ng-template #filterRef>
+        <offers-filter [options]="filterOptions" (applyfilter)="applyFilter($event)"></offers-filter>
+    </ng-template>
+    <ng-template #contentRef>
+        <div *ngFor="let offerDetails of offers$ | async" class="list-elem">
+            <offers-list-item [offer]="offerDetails"></offers-list-item>
+        </div>
+    </ng-template>
+</app-filtrable-page-layout>
