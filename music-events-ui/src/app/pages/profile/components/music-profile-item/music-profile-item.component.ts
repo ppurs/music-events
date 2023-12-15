@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { DeleteConfirmationComponent } from 'src/app/shared/components/delete-confirmation/delete-confirmation.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { ProfileFacade } from '../../services/profile-facade/profile.facade';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AccountDetails } from '../../models/account-details';
 import { MatDialog } from '@angular/material/dialog';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { MusicProfileFormComponent } from '../music-profile-form/music-profile-form.component';
 import { ProfileFacade } from '../../services/profile-facade/profile.facade';
 import { Subscription } from 'rxjs';

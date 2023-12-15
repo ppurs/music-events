@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { ProfileDetails } from '../../models/profile-details';
 
 @Injectable({

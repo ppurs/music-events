@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription, forkJoin } from 'rxjs';
 
 import { MatDialogRef } from '@angular/material/dialog';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { ProfileFacade } from '../../services/profile-facade/profile.facade';
 import { RequestStatus } from 'src/app/shared/models/request-status';
 import { StatusInfoComponent } from 'src/app/shared/components/status-info/status-info.component';
@@ -95,8 +95,8 @@ export class MusicProfileFormComponent implements OnInit {
     else {
       const formValue: MusicProfile = {
         bandName: this._bandName?.value ?? undefined,
-        profileName: this._profileName?.value ?? undefined,
-        type: this._type?.value ?? undefined,
+        profileName: this._profileName!.value ?? "",
+        type: this._type!.value ?? "",
         genre: this._genres?.value ?? [],
         instrument: this._instrument?.value ?? undefined,
       }

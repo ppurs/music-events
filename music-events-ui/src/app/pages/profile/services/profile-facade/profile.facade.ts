@@ -1,10 +1,11 @@
 import { Observable, catchError, shareReplay, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { ProfileDetails } from '../../models/profile-details';
 import { ProfileService } from '../profile-service/profile.service';
 import { ProfileState } from '../profile-state/profile.state';
+import { SharedService } from 'src/app/shared/services/shared/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,11 @@ export class ProfileFacade {
   private musicProfileTypes$: Observable<string[]>
 
   constructor(private profileService: ProfileService,
-              private profileState: ProfileState) {
-    this.instruments$ = this.profileService.getInstruments().pipe(shareReplay(1));
-    this.musicGenres$ = this.profileService.getMusicGenres().pipe(shareReplay(1));
-    this.musicProfileTypes$ = this.profileService.getMusicProfileTypes().pipe(shareReplay(1));
+              private profileState: ProfileState,
+              private sharedService: SharedService) {
+    this.instruments$ = this.sharedService.getInstruments().pipe(shareReplay(1));
+    this.musicGenres$ = this.sharedService.getMusicGenres().pipe(shareReplay(1));
+    this.musicProfileTypes$ = this.sharedService.getMusicProfileTypes().pipe(shareReplay(1));
   }
 
   getProfileDetails(): Observable<ProfileDetails> {
