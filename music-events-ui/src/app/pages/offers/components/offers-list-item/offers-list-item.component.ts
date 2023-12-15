@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confirmation.component';
+import { DeleteConfirmationComponent } from 'src/app/shared/components/delete-confirmation/delete-confirmation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Offer } from '../../models/offer';
 import { OfferDetailsDialogComponent } from '../offer-details-dialog/offer-details-dialog.component';
@@ -33,9 +33,12 @@ export class OffersListItemComponent {
     });
   }
 
-  onDeleteClick(event: any): void {
+  onDelete(event: any): void {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
-      data: this.offer.title,
+      data: {
+        type: "offer",
+        name: this.offer.title,
+      }
     })
 
     event.stopPropagation();

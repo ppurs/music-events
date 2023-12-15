@@ -1,19 +1,27 @@
-import { MusicProfile } from "src/app/shared/models/music-profile";
 import { ApplyStrategy } from "./apply.strategy";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
+import { OfferApplicationPayload } from "../../../models/offer-application-payload";
 
 export class FormApplyStrategy extends ApplyStrategy {
-    profileForm = this.fb.group({
-        
+    applicationForm = this.fb.group({
+        type: ["", Validators.required],
+        bandName: [""],
+        instrument: [""],
+        genres: [[]]
     })
 
     constructor (private fb: FormBuilder) {
         super();
     }
 
-    override getFormValue(): MusicProfile {
-        const prof = {name: "cos tam"}
+    override getFormValue(): OfferApplicationPayload {
+        const payload = {
+            type: this.applicationForm.get('type')?.value ?? "",
+            bandName: this.applicationForm.get('bandName')?.value ?? "",
+            instrument: this.applicationForm.get('instrument')?.value ?? "",
+            genres: this.applicationForm.get('genres')?.value ?? "",
+        }
 
-        return prof;
+        return payload;
     }
 }

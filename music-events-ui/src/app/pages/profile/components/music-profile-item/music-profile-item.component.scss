@@ -1,0 +1,37 @@
+.profile-list-item {
+    height: 100%;
+    width: 100%;
+    background-color: var(--secondary);
+    padding: 0
+}
+
+.mp-card-content {
+    h3 {
+        font-weight: 500;
+        padding-right: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    padding: 1rem
+}
+
+.delete-mp-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--primary);
+    opacity: 0.7;
+}
+
+.item-updating {
+    opacity: 0.5;
+}
+
+.mp-details-p {
+    span {
+        font-weight: 500;
+    }
+
+    margin-bottom: 0.25rem;
+    margin-left: 0.5rem;
+}

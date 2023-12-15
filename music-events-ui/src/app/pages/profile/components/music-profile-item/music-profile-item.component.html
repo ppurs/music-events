@@ -1,0 +1,12 @@
+<mat-card class="profile-list-item" [ngClass]="isUpdating ? 'item-updating' : ''">
+    <div class="mp-card-content">
+        <button mat-icon-button (click)="onDelete()" class="delete-mp-btn">
+            <mat-icon>close</mat-icon>
+        </button>
+        <h3>{{musicProfile.profileName}}</h3>
+        <p class="mp-details-p"><span>Type:</span>&nbsp;{{musicProfile.type}}</p>
+        <p class="mp-details-p" *ngIf="musicProfile.bandName"><span>Band:</span>&nbsp;{{musicProfile.bandName}}</p>
+        <p class="mp-details-p" *ngIf="musicProfile.instrument"><span>Instrument:</span>&nbsp;{{musicProfile.instrument}}</p>
+        <p class="mp-details-p" *ngIf="musicProfile.genre"><span>Genre:</span>&nbsp;{{musicProfile.genre.join(', ')}}</p>
+    </div>
+</mat-card>

@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { DetailsDialogComponent } from './components/details-dialog/details-dialog.component';
 import { DirectivesModule } from '../directives/directives.module';
 import { FilterItemComponent } from './components/filters/filter-item/filter-item.component';
@@ -16,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StatusInfoComponent } from './components/status-info/status-info.component';
@@ -29,6 +31,7 @@ import { TagComponent } from './components/tag/tag.component';
     TagComponent,
     DetailsDialogComponent,
     StatusInfoComponent,
+    DeleteConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -44,9 +47,11 @@ import { TagComponent } from './components/tag/tag.component';
     MatInputModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   exports: [
+    DeleteConfirmationComponent,
     DetailsDialogComponent,
     DirectivesModule,
     FilterItemComponent,
@@ -54,6 +59,7 @@ import { TagComponent } from './components/tag/tag.component';
     ListItemComponent,
     MatButtonModule,
     MatCheckboxModule,
+    MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
     MatExpansionModule,
@@ -62,6 +68,7 @@ import { TagComponent } from './components/tag/tag.component';
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
+    MatSelectModule,
     ReactiveFormsModule,
     StatusInfoComponent,
     TagComponent

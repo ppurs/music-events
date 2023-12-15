@@ -8,7 +8,6 @@ import { OffersListItemComponent } from './components/offers-list-item/offers-li
 import { OffersPageComponent } from './components/offers-page/offers-page.component';
 import { OffersRoutingModule } from './offers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import { DeleteConfirmationComponent } from './components/delete-confirmation/de
     OffersFilterComponent,
     OffersListItemComponent,
     OfferDetailsDialogComponent,
-    DeleteConfirmationComponent
   ],
   imports: [
     CommonModule,

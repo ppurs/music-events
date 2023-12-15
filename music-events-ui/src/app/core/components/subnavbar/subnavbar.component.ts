@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { AuthService } from '../../auth/services/auth.service';
+import { Role } from '../../auth/models/role';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -25,6 +26,9 @@ import { Subscription } from 'rxjs';
 })
 export class SubnavbarComponent implements OnInit {
   @Input() expanded: boolean
+
+  readonly ROLES = Role
+
   isLogged: boolean
   
   private logSubscription?: Subscription;

@@ -5,8 +5,9 @@ import { Observable, of } from 'rxjs';
 import { CreateOfferResponse } from '../../models/create-offer.response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MusicProfile } from 'src/app/shared/models/music-profile';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { Offer } from '../../models/offer';
+import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
 import { OffersFilterOptions } from '../../models/offers-filter-options';
 
@@ -32,7 +33,7 @@ export class OffersService {
     return this.http.get<OffersFilterOptions>(`${this.OFFERS_API}/filters`);
   }
 
-  applyForOffer(offerId: number, profile: MusicProfile): Observable<any> {
+  applyForOffer(offerId: number, profile: OfferApplicationPayload): Observable<any> {
     return this.http.post(
       `${this.OFFERS_API}/apply`, 
       {
