@@ -1,0 +1,38 @@
+<div class="page-container">
+   <div id="account-details" class="container">
+      <h2>
+         <span class="profile-header">Account details</span>
+         <div class="line"></div>
+      </h2>
+
+      <mat-card id="details-card">
+         <h4>
+            <span class="details-header">Email: </span> {{accountDetails.email}} 
+         </h4>
+         <h4 >
+            <span class="details-header">Name: </span> {{accountDetails.firstName}} {{accountDetails.lastName}}
+         </h4>
+         <h4 *ngIf="accountDetails.organizationName">
+            <span class="details-header">Organization: </span> {{accountDetails.organizationName}}
+         </h4>
+      </mat-card>
+   </div>
+   <div id="music-profiles" class="container">
+      <h2>
+         <span class="profile-header">Music profiles</span>
+         <div class="line"></div>
+      </h2>
+
+      <div id="profiles-list">
+         <div class="profile-container">
+            <mat-card class="profile-list-item" id="add-profile-item" (click)="onAddProfileClick()">
+               <h1>+</h1>
+            </mat-card>
+         </div>
+
+         <ng-container *ngFor="let profile of musicProfiles">
+            <profile-music-profile-item [musicProfile]="profile" class="profile-container"></profile-music-profile-item>
+         </ng-container>
+      </div>
+   </div>
+</div>

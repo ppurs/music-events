@@ -1,5 +1,8 @@
 export interface MusicProfile {
     id?: number, 
-    name?: string,
-    
+    type?: string,
+    profileName?: string,
+    bandName?: string,
+    genre?: string[],
+    instrument?: string,
 }

@@ -46,7 +46,7 @@
                         <mat-label>Music profile</mat-label>
                         <mat-select formControlName="profileId" placeholder="Choose your profile">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let profile of data.musicProfiles" [value]="profile.id">{{profile.name}}</mat-option>
+                            <mat-option *ngFor="let profile of data.musicProfiles" [value]="profile.id">{{profile.profileName}}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="strategy.profileForm.get('profileId')?.hasError('required')">
                             Choose profile or fill the form.

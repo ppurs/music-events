@@ -12,7 +12,7 @@ export class FormApplyStrategy extends ApplyStrategy {
     }
 
     override getFormValue(): MusicProfile {
-        const prof = {name: "cos tam"}
+        const prof = {type: "band", profileName: "cos tam"}
 
         return prof;
     }

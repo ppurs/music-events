@@ -1,5 +1,6 @@
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from '@angular/common';
+import { DirectivesModule } from '../directives/directives.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -14,6 +15,7 @@ import { SubnavbarComponent } from './components/subnavbar/subnavbar.component';
   imports: [
     AuthModule,
     CommonModule,
+    DirectivesModule,
     MatButtonModule,
     MatIconModule
   ],

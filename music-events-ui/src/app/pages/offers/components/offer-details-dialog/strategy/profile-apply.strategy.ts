@@ -13,6 +13,6 @@ export class ProfileApplyStrategy extends ApplyStrategy {
     }
 
     override getFormValue(): MusicProfile {
-        return {id: this.profileForm.get('profileId')?.value ?? -1}
+        return {id: this.profileForm.get('profileId')?.value ?? -1 }
     }
 }

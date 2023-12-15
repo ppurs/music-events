@@ -1,0 +1,31 @@
+{
+    "instruments": [
+        "Accordion",
+        "Banjo",
+        "Bass Guitar",
+        "Cello",
+        "Clarinet",
+        "Classical Guitar",
+        "Cymbals",
+        "Double Bass",
+        "Drums",
+        "Electric Guitar",
+        "Flute",
+        "French Horn",
+        "Harmonium",
+        "Harp",
+        "Harpsichord",
+        "Mandolin",
+        "Marimba",
+        "Oboe",
+        "Organ",
+        "Piano",
+        "Saxophone",
+        "Triangle",
+        "Trombone",
+        "Trumpet",
+        "Tuba",
+        "Ukulele",
+        "Violin"
+    ]
+}
