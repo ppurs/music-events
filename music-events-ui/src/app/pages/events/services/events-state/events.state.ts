@@ -7,11 +7,10 @@ import { MusicEvent } from '../../models/music-event';
   providedIn: 'root'
 })
 export class EventsState{
-
-  private events$ = new BehaviorSubject<MusicEvent[]>([])
+  private events$ = new BehaviorSubject<MusicEvent[]>([]);
   private updating$ = new BehaviorSubject<boolean>(false);
-  private allLoaded$ = new BehaviorSubject<boolean>(false)
-  private readonly LIMIT = 20;
+  private allLoaded$ = new BehaviorSubject<boolean>(false);
+  private readonly LIMIT = 5;
 
   isUpdating$(): Observable<boolean> {
     return this.updating$.asObservable();
@@ -26,6 +25,7 @@ export class EventsState{
   }
 
   setEvents(events: MusicEvent[]) {
+    this.allLoaded$.next(events.length < this.LIMIT ? true : false);
     this.events$.next(events);
   }
 

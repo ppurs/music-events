@@ -12,15 +12,18 @@ import { OffersFilterOptions } from '../../models/offers-filter-options';
   styleUrls: ['./offers-page.component.scss']
 })
 export class OffersPageComponent implements OnInit {
- 
   offers$: Observable<Offer[]>;
   filterOptions: OffersFilterOptions;
+  allOffersLoaded$: Observable<boolean>;
+  isUpdating$: Observable<boolean>;
 
   private reloadTrigger: Subject<OffersFilter>;
 
   constructor(private offersFacade: OffersFacade) { 
     this.offers$ = this.offersFacade.getOffers();
     this.filterOptions = {}
+    this.allOffersLoaded$ = this.offersFacade.allOffersLoaded();
+    this.isUpdating$ = this.offersFacade.isOffersListUpdating();
 
     this.reloadTrigger = new Subject<OffersFilter>();
   }
@@ -40,8 +43,7 @@ export class OffersPageComponent implements OnInit {
     this.offersFacade.fetchMoreOffers();
   }
 
-  applyFilter(event: OffersFilter): void {
-    console.log(event);
-    this.reloadTrigger.next(event);
+  applyFilter(filter: OffersFilter): void {
+    this.reloadTrigger.next(filter);
   }
 }

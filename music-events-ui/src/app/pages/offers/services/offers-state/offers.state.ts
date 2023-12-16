@@ -10,7 +10,7 @@ export class OffersState {
   private offers$ = new BehaviorSubject<Offer[]>([])
   private updating$ = new BehaviorSubject<boolean>(false);
   private allLoaded$ = new BehaviorSubject<boolean>(false)
-  private readonly LIMIT = 20;
+  private readonly LIMIT = 5;
 
   isUpdating$(): Observable<boolean> {
     return this.updating$.asObservable();
@@ -24,8 +24,9 @@ export class OffersState {
     return this.offers$.asObservable();
   }
 
-  setOffers(events: Offer[]) {
-    this.offers$.next(events);
+  setOffers(offers: Offer[]) {
+    this.allLoaded$.next(offers.length < this.LIMIT ? true : false)
+    this.offers$.next(offers);
   }
 
   allOffersLoaded$(): Observable<boolean> {

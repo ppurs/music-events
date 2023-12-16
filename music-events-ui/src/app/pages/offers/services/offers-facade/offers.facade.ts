@@ -1,4 +1,4 @@
-import { Observable, catchError, shareReplay, tap } from 'rxjs';
+import { Observable, catchError, first, shareReplay, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
@@ -51,12 +51,26 @@ export class OffersFacade {
   }
 
   loadOffers(filter?: OffersFilter) {
+    this.offersState.setUpdating(true);
+
     return this.offersService.getOffers(filter)
-              .pipe(tap(offers => this.offersState.setOffers(offers)));
+              .pipe(tap(offers => {
+                this.offersState.setOffers(offers);
+                this.offersState.setUpdating(false);
+              }
+            ));
   }      
 
+  isOffersListUpdating(): Observable<boolean> {
+    return this.offersState.isUpdating$();
+  }
+
+  allOffersLoaded(): Observable<boolean> {
+    return this.offersState.allOffersLoaded$()
+  }
+
   fetchMoreOffers(filter?: OffersFilter) {
-    this.offersState.allOffersLoaded$().subscribe({
+    this.offersState.allOffersLoaded$().pipe(first()).subscribe({
       next: res => {
         if(!res) {
           this.offersService.getOffers(filter, this.offersState.getOffset()).subscribe({

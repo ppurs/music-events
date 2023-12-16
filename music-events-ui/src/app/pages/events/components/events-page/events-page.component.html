@@ -6,5 +6,16 @@
         <div *ngFor="let musicEvent of events$ | async" class="list-elem">
             <events-list-item [event]="musicEvent"></events-list-item>
         </div>
+        
+        <h4 class="list-info" 
+            *ngIf="(allEventsLoaded$ | async) && (events$ |async)?.length == 0">
+            No events found.
+        </h4>
+        <button class="list-info" 
+                mat-button 
+                *ngIf="!(allEventsLoaded$ | async) && !(isUpdating$ | async) && (events$ |async)?.length != 0" 
+                (click)="fetchMore()">
+                Load more events
+        </button>
     </ng-template>
 </app-filtrable-page-layout>

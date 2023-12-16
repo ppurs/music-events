@@ -12,15 +12,18 @@ import { MusicEventsFilterOptions } from '../../models/music-events-filter-optio
   styleUrls: ['./events-page.component.scss']
 })
 export class EventsPageComponent implements OnInit {
-  
   events$: Observable<MusicEvent[]>;
   filterOptions: MusicEventsFilterOptions;
+  allEventsLoaded$: Observable<boolean>;
+  isUpdating$: Observable<boolean>;
 
   private reloadTrigger: Subject<MusicEventsFilter>;
 
   constructor(private eventsFacade: EventsFacade) { 
     this.events$ = this.eventsFacade.getEvents();
     this.filterOptions = {cities: [], types: [], genres: []}
+    this.allEventsLoaded$ = this.eventsFacade.allEventsLoaded();
+    this.isUpdating$ = this.eventsFacade.isEventsListUpdating();
 
     this.reloadTrigger = new Subject<MusicEventsFilter>();
   }
@@ -40,8 +43,7 @@ export class EventsPageComponent implements OnInit {
     this.eventsFacade.fetchMoreEvents();
   }
 
-  applyFilter(event: MusicEventsFilter): void {
-    console.log(event);
-    this.reloadTrigger.next(event);
+  applyFilter(filter: MusicEventsFilter): void {
+    this.reloadTrigger.next(filter);
   }
 }

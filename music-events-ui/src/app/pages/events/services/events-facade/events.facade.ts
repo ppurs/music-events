@@ -1,4 +1,4 @@
-import { Observable, shareReplay, tap } from 'rxjs';
+import { Observable, first, shareReplay, tap } from 'rxjs';
 
 import { EventsService } from '../events-service/events.service';
 import { EventsState } from '../events-state/events.state';
@@ -28,12 +28,26 @@ export class EventsFacade {
   }
 
   loadEvents(filter?: MusicEventsFilter) {
+    this.eventsState.setUpdating(true);
+
     return this.eventsService.getEvents(filter)
-              .pipe(tap(events => this.eventsState.setEvents(events)));
-  }      
+              .pipe(tap(events => {
+                this.eventsState.setEvents(events);
+                this.eventsState.setUpdating(false);
+              }
+            ));
+  }    
+  
+  isEventsListUpdating(): Observable<boolean> {
+    return this.eventsState.isUpdating$();
+  }
+
+  allEventsLoaded(): Observable<boolean> {
+    return this.eventsState.allEventsLoaded$()
+  }
 
   fetchMoreEvents(filter?: MusicEventsFilter) {
-    this.eventsState.allEventsLoaded$().subscribe({
+    this.eventsState.allEventsLoaded$().pipe(first()).subscribe({
       next: res => {
         if(!res) {
           this.eventsService.getEvents(filter, this.eventsState.getOffset()).subscribe({
