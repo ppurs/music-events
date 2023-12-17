@@ -1,0 +1,47 @@
+#location {
+    font-weight: 400;
+    display: block;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+.event-img {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    object-fit: fill;
+}
+
+.event-list-item {
+    height: 11rem;
+    display: block;
+}
+
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#ticket-details {
+    width: calc(100% - 4.0rem);
+    display: inline-block;
+}
+
+#ticket-id-container {
+    img {
+        display: inline-block;
+        height: 2.5rem;
+        width: auto;
+        transform: translateX(-10%);
+    }
+
+    width: 4rem;
+    text-align: center;
+    display: inline-block;
+    transform: rotate(-90deg) translateX(26%);
+}

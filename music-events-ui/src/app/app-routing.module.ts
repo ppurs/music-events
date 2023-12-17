@@ -11,6 +11,9 @@ const routes: Routes = [
   },
   { path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
+  },
+  { path: 'tickets',
+    loadChildren: () => import('./pages/tickets/tickets.module').then(m => m.TicketsModule)
   }
 ]
 

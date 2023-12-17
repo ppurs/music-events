@@ -1,7 +1,7 @@
 <div id="subnavbar" [@openClose]="expanded ? 'open' : 'closed'">
     <div id="sub-navigations">
         <button mat-flat-button class="subnav-btn" (click)="redirect('profile')" *forRoles="[ROLES.USER, ROLES.ORGANIZER]">Profile</button>
-        <!-- <button mat-flat-button class="subnav-btn" (click)="redirect('tickets')">Tickets</button> -->
+        <button mat-flat-button class="subnav-btn" (click)="redirect('tickets')" *forRoles="[ROLES.USER]">Tickets</button>
         <!-- <button mat-flat-button class="subnav-btn" (click)="redirect('submissions')">Submissions</button> -->
     </div>
     
