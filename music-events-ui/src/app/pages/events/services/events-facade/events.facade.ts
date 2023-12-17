@@ -1,5 +1,7 @@
 import { Observable, first, shareReplay, tap } from 'rxjs';
 
+import { BookTicketsResponse } from '../../models/book-tickets-response';
+import { BookingSummmaryResponse } from '../../models/booking-summary-response';
 import { EventsService } from '../events-service/events.service';
 import { EventsState } from '../events-state/events.state';
 import { Injectable } from '@angular/core';
@@ -21,6 +23,10 @@ export class EventsFacade {
 
   getEvents(): Observable<MusicEvent[]> {
     return this.eventsState.getEvents$();
+  }
+
+  getEvent(id: number): Observable<MusicEvent> {
+    return this.eventsState.getEvent(id);
   }
 
   getFilterOptions() {
@@ -58,6 +64,18 @@ export class EventsFacade {
         }
       }
     })
+  }
+
+  getPurchaseSummary(event: MusicEvent, noTickets: number): Observable<BookingSummmaryResponse> {
+    return this.eventsService.getPurchaseSummary(event.id, noTickets);
+  }
+
+  bookTickets(event: MusicEvent, noTickets: number): Observable<BookTicketsResponse> {
+    return this.eventsService.bookTickets(event.id, noTickets);
+  }
+
+  confirmPayment(orderId: number): Observable<any> {
+    return this.eventsService.confirmPayment(orderId);
   }
   
 }

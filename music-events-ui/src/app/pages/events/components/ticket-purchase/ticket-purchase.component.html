@@ -1,0 +1,110 @@
+<div class="page-container">
+    <mat-stepper linear #stepper>
+        <!-- STEP 1 -->
+        <mat-step [stepControl]="purchaseForm" [editable]="isEditable">
+            <ng-template matStepLabel>Booking details</ng-template>
+
+            <app-list-item class="event-list-item">
+                <ng-template #imgRef>
+                    <img class="event-img" src="assets\img\example.png">
+                </ng-template>
+                <ng-template #descRef>
+                    <h2>
+                        {{event.title}}
+                        <div id="tags">
+                            <app-tag>{{event.type}}</app-tag>
+                            <app-tag>{{event.genre}}</app-tag>
+                        </div>
+                    </h2>
+                    <h3 class="desc-item">
+                        <mat-icon class="desc-icon">calendar_today</mat-icon>
+                        {{event.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+                    </h3>
+                    <h3 class="desc-item">
+                        <mat-icon class="desc-icon">location_on</mat-icon>
+                        {{event.city}},&nbsp; <span id="location">{{event.location}}</span>
+                    </h3>
+                    <h3 class="desc-item" *ngIf="event.price; else free">
+                        <mat-icon class="desc-icon">attach_money</mat-icon>
+                        {{event.price}}
+                    </h3>
+                </ng-template>
+            </app-list-item>
+
+            <app-section-header>Tickets details</app-section-header>
+            
+            <form [formGroup]="purchaseForm">
+                <mat-form-field [appearance]="'outline'" [ngClass]="'purchase-form-field'" hideRequiredMarker="true">
+                    <mat-label>Number of tickets</mat-label>
+                    <input type="number" matInput formControlName="noTickets">
+                    <mat-error *ngIf="noTickets?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                    <mat-error *ngIf="noTickets?.hasError('pattern')">
+                        Value must be greater than 0.
+                    </mat-error>
+                </mat-form-field>
+            </form>
+
+            <div align="end">
+                <button mat-button color='primary' (click)="goToSummary(stepper)" type="button">Next</button>
+            </div>
+        </mat-step>
+
+        <!-- STEP 2 -->
+        <mat-step [editable]="isEditable">
+            <ng-template matStepLabel>Summary</ng-template>
+
+            <h3 id="summary-items">
+                <span class="summary-item-title">{{event.title}} - {{event.city}}</span>
+                <span class="summary-no-tickets">{{noTickets?.value}}</span>
+                <span class="summary-separator">x</span>
+                <span class="summary-price">{{event.price | number:'.2'}}</span>
+            </h3>
+            <h3 id="summary-total">
+                <span id="total-title">Total:</span>
+                <span>{{summary | number:'.2'}}</span>
+            </h3>
+
+            <div align="end">
+              <button mat-button id="back-btn" matStepperPrevious>Back</button>
+              <button mat-button color='primary' (click)="onSummaryConfirm(stepper)">Confirm</button>
+            </div>
+        </mat-step>
+
+        <!-- STEP 3 -->
+        <mat-step [editable]="isEditable">
+            <ng-template matStepLabel>Payment</ng-template>
+
+            <h3 id="payment-item">Your bank account will be debited ${{summary | number:'.2'}}. Confirm your payment.</h3>
+
+            <div align="end">
+              <button mat-button id="back-btn" (click)="onPaymentCancel()">Cancel</button>
+              <button mat-button color='primary' (click)="onPaymentConfirm(stepper)">Confirm</button>
+            </div>
+        </mat-step>
+
+        <!-- DONE STEP -->
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <div id="done-container">
+                <mat-icon id="done-icon">done</mat-icon>
+                <h3 id="done-info">
+                    Done! Your tickets are booked!<br>
+                    You will find them in the <a href="/tickets">tickets</a> tab.
+                </h3>
+            </div>
+        </mat-step>
+      </mat-stepper>
+</div>
+
+<ng-template #free>
+    <h3 class="desc-item">
+        <mat-icon class="desc-icon">attach_money</mat-icon>
+        Free entry
+    </h3>
+</ng-template>
+
+<ng-template #error>
+
+</ng-template>

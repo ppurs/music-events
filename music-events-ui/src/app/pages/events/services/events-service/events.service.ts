@@ -1,5 +1,7 @@
 import * as _moment from 'moment';
 
+import { BookTicketsResponse } from '../../models/book-tickets-response';
+import { BookingSummmaryResponse } from '../../models/booking-summary-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MusicEvent } from '../../models/music-event';
@@ -26,5 +28,28 @@ export class EventsService {
 
   getFilterOptions(): Observable<MusicEventsFilterOptions> {
     return this.http.get<MusicEventsFilterOptions>(this.EVENTS_API + '/filters');
+  }
+
+  getPurchaseSummary(eventId: number, noTickets: number): Observable<BookingSummmaryResponse> {
+    return this.http.post<BookingSummmaryResponse>(
+      `${this.EVENTS_API}/book/summary`, 
+      {
+        eventId: eventId,
+        noTickets: noTickets
+      }
+    );
+  }
+
+  bookTickets(eventId: number, noTickets: number): Observable<BookTicketsResponse>{
+    return this.http.put<BookTicketsResponse>(
+      `${this.EVENTS_API}/book/${eventId}`, 
+      {
+        noTickets: noTickets
+      }
+    );
+  }
+
+  confirmPayment(orderId: number): Observable<any> {
+    return this.http.put(`${this.EVENTS_API}/book/confirm/${orderId}`, {success: true})
   }
 }

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { EventDetailsDialogComponent } from '../event-details-dialog/event-details-dialog.component';
@@ -11,8 +12,11 @@ import { MusicEvent } from '../../models/music-event';
 })
 export class EventsListItemComponent implements OnInit {
   @Input() event!: MusicEvent;
+  private readonly BOOK_TICKET_PATH = 'book'
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -23,12 +27,14 @@ export class EventsListItemComponent implements OnInit {
       autoFocus: false 
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.onBuyTicket()
+    dialogRef.afterClosed().subscribe( (res: number) => {
+      if (res) {
+        this.onBookTicket(res)
+      }
     });
   }
 
-  onBuyTicket(): void {
-    //TODO: redirect to payment
+  onBookTicket(id: number): void {
+    this.router.navigate([this.BOOK_TICKET_PATH, id], {relativeTo: this.route});
   }
 }

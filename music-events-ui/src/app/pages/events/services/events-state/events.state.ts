@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { MusicEvent } from '../../models/music-event';
@@ -22,6 +22,12 @@ export class EventsState{
 
   getEvents$(): Observable<MusicEvent[]> {
     return this.events$.asObservable();
+  }
+
+  getEvent(id: number): Observable<MusicEvent> {
+    const event = this.events$.value.find(e => e.id === id)!;
+
+    return of(event);
   }
 
   setEvents(events: MusicEvent[]) {

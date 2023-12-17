@@ -9,4 +9,5 @@ export interface MusicEvent {
     type: string,
     genre?: string,  //???
     price: number,
+    ticketsAvailable: boolean
 }
