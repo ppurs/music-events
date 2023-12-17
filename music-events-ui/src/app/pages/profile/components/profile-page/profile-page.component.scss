@@ -7,24 +7,10 @@
     flex-direction: column;
 }
 
-.profile-header {
-    width: 10rem;
-    display: inline-block;
-    color: var(--primary);
-}
-
 .container {
     width: 100%;
     display: block;
     margin-bottom: 1rem;
-}
-
-.line {
-    width: calc(100% - 10.5rem);
-    height: 0;
-    margin-bottom: 0.25rem;
-    border: 1px solid var(--primary);
-    display:inline-block;
 }
 
 #details-card {

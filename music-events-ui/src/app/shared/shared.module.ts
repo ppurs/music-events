@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { StatusInfoComponent } from './components/status-info/status-info.component';
 import { TagComponent } from './components/tag/tag.component';
 
@@ -32,6 +33,7 @@ import { TagComponent } from './components/tag/tag.component';
     DetailsDialogComponent,
     StatusInfoComponent,
     DeleteConfirmationComponent,
+    SectionHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,7 @@ import { TagComponent } from './components/tag/tag.component';
     MatNativeDateModule,
     MatSelectModule,
     ReactiveFormsModule,
+    SectionHeaderComponent,
     StatusInfoComponent,
     TagComponent
   ],
