@@ -1,0 +1,22 @@
+<app-filtrable-page-layout>
+    <ng-template #filterRef>
+        <tickets-filter (applyfilter)="applyFilter($event)"></tickets-filter>
+    </ng-template>
+    <ng-template #contentRef>
+        <div *ngFor="let ticket of tickets$ | async" class="list-elem">
+            <tickets-list-item [ticket]="ticket"></tickets-list-item>
+        </div>
+        
+        <h4 class="list-info" 
+            *ngIf="(allTicketsLoaded$ | async) && (tickets$ |async)?.length == 0">
+            No tickets found.
+            Please note that here you will find tickets for the upcoming events only.
+        </h4>
+        <button class="list-info" 
+                mat-button 
+                *ngIf="!(allTicketsLoaded$ | async) && !(isUpdating$ | async) && (tickets$ |async)?.length != 0" 
+                (click)="fetchMore()">
+                Load more tickets
+        </button>
+    </ng-template>
+</app-filtrable-page-layout>
