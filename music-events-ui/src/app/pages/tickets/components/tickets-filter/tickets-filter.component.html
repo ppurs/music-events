@@ -1,4 +1,14 @@
 <form [formGroup]="filterForm">
+    <app-filter-item [title]="'Sort order'">
+        <mat-selection-list #citiesList [color]="'primary'" formControlName="order" [multiple]="false">
+            <mat-list-option *ngFor="let sortOrder of sortOrderKeys" 
+                            class="multi-item"
+                            value={{sortOrder}}>
+                            {{sortEnum[sortOrder]}}
+            </mat-list-option>  
+        </mat-selection-list>
+    </app-filter-item>
+
     <app-filter-item [title]="'Date'">
         <mat-form-field [appearance]="'outline'" [ngClass]="'date-field-event'">
             <mat-date-range-input [rangePicker]="picker">
@@ -14,15 +24,5 @@
                   </mat-date-range-picker-actions>
             </mat-date-range-picker>
         </mat-form-field>
-    </app-filter-item>
-
-    <app-filter-item [title]="'Sort order'">
-        <mat-selection-list #citiesList [color]="'primary'" formControlName="order" [multiple]="false">
-            <mat-list-option *ngFor="let sortOrder of sortOrderKeys" 
-                            class="multi-item"
-                            value={{sortOrder}}>
-                            {{sortEnum[sortOrder]}}
-            </mat-list-option>  
-        </mat-selection-list>
     </app-filter-item>
 </form>
