@@ -26,4 +26,14 @@ export class SharedService {
     return of(["Band", "Instrumentalist", "Singer"]);
     //return this.http.get<string[]>(`${this.TYPES}/music-profile`);
   }
+
+  getCities(): Observable<string[]> {
+    return this.http.get<{cities: string[]}>(`${this.STATICS_PATH}/cities.json`)
+      .pipe(map(data => data.cities));
+  }
+
+  getEventTypes(): Observable<string[]> {
+    return this.http.get<{eventTypes: string[]}>(`${this.STATICS_PATH}/event-types.json`)
+      .pipe(map(data => data.eventTypes));
+  }
 }

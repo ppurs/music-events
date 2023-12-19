@@ -1,3 +1,4 @@
 export interface CreateOfferResponse {
-    offerId: number
+    offerId: number,
+    organizer: string
 }

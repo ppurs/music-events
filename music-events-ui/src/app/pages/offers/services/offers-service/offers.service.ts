@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { CreateOfferResponse } from '../../models/create-offer.response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -19,12 +18,13 @@ export class OffersService {
 
   constructor(private http: HttpClient) { }
 
-  getOffers( filter?: OffersFilter, offset: number=0 ): Observable<Offer[]> {
+  getOffers( filter?: OffersFilter, offset: number=0, strategy: string='all' ): Observable<Offer[]> {
     return this.http.post<Offer[]>(
       `${this.OFFERS_API}/list`, 
       { 
         filter: filter,
-        offset: offset 
+        offset: offset,
+        strategy: strategy
       }
     );   
   }
@@ -43,9 +43,9 @@ export class OffersService {
     );
   }
 
-  // createOffer(offer: Offer): Observable<CreateOfferResponse> {
-  //   return this.http.post<CreateOfferResponse>(`${this.OFFERS_API}/add`, offer);
-  // }
+  createOffer(offer: Offer): Observable<CreateOfferResponse> {
+    return this.http.post<CreateOfferResponse>(`${this.OFFERS_API}/add`, offer);
+  }
 
   deleteOffer(offerId: number): Observable<any> {
     return this.http.delete(`${this.OFFERS_API}/delete/${offerId}`)

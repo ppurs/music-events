@@ -7,5 +7,5 @@ export interface Offer {
     date: Date, 
     type: string,
     genre?: string,  //???
-    organizer: string
+    organizer?: string
 }

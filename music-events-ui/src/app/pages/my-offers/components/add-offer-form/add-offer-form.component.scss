@@ -1,0 +1,94 @@
+::ng-deep .dialog-form-field {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--dark-text);
+        border-width: 1px !important;
+        background-color: var(--primary);
+        opacity: 0.1;
+    }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding-top: 0.35rem;
+        padding-bottom: 0.6rem;
+    }
+
+    width: 100%;
+    margin-left: 2rem;
+}
+
+::ng-deep .cdk-overlay-pane {
+    min-width: 80vw;
+}
+
+.close-btn {
+    margin-right: 0;
+    margin-left: auto;
+    display: inline-block;
+}
+
+h2 {
+    width: 100%;
+    justify-content: space-between;
+    display: inline-flex;
+}
+
+#general-section {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+#details-section {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-left: 1px solid var(--secondary);
+}
+
+h3 {
+    color: var(--primary);
+    opacity: 0.5;
+}
+
+#profile-status {
+    padding-right: 1.5rem;
+}
+
+::ng-deep .mat-dialog-container {
+    overflow-x: hidden;
+}
+
+::ng-deep .date-field-event {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--dark-text);
+        border-width: 1px !important;
+        background-color: var(--primary);
+        opacity: 0.1;
+    }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    width: calc(50% - 2rem);
+    margin-left: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    width: 80%;
+    display: flex;
+}
