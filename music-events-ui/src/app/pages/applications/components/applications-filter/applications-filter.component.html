@@ -1,10 +1,11 @@
 <form [formGroup]="filterForm">
-    <app-filter-item [title]="'Sort order'">
-        <mat-selection-list #citiesList [color]="'primary'" formControlName="order" [multiple]="false">
-            <mat-list-option *ngFor="let sortOrder of sortOrderKeys" 
+    <app-filter-item [title]="'Application status'">
+        <mat-selection-list #citiesList [color]="'primary'" formControlName="statuses">
+            <mat-list-option *ngFor="let status of options.statuses" 
+                            [checkboxPosition]="'before'"
                             class="multi-item"
-                            value={{sortOrder}}>
-                            {{sortEnum[sortOrder]}}
+                            value={{status.id}}>
+                            {{status.value | titlecase}}
             </mat-list-option>  
         </mat-selection-list>
     </app-filter-item>

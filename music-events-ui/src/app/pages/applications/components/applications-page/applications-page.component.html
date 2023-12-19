@@ -1,0 +1,21 @@
+<app-filtrable-page-layout>
+    <ng-template #filterRef>
+        <applications-filter [options]="filterOptions" (applyfilter)="applyFilter($event)"></applications-filter>
+    </ng-template>
+    <ng-template #contentRef>
+        <div *ngFor="let application of applications$ | async" class="list-elem">
+            <applications-list-item [application]="application"></applications-list-item>
+        </div>
+        
+        <h4 class="list-info" 
+            *ngIf="(allApplicationsLoaded$ | async) && (applications$ |async)?.length == 0">
+            No applications for offers found.
+        </h4>
+        <button class="list-info" 
+                mat-button 
+                *ngIf="!(allApplicationsLoaded$ | async) && !(isUpdating$ | async) && (applications$ |async)?.length != 0" 
+                (click)="fetchMore()">
+                Load more applications.
+        </button>
+    </ng-template>
+</app-filtrable-page-layout>
