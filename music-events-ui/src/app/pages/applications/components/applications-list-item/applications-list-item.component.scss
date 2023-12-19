@@ -1,0 +1,65 @@
+.event-img {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    object-fit: fill;
+}
+
+.event-list-item {
+    height: 11rem;
+    display: block;
+}
+
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.offer-title {
+    display: inline-block;
+}
+
+.offer-header {
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+        margin-bottom: 0.75rem !important;
+    }
+}
+
+.rejected {
+    color: darkred;
+}
+
+.accepted {
+     color: green;
+}
+
+.status-app-info {
+    display: flex;
+    font-size: 1rem;
+    height: 2rem;
+    line-height: 1.6rem;
+    align-self: center;
+    width: 9rem;
+}
+
+.info-icon {
+    width: 18px;
+    height: auto;
+    margin-left: 1px;
+    margin-right: 0.75rem;
+}
+
+.email-icon {
+    transform: scale(0.7);    
+}
