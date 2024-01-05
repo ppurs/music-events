@@ -11,7 +11,7 @@ import { RequestResponse } from '../models/request-response';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly AUTH_API = "/api/login";
+  private readonly AUTH_API = "/api/auth";
 
   public readonly LOGIN_PATH = '/login';
   public readonly HOME_PATH = '/home';
