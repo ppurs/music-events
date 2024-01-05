@@ -13,7 +13,7 @@
                         {{event.title}}
                         <div id="tags">
                             <app-tag>{{event.type}}</app-tag>
-                            <app-tag>{{event.genre}}</app-tag>
+                            <app-tag *ngIf="event.genre">{{event.genre}}</app-tag>
                         </div>
                     </h2>
                     <h3 class="desc-item">

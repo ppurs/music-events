@@ -8,7 +8,7 @@
             {{data.offer.title}}
             <div id="tags">
                 <app-tag>{{data.offer.type}}</app-tag>
-                <app-tag>{{data.offer.genre}}</app-tag>
+                <app-tag *ngIf="data.offer.genre">{{data.offer.genre}}</app-tag>
             </div>
         </h1>
         <h3 class="desc-item">
