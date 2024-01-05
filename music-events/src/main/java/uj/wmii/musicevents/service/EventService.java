@@ -31,40 +31,40 @@ public class EventService {
 
         EventFilterRequest filter = searchFilter.getFilter();
 
-        if (filter.getCities() != null && filter.getCities().length > 0) {
-            spec = spec.and(EventSpecifications.takePlaceInCities(Arrays.stream(filter.getCities()).toList()));
-        }
-
-        if (filter.getTypes() != null && filter.getTypes().length > 0) {
-            spec = spec.and(EventSpecifications.isOfTypes(Arrays.stream(filter.getTypes()).toList()));
-        }
-
-        if (filter.getGenres() != null && filter.getGenres().length > 0) {
-            spec = spec.and(EventSpecifications.isOfGenreTypes(Arrays.stream(filter.getGenres()).toList()));
-        }
-
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        if (filter.getStartDate() != null) {
-            try {
-                spec = spec.and(EventSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
+        if(filter != null) {
+            if (filter.getCities() != null && filter.getCities().length > 0) {
+                spec = spec.and(EventSpecifications.takePlaceInCities(Arrays.stream(filter.getCities()).toList()));
             }
-            catch (ParseException e){
-                System.out.println("[ERROR]: " + e);
-            }
-        }
 
-        if (filter.getEndDate() != null) {
-            try {
-                spec = spec.and(EventSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
+            if (filter.getTypes() != null && filter.getTypes().length > 0) {
+                spec = spec.and(EventSpecifications.isOfTypes(Arrays.stream(filter.getTypes()).toList()));
             }
-            catch (ParseException e){
-                System.out.println("[ERROR]: " + e);
-            }
-        }
 
-        if (filter.getSearch() != null && !filter.getSearch().isEmpty()) {
-            spec = spec.and(EventSpecifications.findByPhrase(filter.getSearch()));
+            if (filter.getGenres() != null && filter.getGenres().length > 0) {
+                spec = spec.and(EventSpecifications.isOfGenreTypes(Arrays.stream(filter.getGenres()).toList()));
+            }
+
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            if (filter.getStartDate() != null) {
+                try {
+                    spec = spec.and(EventSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
+                } catch (ParseException e) {
+                    System.out.println("[ERROR]: " + e);
+                }
+            }
+
+            if (filter.getEndDate() != null) {
+                try {
+                    spec = spec.and(EventSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
+                } catch (ParseException e) {
+                    System.out.println("[ERROR]: " + e);
+                }
+            }
+
+            if (filter.getSearch() != null && !filter.getSearch().isEmpty()) {
+                spec = spec.and(EventSpecifications.findByPhrase(filter.getSearch()));
+            }
         }
 
         return repository.findAll(spec, page)
