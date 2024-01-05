@@ -1,5 +1,5 @@
 export interface ApplicationsFilter {
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: string,
+    endDate?: string,
     statusIds?: number[]
 }

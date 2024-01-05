@@ -1,3 +1,5 @@
+import * as _moment from 'moment';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -63,8 +65,8 @@ export class ApplicationsFilterComponent implements OnInit {
 
   getFilter(): ApplicationsFilter {
     return {
-      startDate: this.startDate?.value ?? undefined,      //sformatowac date tak zeby bylo dobrze xd
-      endDate: this.endDate?.value ?? undefined,           //sformatowac date tak zeby bylo dobrze xd
+      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
+      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined, 
       statusIds: this.statuses?.value ?? []
     }
   }

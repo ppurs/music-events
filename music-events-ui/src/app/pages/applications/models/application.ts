@@ -3,7 +3,7 @@ export interface Application {
     title: string,
     city: string,
     location?: string,
-    date: Date, 
+    date: string, 
     type: string,
     genre?: string,  
     organizer: {

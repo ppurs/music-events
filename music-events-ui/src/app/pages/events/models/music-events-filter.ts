@@ -1,7 +1,7 @@
 import { MusicEventsFilterOptions } from "./music-events-filter-options";
 
 export interface MusicEventsFilter extends MusicEventsFilterOptions {
-    search: string,
-    startDate?: Date,
-    endDate?: Date,
+    search?: string,
+    startDate?: string,
+    endDate?: string,
 }

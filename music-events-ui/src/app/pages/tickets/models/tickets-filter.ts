@@ -1,5 +1,5 @@
 export interface TicketsFilter {
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: string,
+    endDate?: string,
     order: number
 }

@@ -4,8 +4,8 @@ export interface Offer {
     description: string,
     city: string,
     location?: string,
-    date: Date, 
+    date: string, 
     type: string,
-    genre?: string,  //???
+    genre?: string,  
     organizer: string
 }
