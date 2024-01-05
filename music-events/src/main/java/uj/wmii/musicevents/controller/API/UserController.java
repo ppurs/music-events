@@ -1,4 +1,4 @@
-package uj.wmii.musicevents.controller;
+package uj.wmii.musicevents.controller.API;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -8,10 +8,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
-import uj.wmii.musicevents.model.AuthRequest;
-import uj.wmii.musicevents.model.LoginResponse;
-import uj.wmii.musicevents.model.Response;
-import uj.wmii.musicevents.model.Token;
+import uj.wmii.musicevents.controller.request.AuthRequest;
+import uj.wmii.musicevents.controller.response.LoginResponse;
+import uj.wmii.musicevents.controller.response.Response;
+import uj.wmii.musicevents.controller.response.Token;
 import uj.wmii.musicevents.service.JwtService;
 import uj.wmii.musicevents.service.UserInfoService;
 

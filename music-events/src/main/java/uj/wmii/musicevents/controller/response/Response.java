@@ -1,4 +1,4 @@
-package uj.wmii.musicevents.model;
+package uj.wmii.musicevents.controller.response;
 
 import lombok.Data;
 

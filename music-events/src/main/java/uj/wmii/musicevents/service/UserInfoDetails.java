@@ -3,7 +3,7 @@ package uj.wmii.musicevents.service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import uj.wmii.musicevents.entity.UserInfo;
+import uj.wmii.musicevents.model.UserInfo;
 
 import java.util.Arrays;
 import java.util.Collection;

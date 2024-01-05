@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import uj.wmii.musicevents.entity.UserInfo;
+import uj.wmii.musicevents.model.UserInfo;
 import uj.wmii.musicevents.repository.UserInfoRepository;
 
 import java.util.Optional;

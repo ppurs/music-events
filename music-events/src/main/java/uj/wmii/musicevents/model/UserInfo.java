@@ -1,4 +1,4 @@
-package uj.wmii.musicevents.entity;
+package uj.wmii.musicevents.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
