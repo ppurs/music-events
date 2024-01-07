@@ -5,44 +5,39 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Events")
-public class Event {
+@Table(name="Offers")
+public class Offer {
     @Id
-    @Column(name="event_id")
+    @Column(name="offer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(nullable = false)
-    String title;
-
-    String description;
-
-    String performers;
+    private String title;
 
     @Column(nullable = false)
-    String city;
+    private String description;
 
     @Column(nullable = false)
-    String location;
+    private String city;
+
+    private String location;
 
     @Column(nullable = false)
-    Date date;
+    private Date date;
 
     @Column(nullable = false)
-    String type;
+    private String type;
 
-    String genre;
+    private String genre;
 
-    @Column(nullable = false)
-    BigDecimal price;
-
-    @Column(nullable = false)
-    int noTickets;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "organizer_id", nullable = false)
+    private Organizer organizer;
 }

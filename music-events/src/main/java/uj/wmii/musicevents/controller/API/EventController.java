@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uj.wmii.musicevents.controller.request.EventSearchRequest;
+import uj.wmii.musicevents.controller.request.EventFilterRequest;
+import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.EventDTO;
 import uj.wmii.musicevents.dto.EventFilterOptionsDTO;
 import uj.wmii.musicevents.service.EventService;
@@ -19,7 +20,7 @@ public class EventController {
     private EventService service;
 
     @PostMapping("/list")
-    public ResponseEntity<List<EventDTO>> getEventsList(@RequestBody EventSearchRequest request) {
+    public ResponseEntity<List<EventDTO>> getEventsList(@RequestBody SearchRequest<EventFilterRequest> request) {
         return ResponseEntity.ok(service.getFilteredEvents(request));
     }
 

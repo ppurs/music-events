@@ -41,6 +41,8 @@ public class SecurityConfig {
                         "/auth/**",
                         "/events/list",
                         "/events/filters",
+                        "/offers/list",
+                        "/offers/filters",
                         "/welcome").permitAll()
             );
         http.authorizeHttpRequests((authorizeHttpRequests) ->

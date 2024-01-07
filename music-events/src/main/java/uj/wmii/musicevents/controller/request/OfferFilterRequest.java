@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventFilterRequest {
-    private String search;
+public class OfferFilterRequest {
     private String startDate;
     private String endDate;
     private String[] cities;

@@ -1,0 +1,19 @@
+package uj.wmii.musicevents.dto.mapper;
+
+import uj.wmii.musicevents.dto.OfferDTO;
+import uj.wmii.musicevents.model.Offer;
+
+public class OfferMapper {
+    public OfferDTO mapToDTO(Offer offer) {
+        return new OfferDTO()
+                .setId(offer.getId())
+                .setTitle(offer.getTitle())
+                .setDescription(offer.getDescription())
+                .setCity(offer.getCity())
+                .setLocation(offer.getLocation())
+                .setDate(offer.getDate().toString())
+                .setType(offer.getType())
+                .setGenre(offer.getGenre())
+                .setOrganizer(offer.getOrganizer().getOrganizationName());
+    }
+}

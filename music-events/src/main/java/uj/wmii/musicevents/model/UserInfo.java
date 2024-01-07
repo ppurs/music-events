@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +16,17 @@ import lombok.NoArgsConstructor;
 public class UserInfo {
 
     @Id
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+
+    private String firstname;
+
+    private String lastname;
+
     private String email;
+
     private String password;
+
     private String roles;
 }
