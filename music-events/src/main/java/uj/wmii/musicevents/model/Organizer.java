@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Set;
+
 @Entity
 @DiscriminatorValue("ORGANIZER")
 @EqualsAndHashCode(callSuper = true)
@@ -14,12 +16,12 @@ public class Organizer extends UserInfo {
     @Column(name = "organization_name")
     private String organizationName;
 
-    public Organizer(int id, String first, String last, String email, String password, String roles, String name) {
+    public Organizer(int id, String first, String last, String email, String password, Set<Role> roles, String name) {
         super(id, first, last, email, password, roles);
         this.organizationName = name;
     }
 
-    public Organizer(int id, String first, String last, String email, String password, String roles) {
+    public Organizer(int id, String first, String last, String email, String password, Set<Role> roles) {
         super(id, first, last, email, password, roles);
         this.organizationName = null;
     }
