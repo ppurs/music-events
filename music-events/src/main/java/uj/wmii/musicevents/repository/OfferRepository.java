@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import uj.wmii.musicevents.model.Offer;
 
@@ -21,4 +22,8 @@ public interface OfferRepository extends JpaRepository<Offer, Integer>, JpaSpeci
 
     @Query("SELECT DISTINCT o.genre FROM Offer o WHERE o.genre IS NOT NULL")
     List<String> findGenres();
+
+    @Modifying
+    @Query("DELETE FROM Offer o WHERE o.id = ?1")
+    void deleteByOfferId(Integer id);
 }

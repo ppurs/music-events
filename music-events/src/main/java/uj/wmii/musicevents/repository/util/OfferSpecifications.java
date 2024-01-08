@@ -34,4 +34,9 @@ public class OfferSpecifications {
         return (root, query, criteriaBuilder)->
                 criteriaBuilder.lessThanOrEqualTo(root.get("date"), end);
     }
+
+    public static Specification<Offer> organizedBy(int userId) {
+        return (root, query, criteriaBuilder)->
+                criteriaBuilder.equal(root.get("organizer").get("id"), userId);
+    }
 }

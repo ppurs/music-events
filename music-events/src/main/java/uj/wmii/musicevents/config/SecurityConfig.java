@@ -41,13 +41,17 @@ public class SecurityConfig {
                         "/auth/**",
                         "/events/list",
                         "/events/filters",
-                        "/offers/list",
+                        "/offers/list/all",
                         "/offers/filters",
-                        "/welcome").permitAll()
+                        "/welcome")
+                    .permitAll()
             );
         http.authorizeHttpRequests((authorizeHttpRequests) ->
             authorizeHttpRequests
-                .requestMatchers("/error").authenticated()
+                .requestMatchers(
+                        "/offers/list/user",
+                        "/offers/delete/**")
+                    .authenticated()
             );
         http.sessionManagement((sessionManagement) ->
             sessionManagement

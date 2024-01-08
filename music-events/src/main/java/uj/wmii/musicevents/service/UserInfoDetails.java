@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserInfoDetails implements UserDetails {
+    private int id;
     private String email;
     private String password;
     private List<GrantedAuthority> authorities;
 
     public UserInfoDetails(UserInfo userInfo) {
+        id = userInfo.getId();
         email = userInfo.getEmail();
         password = userInfo.getPassword();
         authorities = Arrays.stream(userInfo.getRoles().split(","))
@@ -28,6 +30,9 @@ public class UserInfoDetails implements UserDetails {
         return authorities;
     }
 
+    public int getId() {
+        return this.id;
+    }
     @Override
     public String getPassword() {
         return password;
