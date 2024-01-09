@@ -9,7 +9,7 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.enums.OfferSearchType;
 import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.repository.util.OfferSpecifications;
-import uj.wmii.musicevents.service.UserInfoDetails;
+import uj.wmii.musicevents.service.UserAccountDetails;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,7 +22,7 @@ public class UserOffersSearchStrategy implements OfferSearchStrategy {
         Specification<Offer> spec = Specification.where(null);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        int userId = ((UserInfoDetails)authentication.getPrincipal()).getId();
+        int userId = ((UserAccountDetails)authentication.getPrincipal()).getId();
 
         spec = spec.and(OfferSpecifications.organizedBy(userId));
 

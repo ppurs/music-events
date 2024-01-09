@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uj.wmii.musicevents.filter.JwtAuthFilter;
-import uj.wmii.musicevents.service.UserInfoService;
+import uj.wmii.musicevents.service.UserAccountDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserInfoService();
+        return new UserAccountDetailsService();
     }
 
     @Bean

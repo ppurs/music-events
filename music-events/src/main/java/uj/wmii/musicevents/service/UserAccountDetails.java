@@ -3,23 +3,23 @@ package uj.wmii.musicevents.service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import uj.wmii.musicevents.model.UserInfo;
+import uj.wmii.musicevents.model.UserAccount;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserInfoDetails implements UserDetails {
+public class UserAccountDetails implements UserDetails {
     private int id;
     private String email;
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserInfoDetails(UserInfo userInfo) {
-        id = userInfo.getId();
-        email = userInfo.getEmail();
-        password = userInfo.getPassword();
-        authorities = userInfo.getRoles()
+    public UserAccountDetails(UserAccount userAccount) {
+        id = userAccount.getId();
+        email = userAccount.getEmail();
+        password = userAccount.getPassword();
+        authorities = userAccount.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());

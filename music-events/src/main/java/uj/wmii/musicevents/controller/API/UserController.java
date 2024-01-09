@@ -13,7 +13,7 @@ import uj.wmii.musicevents.controller.response.LoginResponse;
 import uj.wmii.musicevents.controller.response.Response;
 import uj.wmii.musicevents.controller.response.Token;
 import uj.wmii.musicevents.service.JwtService;
-import uj.wmii.musicevents.service.UserInfoService;
+import uj.wmii.musicevents.service.UserAccountDetailsService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins="*")
 public class UserController {
     @Autowired
-    private UserInfoService service;
+    private UserAccountDetailsService service;
     @Autowired
     private JwtService jwtService;
     @Autowired

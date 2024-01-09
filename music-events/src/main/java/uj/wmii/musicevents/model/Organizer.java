@@ -12,7 +12,7 @@ import java.util.Set;
 @DiscriminatorValue("ORGANIZER")
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class Organizer extends UserInfo {
+public class Organizer extends UserAccount {
     @Column(name = "organization_name")
     private String organizationName;
 
