@@ -8,6 +8,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class TicketDTO {
-    int id;
-    EventDTO event;
+    private int id;
+    private EventDTO event;
 }

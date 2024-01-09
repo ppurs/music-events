@@ -8,13 +8,13 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class OfferDTO {
-    int id;
-    String title;
-    String description;
-    String city;
-    String location;
-    String date;
-    String type;
-    String genre;
-    String organizer;
+    private int id;
+    private String title;
+    private String description;
+    private String city;
+    private String location;
+    private String date;
+    private String type;
+    private String genre;
+    private String organizer;
 }

@@ -19,7 +19,7 @@ public class TicketController {
     @Autowired
     private TicketService service;
 
-    @RolesAllowed({ "ROLE_USER"})
+    @RolesAllowed({"ROLE_USER"})
     @PostMapping("/list")
     public ResponseEntity<List<TicketDTO>> getEventsList(@RequestBody SearchRequest<TicketFilterRequest> request) {
         return ResponseEntity.ok(service.getFilteredTickets(request));

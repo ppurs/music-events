@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class EventFilterOptionsDTO {
-    List<String> cities;
-    List<String> types;
-    List<String> genres;
+    private List<String> cities;
+    private List<String> types;
+    private List<String> genres;
 }

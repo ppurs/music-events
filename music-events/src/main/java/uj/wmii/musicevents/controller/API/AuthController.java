@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins="*")
-public class UserController {
+public class AuthController {
     @Autowired
     private UserAccountDetailsService service;
     @Autowired

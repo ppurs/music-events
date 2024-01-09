@@ -10,15 +10,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class EventDTO {
-    int id;
-    String title;
-    String description;
-    String[] performers;
-    String city;
-    String location;
-    String date;
-    String type;
-    String genre;
-    BigDecimal price;
-    boolean ticketsAvailable;
+    private int id;
+    private String title;
+    private String description;
+    private String[] performers;
+    private String city;
+    private String location;
+    private String date;
+    private String type;
+    private String genre;
+    private BigDecimal price;
+    private boolean ticketsAvailable;
 }

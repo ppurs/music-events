@@ -17,32 +17,32 @@ public class Event {
     @Id
     @Column(name="event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(nullable = false)
-    String title;
+    private String title;
 
-    String description;
+    private String description;
 
-    String performers;
-
-    @Column(nullable = false)
-    String city;
+    private String performers;
 
     @Column(nullable = false)
-    String location;
+    private String city;
 
     @Column(nullable = false)
-    Date date;
+    private String location;
 
     @Column(nullable = false)
-    String type;
-
-    String genre;
+    private Date date;
 
     @Column(nullable = false)
-    BigDecimal price;
+    private String type;
+
+    private String genre;
 
     @Column(nullable = false)
-    int noTickets;
+    private BigDecimal price;
+
+    @Column(nullable = false)
+    private int noTickets;
 }
