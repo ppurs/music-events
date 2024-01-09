@@ -1,5 +1,6 @@
 package uj.wmii.musicevents.service.strategy.offer_search_strategy;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.controller.request.OfferFilterRequest;
@@ -57,5 +58,9 @@ public class AllOffersSearchStrategy implements OfferSearchStrategy {
         }
 
         return spec;
+    }
+
+    public Sort getDefaultSort() {
+        return Sort.by(Sort.Direction.ASC, "date");
     }
 }

@@ -2,6 +2,7 @@ package uj.wmii.musicevents.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import uj.wmii.musicevents.controller.request.EventFilterRequest;
@@ -25,10 +26,14 @@ import java.util.List;
 public class EventServiceImpl implements EventService {
     @Autowired
     private EventRepository repository;
+    @Autowired
+    private EventMapper mapper;
+
 
     public List<EventDTO> getFilteredEvents(SearchRequest<EventFilterRequest> searchFilter) {
         Specification<Event> spec = Specification.where(null);
-        Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset());
+        Sort sort = Sort.by(Sort.Direction.ASC, "date");
+        Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset(), sort);
 
         EventFilterRequest filter = searchFilter.getFilter();
 
@@ -71,8 +76,10 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        return repository.findAll(spec, page)
-                .map(event -> new EventMapper().mapToDTO(event)).getContent();
+        return repository
+                .findAll(spec, page)
+                .map(mapper::mapToDTO)
+                .getContent();
     }
 
     public EventFilterOptionsDTO getFilterOptions() {

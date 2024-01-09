@@ -1,5 +1,6 @@
 package uj.wmii.musicevents.service.strategy.offer_search_strategy;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,5 +62,9 @@ public class UserOffersSearchStrategy implements OfferSearchStrategy {
         }
 
         return spec;
+    }
+    
+    public Sort getDefaultSort() {
+        return Sort.by(Sort.Direction.DESC, "date");
     }
 }

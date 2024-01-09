@@ -1,8 +1,10 @@
 package uj.wmii.musicevents.dto.mapper;
 
+import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.dto.EventDTO;
 import uj.wmii.musicevents.model.Event;
 
+@Component
 public class EventMapper {
     public EventDTO mapToDTO(Event event) {
         String[] performers = null;

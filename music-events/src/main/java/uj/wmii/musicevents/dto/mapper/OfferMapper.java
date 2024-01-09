@@ -1,8 +1,10 @@
 package uj.wmii.musicevents.dto.mapper;
 
+import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.dto.OfferDTO;
 import uj.wmii.musicevents.model.Offer;
 
+@Component
 public class OfferMapper {
     public OfferDTO mapToDTO(Offer offer) {
         return new OfferDTO()
