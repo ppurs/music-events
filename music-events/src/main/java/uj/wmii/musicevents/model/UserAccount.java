@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,20 +22,32 @@ public class UserAccount {
     @Id
     @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    protected int id;
 
-    private String firstname;
+    protected String firstname;
 
-    private String lastname;
+    protected String lastname;
 
-    private String email;
+    protected String email;
 
-    private String password;
+    protected String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "User_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    Set<Role> roles = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    //@JoinColumn(name = "profile_id")
+     List<MusicProfile> musicProfiles;
+
+    public Profile getProfile() {
+        return new Profile()
+                .setEmail(this.email)
+                .setFirstName(this.firstname)
+                .setLastName(this.lastname)
+                .setMusicProfiles(this.musicProfiles);
+    }
 }

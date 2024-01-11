@@ -4,11 +4,13 @@ import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import uj.wmii.musicevents.controller.request.TicketFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.TicketDTO;
 import uj.wmii.musicevents.service.TicketService;
+import uj.wmii.musicevents.service.UserAccountDetails;
 
 import java.util.List;
 
@@ -21,7 +23,8 @@ public class TicketController {
 
     @RolesAllowed({"ROLE_USER"})
     @PostMapping("/list")
-    public ResponseEntity<List<TicketDTO>> getEventsList(@RequestBody SearchRequest<TicketFilterRequest> request) {
-        return ResponseEntity.ok(service.getFilteredTickets(request));
+    public ResponseEntity<List<TicketDTO>> getUserTicketsList(@AuthenticationPrincipal UserAccountDetails userDetails, @RequestBody SearchRequest<TicketFilterRequest> request) {
+
+        return ResponseEntity.ok(service.getFilteredTickets(request, userDetails.getId()));
     }
 }

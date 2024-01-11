@@ -51,7 +51,8 @@ public class SecurityConfig {
                 .requestMatchers(
                         "/offers/list/user",
                         "/offers/delete/**",
-                        "tickets/**")
+                        "tickets/**",
+                        "/profile/**")
                     .authenticated()
             );
         http.sessionManagement((sessionManagement) ->

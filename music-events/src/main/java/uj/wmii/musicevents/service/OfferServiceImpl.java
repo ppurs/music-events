@@ -31,8 +31,7 @@ public class OfferServiceImpl implements OfferService {
         OfferSearchStrategy searchStrategy = this.strategyFactory.getSearchStrategy(strategy);
         Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset(), searchStrategy.getDefaultSort());
 
-        return repository
-                .findAll(searchStrategy.getSearchSpecification((searchFilter)), page)
+        return repository.findAll(searchStrategy.getSearchSpecification((searchFilter)), page)
                 .map(mapper::mapToDTO)
                 .getContent();
     }

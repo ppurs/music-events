@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import uj.wmii.musicevents.controller.request.TicketFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
@@ -29,18 +27,12 @@ public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketMapper mapper;
 
-    public List<TicketDTO> getFilteredTickets(SearchRequest<TicketFilterRequest> searchFilter) {
+    public List<TicketDTO> getFilteredTickets(SearchRequest<TicketFilterRequest> searchFilter, int userId) {
         Sort sort = Sort
                 .by(searchFilter.getListOrder().getOrder(), searchFilter.getListOrder().getField());
         Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset(), sort);
 
-        Specification<Ticket> spec = Specification.where(null);
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        int userId = ((UserAccountDetails)authentication.getPrincipal()).getId();
-
-        spec = spec.and(TicketSpecifications.orderedBy(userId));
-
+        Specification<Ticket> spec = Specification.where(TicketSpecifications.orderedBy(userId));
         TicketFilterRequest filter = searchFilter.getFilter();
 
         if(filter != null) {

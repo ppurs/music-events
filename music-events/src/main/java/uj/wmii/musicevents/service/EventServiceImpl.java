@@ -76,8 +76,7 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        return repository
-                .findAll(spec, page)
+        return repository.findAll(spec, page)
                 .map(mapper::mapToDTO)
                 .getContent();
     }
