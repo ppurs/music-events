@@ -8,6 +8,8 @@ import uj.wmii.musicevents.model.MusicProfile;
 
 @Repository
 public interface MusicProfileRepository extends CrudRepository<MusicProfile, Integer> {
+    Iterable<MusicProfile> findAllByUser_Id(Integer organizer_id);
+
     @Modifying
     @Query("DELETE FROM MusicProfile m WHERE m.id = ?1")
     void deleteByProfileId(Integer id);

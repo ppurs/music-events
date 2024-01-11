@@ -6,11 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import uj.wmii.musicevents.controller.response.AddResponse;
+import uj.wmii.musicevents.dto.MusicProfileDTO;
 import uj.wmii.musicevents.dto.ProfileDTO;
 import uj.wmii.musicevents.model.MusicProfile;
 import uj.wmii.musicevents.service.MusicProfileService;
 import uj.wmii.musicevents.service.UserAccountDetails;
 import uj.wmii.musicevents.service.UserAccountDetailsService;
+
+import java.util.List;
 
 
 @RestController
@@ -41,5 +44,10 @@ public class ProfileController {
     @DeleteMapping("/music-profile/delete/{profileId}")
     public void deleteMusicProfile(@PathVariable int profileId) {
         mProfileService.deleteMusicProfile(profileId);
+    }
+
+    @GetMapping("music-profile/list")
+    public ResponseEntity<List<MusicProfileDTO>> geMusicProfiles(@AuthenticationPrincipal UserAccountDetails userDetails) {
+        return ResponseEntity.ok(mProfileService.getUserMusicProfiles(userDetails.getId()));
     }
 }
