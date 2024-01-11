@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 
@@ -39,5 +41,6 @@ public class Offer {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizer_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Organizer organizer;
 }

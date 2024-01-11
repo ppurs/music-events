@@ -1,5 +1,6 @@
 package uj.wmii.musicevents.service;
 
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.OfferDTO;
 import uj.wmii.musicevents.dto.OfferFilterOptionsDTO;
 import uj.wmii.musicevents.dto.mapper.OfferMapper;
+import uj.wmii.musicevents.model.Offer;
+import uj.wmii.musicevents.model.Organizer;
 import uj.wmii.musicevents.repository.OfferRepository;
 import uj.wmii.musicevents.repository.util.OffsetBasedPageRequest;
 import uj.wmii.musicevents.service.strategy.offer_search_strategy.OfferSearchStrategy;
@@ -26,6 +29,9 @@ public class OfferServiceImpl implements OfferService {
     private OfferSearchStrategyFactory strategyFactory;
     @Autowired
     private OfferMapper mapper;
+
+    @Autowired
+    private EntityManager entityManager;
 
     public List<OfferDTO> getFilteredOffers(String strategy, SearchRequest<OfferFilterRequest> searchFilter) {
         OfferSearchStrategy searchStrategy = this.strategyFactory.getSearchStrategy(strategy);
@@ -46,5 +52,12 @@ public class OfferServiceImpl implements OfferService {
     @Transactional
     public void deleteOffer(int offerId) {
         repository.deleteByOfferId(offerId);
+    }
+
+    public int addOffer(Offer offer, int userId) {
+        offer.setOrganizer(entityManager.getReference(Organizer.class, userId));
+        System.out.println(offer);
+
+        return repository.save(offer).getId();
     }
 }

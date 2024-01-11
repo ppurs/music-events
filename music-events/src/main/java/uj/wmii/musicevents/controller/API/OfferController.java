@@ -4,12 +4,18 @@ import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import uj.wmii.musicevents.controller.request.OfferFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
+import uj.wmii.musicevents.controller.response.AddResponse;
 import uj.wmii.musicevents.dto.OfferDTO;
 import uj.wmii.musicevents.dto.OfferFilterOptionsDTO;
+import uj.wmii.musicevents.model.Offer;
+import uj.wmii.musicevents.model.Organizer;
 import uj.wmii.musicevents.service.OfferService;
+import uj.wmii.musicevents.service.UserAccountDetails;
+import uj.wmii.musicevents.service.UserAccountDetailsService;
 
 import java.util.List;
 
@@ -34,5 +40,14 @@ public class OfferController {
     @DeleteMapping("/delete/{offerId}")
     public void deleteOffer(@PathVariable int offerId) {
         service.deleteOffer(offerId);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<AddResponse> addOffer(@AuthenticationPrincipal UserAccountDetails userDetails, @RequestBody Offer offer) {
+        AddResponse response = new AddResponse();
+        response.setResult(true);
+        response.setInsertedId(service.addOffer(offer, userDetails.getId()));
+
+        return ResponseEntity.ok(response);
     }
 }

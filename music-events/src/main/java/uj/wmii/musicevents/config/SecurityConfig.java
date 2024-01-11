@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .requestMatchers(
                         "/offers/list/user",
                         "/offers/delete/**",
+                        "/offers/add",
                         "tickets/**",
                         "/profile/**")
                     .authenticated()
