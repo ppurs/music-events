@@ -40,7 +40,6 @@ public class UserAccount {
     Set<Role> roles = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    //@JoinColumn(name = "profile_id")
      List<MusicProfile> musicProfiles;
 
     public Profile getProfile() {

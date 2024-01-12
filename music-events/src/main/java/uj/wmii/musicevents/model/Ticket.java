@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Data
@@ -28,8 +27,4 @@ public class Ticket {
 
     @Column(nullable = false)
     private BigDecimal price;
-
-    @Column(name = "purchase_date", nullable = false)
-    private Date date;
-
 }

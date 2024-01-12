@@ -50,10 +50,13 @@ public class SecurityConfig {
             authorizeHttpRequests
                 .requestMatchers(
                         "/offers/list/user",
-                        "/offers/delete/**",
+                        "/offers/delete/*",
+                        "/offers/apply/*",
                         "/offers/add",
-                        "tickets/**",
-                        "/profile/**")
+                        "/offers/my/**",
+                        "/tickets/**",
+                        "/profile/**",
+                        "/applications/**")
                     .authenticated()
             );
         http.sessionManagement((sessionManagement) ->

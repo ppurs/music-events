@@ -6,9 +6,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
-import uj.wmii.musicevents.model.Ticket;
+import uj.wmii.musicevents.model.Application;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, Integer>, JpaSpecificationExecutor<Ticket> {
-    Page<Ticket> findAll(Specification<Ticket> spec, Pageable pageable);
+public interface ApplicationRepository extends JpaRepository<Application, Integer>, JpaSpecificationExecutor<Application> {
+    Page<Application> findAll(Specification<Application> spec, Pageable pageable);
 }
