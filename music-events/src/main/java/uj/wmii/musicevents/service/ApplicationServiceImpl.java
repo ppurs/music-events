@@ -87,4 +87,18 @@ public class ApplicationServiceImpl implements ApplicationService{
                 .map(val -> new StatusDTO(val.ordinal(), val.name()))
                 .collect(Collectors.toList());
     }
+
+    public void acceptApplication(int applicationId) {
+        changeApplicationStatus(applicationId, ApplicationStatus.ACCEPTED);
+    }
+
+    public void rejectApplication(int applicationId) {
+        changeApplicationStatus(applicationId, ApplicationStatus.REJECTED);
+    }
+
+    private void changeApplicationStatus(int applicationId, ApplicationStatus status) {
+        Application applicationToUpdate = repository.getReferenceById(applicationId);
+        applicationToUpdate.setStatus(status);
+        repository.save(applicationToUpdate);
+    }
 }

@@ -11,4 +11,5 @@ import uj.wmii.musicevents.model.Application;
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer>, JpaSpecificationExecutor<Application> {
     Page<Application> findAll(Specification<Application> spec, Pageable pageable);
+    Application getReferenceById(Integer id);
 }

@@ -10,4 +10,6 @@ public interface ApplicationService {
     List<ApplicationDTO> getApplicationsForOffer(SearchRequest<ApplicationFilterRequest> searchFilter, int offerId);
     List<ApplicationDTO> getUserApplications(SearchRequest<ApplicationFilterRequest> searchFilter, int userId);
     List<StatusDTO> getApplicationsStatuses();
+    void acceptApplication(int applicationId);
+    void rejectApplication(int applicationId);
 }

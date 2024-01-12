@@ -57,13 +57,27 @@ public class OfferController {
         return ResponseEntity.ok(response);
     }
 
+    @RolesAllowed({"ROLE_USER"})
     @PostMapping("/apply/{offerId}")
     public void applyForOffer(@AuthenticationPrincipal UserAccountDetails userDetails, @PathVariable int offerId, @RequestBody Application request) {
         offerService.applyForOffer(request, offerId, userDetails.getId());
     }
 
+    @RolesAllowed({"ROLE_ORGANIZER"})
     @PostMapping("/my/{offerId}/applications")
     public ResponseEntity<List<ApplicationDTO>> getApplicationsForOffer(@PathVariable int offerId, @RequestBody SearchRequest<ApplicationFilterRequest> request) {
         return ResponseEntity.ok(applicationService.getApplicationsForOffer(request, offerId));
+    }
+
+    @RolesAllowed({"ROLE_ORGANIZER"})
+    @PutMapping("/my/applications/{applicationId}/accept")
+    public void acceptApplication(@PathVariable int applicationId) {
+        applicationService.acceptApplication(applicationId);
+    }
+
+    @RolesAllowed({"ROLE_ORGANIZER"})
+    @PutMapping("/my/applications/{applicationId}/reject")
+    public void rejectApplication(@PathVariable int applicationId) {
+        applicationService.rejectApplication(applicationId);
     }
 }
