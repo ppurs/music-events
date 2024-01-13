@@ -1,6 +1,7 @@
 import { Observable, catchError, first, shareReplay, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
+import { LoadOffersStrategy } from '../../models/load-offers-startegy';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -52,7 +53,7 @@ export class OffersFacade {
   loadOffers(filter?: OffersFilter) {
     this.offersState.setUpdating(true);
 
-    return this.offersService.getOffers(filter, undefined, "all")
+    return this.offersService.getOffers(filter, undefined, LoadOffersStrategy.ALL)
               .pipe(tap(offers => {
                 this.offersState.setOffers(offers);
                 this.offersState.setUpdating(false);

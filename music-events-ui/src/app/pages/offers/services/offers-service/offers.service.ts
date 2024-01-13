@@ -2,9 +2,12 @@ import * as _moment from 'moment';
 
 import { Observable, of } from 'rxjs';
 
-import { CreateOfferResponse } from '../../models/create-offer.response';
+import { Application } from 'src/app/pages/applications/models/application';
+import { ApplicationsFilter } from 'src/app/pages/applications/models/applications-filter';
+import { CreateResponse } from 'src/app/shared/models/create-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoadOffersStrategy } from '../../models/load-offers-startegy';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -18,13 +21,12 @@ export class OffersService {
 
   constructor(private http: HttpClient) { }
 
-  getOffers( filter?: OffersFilter, offset: number=0, strategy: string='all' ): Observable<Offer[]> {
+  getOffers( filter?: OffersFilter, offset: number=0, strategy: string=LoadOffersStrategy.ALL ): Observable<Offer[]> {
     return this.http.post<Offer[]>(
-      `${this.OFFERS_API}/list`, 
+      `${this.OFFERS_API}/list/${strategy}`, 
       { 
         filter: filter,
         offset: offset,
-        strategy: strategy
       }
     );   
   }
@@ -35,16 +37,15 @@ export class OffersService {
 
   applyForOffer(offerId: number, profile: OfferApplicationPayload): Observable<any> {
     return this.http.post(
-      `${this.OFFERS_API}/apply`, 
+      `${this.OFFERS_API}/apply/${offerId}`, 
       {
-        offerId: offerId,
-        profile: profile
+        profile: profile  //TODOOO
       }
     );
   }
 
-  createOffer(offer: Offer): Observable<CreateOfferResponse> {
-    return this.http.post<CreateOfferResponse>(`${this.OFFERS_API}/add`, offer);
+  createOffer(offer: Offer): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(`${this.OFFERS_API}/add`, offer);
   }
 
   deleteOffer(offerId: number): Observable<any> {
@@ -54,4 +55,22 @@ export class OffersService {
   // updateOffer(offer: Offer): Observable<any> {
   //   return this.http.put(`${this.OFFERS_API}/update/${offer.id}`, offer);
   // }
+
+  acceptApplication(applicationId: number): Observable<any> {
+    return this.http.get(`${this.OFFERS_API}/my/accept/${applicationId}`);
+  }
+
+  rejectApplication(applicationId: number): Observable<any> {
+    return this.http.get(`${this.OFFERS_API}/my/reject/${applicationId}`);
+  }
+
+  getOfferApplications(offerId: number, filter?: ApplicationsFilter, offset: number=0): Observable<Application[]> {
+    return this.http.post<Application[]>(
+      `${this.OFFERS_API}/my/${offerId}/applications`,
+      {
+        filter: filter,
+        offset: offset
+      },
+    );
+  }
 }

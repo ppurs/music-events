@@ -1,0 +1,71 @@
+.page-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.offer-container {
+    width: 100%;
+}
+
+img {
+    height: 11rem;
+    width: auto;
+    max-width: 20%;
+}
+
+.offer-details {
+    margin-left: 2rem;
+    margin-right: 0.5rem;
+    padding-bottom: 1rem;
+    display: inline-block;
+    width: 70%;
+    vertical-align: top;
+}
+
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    font-weight: 500;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.offer-title {
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+
+#location {
+    font-weight: 400;
+    display: block;
+}
+
+#description-section {
+    margin-top: 1rem;
+}
+
+#applications-header {
+    margin-top: 1rem;
+    display: inline-flex;
+}
+
+#chip-sec {
+    margin-left: 1rem;
+    display: inline-flex;
+}

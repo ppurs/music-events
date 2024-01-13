@@ -14,11 +14,11 @@
             *ngIf="(allOffersLoaded$ | async) && (offers$ |async)?.length == 0">
             No offers found.
         </h4>
-    <button class="list-info" 
-            mat-button 
-            *ngIf="!(allOffersLoaded$ | async) && !(isUpdating$ | async) && (offers$ |async)?.length != 0" 
-            (click)="fetchMore()">
-            Load more offers
-    </button>
+        <button class="list-info" 
+                mat-button 
+                *ngIf="!(allOffersLoaded$ | async) && !(isUpdating$ | async) && (offers$ |async)?.length != 0" 
+                (click)="fetchMore()">
+                Load more offers
+        </button>
     </ng-template>
 </app-filtrable-page-layout>
