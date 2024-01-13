@@ -61,8 +61,8 @@
                         [ngClass]="'dialog-form-field'" 
                         floatLabel="always"
                         [hideRequiredMarker]="true">
-            <mat-label>Genres</mat-label>
-            <mat-select formControlName="genres" placeholder="Choose genres" multiple>
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre" placeholder="Choose a genre">
                 <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
             </mat-select>
         </mat-form-field>

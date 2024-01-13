@@ -1,9 +1,8 @@
-import { Observable, map, of } from 'rxjs';
-
-import { AddMusicProfileResponse } from '../../models/add-music-profile-response';
+import { CreateResponse } from 'src/app/shared/models/create-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
+import { Observable } from 'rxjs';
 import { ProfileDetails } from '../../models/profile-details';
 
 @Injectable({
@@ -19,8 +18,8 @@ export class ProfileService {
     return this.http.get<ProfileDetails>(`${this.PROFILE_API}/details`)
   }
 
-  createMusicProfile(profile: MusicProfile): Observable<AddMusicProfileResponse> {
-    return this.http.post<AddMusicProfileResponse>(`${this.MUSIC_PROFILE_API}/add`, profile);
+  createMusicProfile(profile: MusicProfile): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(`${this.MUSIC_PROFILE_API}/add`, profile);
   }
 
   deleteMusicProfile(profileId: number): Observable<any> {

@@ -48,7 +48,6 @@ export class SubnavbarComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
-    this.redirect('home');
   }
 
   redirect(route: string): void {

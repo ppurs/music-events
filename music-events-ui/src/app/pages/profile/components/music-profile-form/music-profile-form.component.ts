@@ -20,7 +20,7 @@ export class MusicProfileFormComponent implements OnInit {
     type: ['', Validators.required],        
     bandName: [''],
     profileName: ['', Validators.required],
-    genres: [[]],
+    genre: [],
     instrument: [''],
   })
 
@@ -53,8 +53,8 @@ export class MusicProfileFormComponent implements OnInit {
     return this.profileForm.get('profileName');
   }
 
-  get _genres() {
-    return this.profileForm.get('genres');
+  get _genre() {
+    return this.profileForm.get('genre');
   }
 
   get _instrument() {
@@ -95,9 +95,9 @@ export class MusicProfileFormComponent implements OnInit {
     else {
       const formValue: MusicProfile = {
         bandName: this._bandName?.value ?? undefined,
-        profileName: this._profileName!.value ?? "",
+        name: this._profileName!.value ?? "",
         type: this._type!.value ?? "",
-        genre: this._genres?.value ?? [],
+        genre: this._genre?.value ?? undefined,
         instrument: this._instrument?.value ?? undefined,
       }
 

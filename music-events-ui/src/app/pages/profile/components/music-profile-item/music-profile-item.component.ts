@@ -24,7 +24,7 @@ export class MusicProfileItemComponent {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       data: {
         type: "music profile",
-        name: this.musicProfile.profileName,
+        name: this.musicProfile.name,
       }
     })
 

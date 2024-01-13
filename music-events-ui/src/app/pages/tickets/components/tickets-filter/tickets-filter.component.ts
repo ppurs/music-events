@@ -6,7 +6,7 @@ import * as _moment from 'moment';
 
 import { DATE_FORMATS } from 'src/app/shared/models/date-formats';
 import { FormBuilder } from '@angular/forms';
-import { SortOrder } from '../../models/sort-order';
+import { SortOrderOptions } from '../../models/sort-order-options';
 import { TicketsFilter } from '../../models/tickets-filter';
 
 @Component({
@@ -25,7 +25,7 @@ import { TicketsFilter } from '../../models/tickets-filter';
 })
 export class TicketsFilterComponent implements OnInit {
   @Output() applyfilter = new EventEmitter<TicketsFilter>();
-  sortEnum = SortOrder;
+  sortEnum = SortOrderOptions;
   sortOrderKeys: (keyof typeof this.sortEnum)[];
 
   filterForm = this.fb.group({
@@ -70,7 +70,10 @@ export class TicketsFilterComponent implements OnInit {
     return {
       startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
       endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined, 
-      order: this.order?.value ? Number(this.order?.value[0]) : 0
+      order: {
+        order: this.order?.value ? Number(this.order?.value[0]) : 0,
+        field: "event_date"
+      }
     }
   }
 

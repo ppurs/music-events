@@ -3,6 +3,7 @@ import * as _moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SortOrder } from 'src/app/shared/models/sort-order';
 import { Ticket } from '../../models/ticket';
 import { TicketsFilter } from '../../models/tickets-filter';
 
@@ -10,16 +11,20 @@ import { TicketsFilter } from '../../models/tickets-filter';
   providedIn: 'root'
 })
 export class TicketsService {
-  private readonly TICKETS_API = '/tickets'
+  private readonly TICKETS_API = '/api/tickets'
 
   constructor(private http: HttpClient) { }
 
-  getTickets( filter?: TicketsFilter, offset: number=0 ): Observable<Ticket[]> {
+  getTickets(listOrder: SortOrder, filter?: TicketsFilter, offset: number=0 ): Observable<Ticket[]> {
     return this.http.post<Ticket[]>(
       this.TICKETS_API + '/list', 
       { 
-        filter: filter,
-        offset: offset 
+        filter: {
+          startDate: filter?.startDate,
+          endDate: filter?.endDate
+        },
+        offset: offset,
+        listOrder: listOrder
       }
     );   
   }
