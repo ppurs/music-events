@@ -1,0 +1,53 @@
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    font-weight: 500;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+#dialog-title {
+    font-weight: 500;
+}
+
+#location {
+    font-weight: 400;
+    display: block;
+}
+
+.event-img {
+    width: 100%;
+    height: auto;
+}
+
+#apply-offer-section {
+    padding-top: 1rem;
+
+    p {
+        font-style: italic;
+    }
+}
+
+
+p {
+    margin: 0 !important;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.submit-p {
+    font-weight: 500;
+    font-style: normal;
+}
+
+#submit-h {
+    margin-top: 1rem;
+    font-weight: 500;
+}
