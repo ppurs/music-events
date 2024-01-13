@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>
-    Add new music profile
+    Add new offer
     <button mat-icon-button class="close-btn" (click)="onClose()" [disableRipple]="true">
         <mat-icon>close</mat-icon>
     </button>
@@ -43,7 +43,7 @@
 
     <div class="row">
         <mat-form-field [appearance]="'outline'" 
-                        [ngClass]="'date-field-event'"
+                        [ngClass]="'date-field-offer-form'"
                         floatLabel="always">
             <mat-label>Date</mat-label>
             <input matInput [matDatepicker]="datepicker" formControlName="date" [placeholder]="'Choose a date'">
