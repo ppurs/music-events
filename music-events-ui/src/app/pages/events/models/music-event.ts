@@ -5,9 +5,9 @@ export interface MusicEvent {
     performers?: string[],     
     city: string,
     location: string,
-    date: Date, 
+    date: string, 
     type: string,
-    genre?: string,  //???
+    genre?: string,
     price: number,
     ticketsAvailable: boolean
 }

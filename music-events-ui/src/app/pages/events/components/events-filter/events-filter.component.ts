@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import * as _moment from 'moment';
 
 import { DATE_FORMATS } from 'src/app/shared/models/date-formats';
 import { FormBuilder } from '@angular/forms';
@@ -64,7 +65,7 @@ export class EventsFilterComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    //obczaic co zrobic z podwojna data xd
+    //obczaic co zrobic z podwojna data 
     const mergedFields = merge( this.cities?.valueChanges ?? of(null), 
                           this.types?.valueChanges ?? of(null), 
                           this.genres?.valueChanges ?? of(null), 
@@ -85,10 +86,10 @@ export class EventsFilterComponent implements OnInit {
 
   getFilter(): MusicEventsFilter {
     return {
-      search: this.search?.value ?? '',
+      search: this.search?.value ?? undefined,
       cities: this.cities?.value ?? [],
-      startDate: this.startDate?.value ?? undefined,      //sformatowac date tak zeby bylo dobrze xd
-      endDate: this.endDate?.value ?? undefined,           //sformatowac date tak zeby bylo dobrze xd
+      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
+      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined,           
       types: this.types?.value ?? [],
       genres: this.genres?.value ?? []
     }

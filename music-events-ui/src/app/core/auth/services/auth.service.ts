@@ -14,8 +14,8 @@ export class AuthService {
   private readonly AUTH_API = "/api/auth";
 
   public readonly LOGIN_PATH = '/login';
-  public readonly HOME_PATH = '/home';
-  public readonly INITIAL_PATH = '';
+  public readonly HOME_PATH = '/events';
+  public readonly INITIAL_PATH = '/profile';
 
   private isLoggedIn!: BehaviorSubject<boolean> 
   public isLoggedIn$: Observable<boolean>

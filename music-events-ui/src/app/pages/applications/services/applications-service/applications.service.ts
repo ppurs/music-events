@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApplicationsService {
-  private readonly APPLICATIONS_API = '/applications'
+  private readonly APPLICATIONS_API = '/api/applications'
 
   constructor(private http: HttpClient) { }
 

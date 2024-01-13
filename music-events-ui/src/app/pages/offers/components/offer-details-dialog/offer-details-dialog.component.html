@@ -8,7 +8,7 @@
             {{data.offer.title}}
             <div id="tags">
                 <app-tag>{{data.offer.type}}</app-tag>
-                <app-tag>{{data.offer.genre}}</app-tag>
+                <app-tag *ngIf="data.offer.genre">{{data.offer.genre}}</app-tag>
             </div>
         </h1>
         <h3 class="desc-item">
@@ -46,7 +46,7 @@
                         <mat-label>Music profile</mat-label>
                         <mat-select formControlName="profileId" placeholder="Choose your profile">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let profile of data.musicProfiles" [value]="profile.id">{{profile.profileName}}</mat-option>
+                            <mat-option *ngFor="let profile of data.musicProfiles" [value]="profile.id">{{profile.name}}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="strategy.applicationForm.get('profileId')?.hasError('required')">
                             Choose profile or fill the form.

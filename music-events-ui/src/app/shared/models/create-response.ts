@@ -1,3 +1,3 @@
 export interface CreateResponse {
-    insertedId: number;
+    insertedId: number
 }

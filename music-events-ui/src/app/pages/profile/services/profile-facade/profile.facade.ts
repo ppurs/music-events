@@ -50,7 +50,7 @@ export class ProfileFacade {
       return this.profileService.createMusicProfile(profile).pipe(
         tap( res => {
             var addedProfileWithId: MusicProfile = profile
-            addedProfileWithId.id = res.profileId;
+            addedProfileWithId.id = res.insertedId;
             this.profileState.updateMusicProfileId(profile, addedProfileWithId)    
         }),
         catchError( error => {
