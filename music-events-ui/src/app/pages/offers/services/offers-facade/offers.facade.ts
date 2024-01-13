@@ -1,7 +1,7 @@
 import { Observable, catchError, first, shareReplay, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
+import { LoadOffersStrategy } from '../../models/load-offers-startegy';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -53,7 +53,7 @@ export class OffersFacade {
   loadOffers(filter?: OffersFilter) {
     this.offersState.setUpdating(true);
 
-    return this.offersService.getOffers(filter)
+    return this.offersService.getOffers(filter, undefined, LoadOffersStrategy.ALL)
               .pipe(tap(offers => {
                 this.offersState.setOffers(offers);
                 this.offersState.setUpdating(false);
@@ -84,36 +84,8 @@ export class OffersFacade {
   }
 
   applyForOffer(offerId: number, profile: OfferApplicationPayload): Observable<any> {
-    console.log(offerId, profile)
     return this.offersService.applyForOffer(offerId, profile);
   }
-
-  // addNewOffer(offer: Offer): Observable<any> {
-  //   this.offersState.addNewOffer(offer);
-    
-  //   return this.offersService.createOffer(offer).pipe(
-  //     tap( res => {
-  //         var addedOfferWithId: Offer = offer
-  //         addedOfferWithId.id = res.offerId
-  //         this.offersState.updateOfferId(offer, addedOfferWithId)    
-  //     }),
-  //     catchError( error => {
-  //       this.offersState.removeOffer(offer);
-  //       console.log(error);
-  //       return error;
-  //     })
-  //   );
-  // }
-
-  // updateOffer(offer: Offer): Observable<any> {
-  //   return this.offersService.updateOffer(offer).pipe(      
-  //     tap( () => this.offersState.updateOffer(offer)),
-  //     catchError( error => {
-  //       console.log(error);
-  //       return error;
-  //     })    
-  //   );
-  // }
 
   deleteOffer(offer: Offer): Observable<any> {
     return this.offersService.deleteOffer(offer.id!).pipe(      

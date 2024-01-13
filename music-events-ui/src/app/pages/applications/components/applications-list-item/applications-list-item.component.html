@@ -1,11 +1,11 @@
-<app-list-item class="event-list-item">
+<app-list-item class="event-list-item" (click)="openDetails()">
     <ng-template #imgRef>
         <img class="event-img" src="assets\img\example.png">
     </ng-template>
     <ng-template #descRef>
         <div class="offer-header">
             <h2>
-                {{application.title}}
+                {{application.offer.title}}
             </h2>
             <div [ngClass]="application.status | lowercase" class="status-app-info">
                 <mat-icon *ngIf="(application.status | lowercase) == 'submitted'" class="desc-icon">access_time</mat-icon>
@@ -17,17 +17,22 @@
         
         <h3 class="desc-item">
             <mat-icon class="desc-icon">calendar_today</mat-icon>
-            {{application.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+            {{application.offer.date | date:"dd MMM yyyy 'at' hh:mm a"}}
         </h3>
         <h3 class="desc-item">
             <mat-icon class="desc-icon">location_on</mat-icon>
-            {{application.city}}
+            {{application.offer.city}}
         </h3>
 
         <h3 class="desc-item">
             <mat-icon class="desc-icon info-icon">info</mat-icon>
-            Organized by {{application.organizer.name}}
-            <span *ngIf="application.organizer.email">,&nbsp;&nbsp;{{application.organizer.email}}</span>
+            <span *ngIf="application.contact; else organizerName">
+                Organized by {{application.contact.name}},&nbsp;&nbsp;{{application.contact.email}}
+            </span>
         </h3>
     </ng-template>
 </app-list-item>
+
+<ng-template #organizerName>
+    <span>Organized by {{application.offer.organizer}}</span>
+</ng-template>

@@ -37,6 +37,13 @@ const routes: Routes = [
     },  
     loadChildren: () => import('./pages/applications/applications.module').then(m => m.ApplicationsModule)
   },
+  { path: 'my-offers',
+    canActivate: [AppGuard],
+    data: {
+      roles: [Role.ORGANIZER]
+    },  
+    loadChildren: () => import('./pages/my-offers/my-offers.module').then(m => m.MyOffersModule)
+  }
   //{ path: '**', redirectTo: '' }
 ]
 

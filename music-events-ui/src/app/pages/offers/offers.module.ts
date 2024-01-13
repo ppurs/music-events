@@ -22,6 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatSelectModule, 
     OffersRoutingModule,
     SharedModule
+  ],
+  exports: [
+    OffersFilterComponent
   ]
 })
 export class OffersModule { }

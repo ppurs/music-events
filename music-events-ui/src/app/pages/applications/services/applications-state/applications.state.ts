@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { Application } from '../../models/application';
 import { Injectable } from '@angular/core';
@@ -24,6 +24,12 @@ export class ApplicationsState {
     return this.applications$.asObservable();
   }
 
+  getApplication(id: number): Observable<Application> {
+    const application = this.applications$.value.find(e => e.id === id)!;
+
+    return of(application);
+  }
+
   setApplications(applications: Application[]) {
     this.allLoaded$.next(applications.length < this.LIMIT ? true : false);
     this.applications$.next(applications);
@@ -42,5 +48,12 @@ export class ApplicationsState {
 
     const currentValue = this.applications$.getValue();
     this.applications$.next([...currentValue, ...Applications]);
+  }
+
+  updateApplicationStatus(applicationId: number, status: string): void {
+    const applications = this.applications$.getValue();
+    const updatedApplicationIndex = applications.findIndex(obj => obj.id === applicationId);
+    applications[updatedApplicationIndex].status = status;
+    this.applications$.next([...applications]);
   }
 }

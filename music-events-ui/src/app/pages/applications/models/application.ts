@@ -1,12 +1,13 @@
+import { Offer } from "../../offers/models/offer"
+
 export interface Application {
     id?: number,
-    title: string,
-    city: string,
-    location?: string,
-    date: string, 
+    offer: Offer,
     type: string,
-    genre?: string,  
-    organizer: {
+    bandName?: string,
+    instrument?: string,
+    genre?: string,
+    contact?: {
         name: string,
         email?: string
     }

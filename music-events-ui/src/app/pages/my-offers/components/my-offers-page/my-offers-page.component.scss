@@ -1,0 +1,33 @@
+.list-elem {
+    margin-bottom: 1rem;
+}
+
+.list-info {
+    left: 40%;
+    text-align: center;
+}
+
+#add-btn {
+    span {
+        font-size: 1.5rem;
+        width: 70%;
+        text-align-last: end;
+        display: inline-block;
+    }
+
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--light-text);
+    border-radius: 4px;
+    padding-left: 1.5rem;
+    padding-right: 1.2rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.1)
+}
+
+#add-btn:hover {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
