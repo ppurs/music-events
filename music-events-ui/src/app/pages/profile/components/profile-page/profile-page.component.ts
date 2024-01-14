@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { MusicProfileFormComponent } from '../music-profile-form/music-profile-form.component';
 import { ProfileFacade } from '../../services/profile-facade/profile.facade';
+import { Role } from 'src/app/core/auth/models/role';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,6 +14,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
+  readonly USER_ROLE = Role.USER;
+  
   accountDetails: AccountDetails;
   musicProfiles: MusicProfile[];
 

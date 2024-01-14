@@ -47,8 +47,17 @@ export class OfferDetailsDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logSubscription = this.auth.isLoggedIn$.subscribe(val => this.isLogged = val);
-    this.offersFacade.getUserMusicProfiles().subscribe( val => this.musicProfiles = val);
+    this.logSubscription = this.auth.isLoggedIn$.subscribe(val =>{
+      this.isLogged = val;
+
+      if(this.isLogged) {
+        this.offersFacade.getUserMusicProfiles().subscribe( val => this.musicProfiles = val);
+      }
+      else {
+        this.musicProfiles = [];
+      }
+    } 
+    );
   }
 
   ngDestroy(): void {
