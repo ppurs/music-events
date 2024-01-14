@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subject, forkJoin, of, switchMap } from 'rxjs';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatChip, MatChipList } from '@angular/material/chips';
-import { Observable, Subject, forkJoin, of, switchMap } from 'rxjs';
 
 import { Application } from 'src/app/pages/applications/models/application';
 import { ApplicationsFilter } from 'src/app/pages/applications/models/applications-filter';
@@ -24,7 +24,7 @@ export class MyOfferDetailsComponent implements OnInit {
   isUpdating$: Observable<boolean>;
   applicationsLoaded: boolean;
 
-  private reloadTrigger: Subject<ApplicationsFilter>;
+  private reloadTrigger: BehaviorSubject<ApplicationsFilter|undefined>;
 
   constructor(private route: ActivatedRoute,
               private offersFacade: MyOffersFacade,
@@ -35,7 +35,7 @@ export class MyOfferDetailsComponent implements OnInit {
     this.isUpdating$ = this.offersFacade.isApplicationListUpdating();
 
     this.applicationsLoaded = false;
-    this.reloadTrigger = new Subject<ApplicationsFilter>();
+    this.reloadTrigger = new BehaviorSubject<ApplicationsFilter|undefined>(undefined);
   }
 
   ngOnInit(): void {
@@ -44,15 +44,14 @@ export class MyOfferDetailsComponent implements OnInit {
     
     forkJoin([
       this.offersFacade.getApplicationFilterOptions(),
-      this.offersFacade.loadOfferApplications(id)
-    ]).subscribe(([options, applications]) => {
+      //this.offersFacade.loadOfferApplications(id)
+    ]).subscribe(([options]) => {
       this.statuses = options.statuses
-      this.applicationsLoaded = true;
     });
 
     this.reloadTrigger
         .pipe(switchMap(filter => this.offersFacade.loadOfferApplications(this.offer.id!, filter)))
-        .subscribe();
+        .subscribe(val => this.applicationsLoaded = true);
   }
 
   ngAfterViewInit(): void {
@@ -72,7 +71,7 @@ export class MyOfferDetailsComponent implements OnInit {
   }
 
   fetchMore(): void {
-    this.offersFacade.fetchMoreApplications(this.offer.id!);
+    this.offersFacade.fetchMoreApplications(this.offer.id!, this.reloadTrigger.value);
   }
 
   applyFilter(filter: ApplicationsFilter): void {

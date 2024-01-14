@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, forkJoin, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, forkJoin, switchMap } from 'rxjs';
 
 import { EventsFacade } from '../../services/events-facade/events.facade';
 import { MusicEvent } from '../../models/music-event';
@@ -17,7 +17,7 @@ export class EventsPageComponent implements OnInit {
   allEventsLoaded$: Observable<boolean>;
   isUpdating$: Observable<boolean>;
 
-  private reloadTrigger: Subject<MusicEventsFilter>;
+  private reloadTrigger: BehaviorSubject<MusicEventsFilter|undefined>;
 
   constructor(private eventsFacade: EventsFacade) { 
     this.events$ = this.eventsFacade.getEvents();
@@ -25,14 +25,14 @@ export class EventsPageComponent implements OnInit {
     this.allEventsLoaded$ = this.eventsFacade.allEventsLoaded();
     this.isUpdating$ = this.eventsFacade.isEventsListUpdating();
 
-    this.reloadTrigger = new Subject<MusicEventsFilter>();
+    this.reloadTrigger = new BehaviorSubject<MusicEventsFilter|undefined>(undefined);
   }
 
   ngOnInit(): void {
     forkJoin([
       this.eventsFacade.getFilterOptions(),
-      this.eventsFacade.loadEvents()
-    ]).subscribe(([options, events]) => this.filterOptions = options)
+      //this.eventsFacade.loadEvents()
+    ]).subscribe(([options]) => this.filterOptions = options)
 
     this.reloadTrigger
         .pipe(switchMap(filter => this.eventsFacade.loadEvents(filter)))
@@ -40,7 +40,7 @@ export class EventsPageComponent implements OnInit {
   }
 
   fetchMore(): void {
-    this.eventsFacade.fetchMoreEvents();
+    this.eventsFacade.fetchMoreEvents(this.reloadTrigger.value);
   }
 
   applyFilter(filter: MusicEventsFilter): void {

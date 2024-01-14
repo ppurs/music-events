@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, forkJoin, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, forkJoin, switchMap } from 'rxjs';
 
 import { Application } from '../../models/application';
 import { ApplicationsFacade } from '../../services/applications-facade/applications.facade';
@@ -17,7 +17,7 @@ export class ApplicationsPageComponent implements OnInit {
   isUpdating$: Observable<boolean>;
   filterOptions: ApplicationsFilterOptions;
 
-  private reloadTrigger: Subject<ApplicationsFilter>;
+  private reloadTrigger: BehaviorSubject<ApplicationsFilter|undefined>;
 
   constructor(private applicationsFacade: ApplicationsFacade) { 
     this.applications$ = this.applicationsFacade.getApplications();
@@ -25,14 +25,14 @@ export class ApplicationsPageComponent implements OnInit {
     this.isUpdating$ = this.applicationsFacade.isApplicationsListUpdating();
     this.filterOptions = {statuses: []};
 
-    this.reloadTrigger = new Subject<ApplicationsFilter>();
+    this.reloadTrigger = new BehaviorSubject<ApplicationsFilter|undefined>(undefined);
   }
 
   ngOnInit(): void {
     forkJoin([
       this.applicationsFacade.getFilterOptions(),
-      this.applicationsFacade.loadApplications()
-    ]).subscribe(([options, events]) => this.filterOptions = options)
+      //this.applicationsFacade.loadApplications()
+    ]).subscribe(([options]) => this.filterOptions = options)
 
     this.reloadTrigger
         .pipe(switchMap(filter => this.applicationsFacade.loadApplications(filter)))
@@ -40,7 +40,7 @@ export class ApplicationsPageComponent implements OnInit {
   }
 
   fetchMore(): void {
-    this.applicationsFacade.fetchMoreApplications();
+    this.applicationsFacade.fetchMoreApplications(this.reloadTrigger.value);
   }
 
   applyFilter(filter: ApplicationsFilter): void {

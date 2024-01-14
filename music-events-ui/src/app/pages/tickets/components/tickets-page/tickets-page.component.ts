@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, switchMap } from 'rxjs';
 
 import { Ticket } from '../../models/ticket';
 import { TicketsFacade } from '../../services/tickets-facade/tickets.facade';
@@ -15,14 +15,14 @@ export class TicketsPageComponent implements OnInit {
   allTicketsLoaded$: Observable<boolean>;
   isUpdating$: Observable<boolean>;
 
-  private reloadTrigger: Subject<TicketsFilter>;
+  private reloadTrigger: BehaviorSubject<TicketsFilter|undefined>;
 
   constructor(private ticketsFacade: TicketsFacade) { 
     this.tickets$ = this.ticketsFacade.getTickets();
     this.allTicketsLoaded$ = this.ticketsFacade.allTicketsLoaded();
     this.isUpdating$ = this.ticketsFacade.isTicketsListUpdating();
 
-    this.reloadTrigger = new Subject<TicketsFilter>();
+    this.reloadTrigger = new BehaviorSubject<TicketsFilter|undefined>(undefined);
   }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class TicketsPageComponent implements OnInit {
   }
 
   fetchMore(): void {
-    this.ticketsFacade.fetchMoreTickets();
+    this.ticketsFacade.fetchMoreTickets(this.reloadTrigger.value);
   }
 
   applyFilter(filter: TicketsFilter): void {

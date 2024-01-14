@@ -1,5 +1,5 @@
+import { BehaviorSubject, Observable, forkJoin, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, forkJoin, switchMap } from 'rxjs';
 
 import { Offer } from '../../models/offer';
 import { OffersFacade } from '../../services/offers-facade/offers.facade';
@@ -17,7 +17,7 @@ export class OffersPageComponent implements OnInit {
   allOffersLoaded$: Observable<boolean>;
   isUpdating$: Observable<boolean>;
 
-  private reloadTrigger: Subject<OffersFilter>;
+  private reloadTrigger: BehaviorSubject<OffersFilter|undefined>;
 
   constructor(private offersFacade: OffersFacade) { 
     this.offers$ = this.offersFacade.getOffers();
@@ -25,14 +25,14 @@ export class OffersPageComponent implements OnInit {
     this.allOffersLoaded$ = this.offersFacade.allOffersLoaded();
     this.isUpdating$ = this.offersFacade.isOffersListUpdating();
 
-    this.reloadTrigger = new Subject<OffersFilter>();
+    this.reloadTrigger = new BehaviorSubject<OffersFilter|undefined>(undefined);
   }
 
   ngOnInit(): void {
     forkJoin([
       this.offersFacade.getFilterOptions(),
-      this.offersFacade.loadOffers()
-    ]).subscribe(([options, offers]) => this.filterOptions = options)
+      //this.offersFacade.loadOffers()
+    ]).subscribe(([options]) => this.filterOptions = options)
 
     this.reloadTrigger
         .pipe(switchMap(filter => this.offersFacade.loadOffers(filter)))
@@ -40,7 +40,7 @@ export class OffersPageComponent implements OnInit {
   }
 
   fetchMore(): void {
-    this.offersFacade.fetchMoreOffers();
+    this.offersFacade.fetchMoreOffers(this.reloadTrigger.value);
   }
 
   applyFilter(filter: OffersFilter): void {
