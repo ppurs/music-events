@@ -108,7 +108,7 @@ export class AddOfferFormComponent implements OnInit {
         description: this.description?.value ?? "",
         city: this.city?.value ?? "",
         location: this.location?.value ?? "",
-        date: _moment(this.date!.value).format('DD/MM/YYYY'),
+        date: _moment(this.date!.value).format('YYYY-MM-DD'),
         type: this.type?.value ?? "",
         genre: this.genre?.value ?? ""
       }

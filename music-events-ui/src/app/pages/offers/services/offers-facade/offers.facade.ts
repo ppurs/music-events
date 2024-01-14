@@ -27,8 +27,7 @@ export class OffersFacade {
               private sharedService: SharedService) {
     this.filterOptions$ = this.offersService.getFilterOptions()
                                             .pipe(shareReplay(1));
-    this.musicProfiles$ = this.offersService.getUserMusicProfiles()
-                                            .pipe(shareReplay(1));
+    this.musicProfiles$ = this.offersService.getUserMusicProfiles();
     this.instruments$ = this.sharedService.getInstruments().pipe(shareReplay(1));
     this.musicGenres$ = this.sharedService.getMusicGenres().pipe(shareReplay(1));
     this.musicProfileTypes$ = this.sharedService.getMusicProfileTypes().pipe(shareReplay(1));

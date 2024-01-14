@@ -88,8 +88,8 @@ export class EventsFilterComponent implements OnInit {
     return {
       search: this.search?.value ?? undefined,
       cities: this.cities?.value ?? [],
-      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
-      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined,           
+      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('YYYY-MM-DD') : undefined,      
+      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('YYYY-MM-DD') : undefined,           
       types: this.types?.value ?? [],
       genres: this.genres?.value ?? []
     }

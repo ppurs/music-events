@@ -5,10 +5,18 @@
 
     <ng-template #detailsRef>
         <h1 id="dialog-title">
-            {{data.offer!.title}}
-            <div id="tags">
-                <app-tag>{{data.offer!.type}}</app-tag>
-                <app-tag>{{data.offer!.genre}}</app-tag>
+            <div>
+                {{data.offer!.title}}
+                <div id="tags">
+                    <app-tag>{{data.offer!.type}}</app-tag>
+                    <app-tag *ngIf="data.offer!.genre">{{data.offer!.genre}}</app-tag>
+                </div>
+            </div>
+            <div [ngClass]="data.status | lowercase" class="status-app-info">
+                <mat-icon *ngIf="(data.status | lowercase) == 'submitted'" class="desc-icon">access_time</mat-icon>
+                <mat-icon *ngIf="(data.status | lowercase) == 'accepted'" class="desc-icon accepted">check_circle_outline</mat-icon>
+                <mat-icon *ngIf="(data.status | lowercase) == 'rejected'" class="desc-icon rejected">highlight_off</mat-icon>
+                {{data.status | uppercase}}
             </div>
         </h1>
         <h3 class="desc-item">

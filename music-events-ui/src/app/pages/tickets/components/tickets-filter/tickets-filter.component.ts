@@ -68,8 +68,8 @@ export class TicketsFilterComponent implements OnInit {
 
   getFilter(): TicketsFilter {
     return {
-      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
-      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined, 
+      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('YYYY-MM-DD') : undefined,      
+      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('YYYY-MM-DD') : undefined, 
       order: {
         order: this.order?.value ? Number(this.order?.value[0]) : 0,
         field: "event_date"

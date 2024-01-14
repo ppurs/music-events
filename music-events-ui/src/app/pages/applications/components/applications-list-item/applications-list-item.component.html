@@ -1,4 +1,4 @@
-<app-list-item class="event-list-item" (click)="openDetails()">
+<app-list-item class="event-list-item" (click)="openDetails()" *ngIf="application.offer">
     <ng-template #imgRef>
         <img class="event-img" src="assets\img\example.png">
     </ng-template>

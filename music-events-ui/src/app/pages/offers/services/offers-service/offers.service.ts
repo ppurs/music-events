@@ -62,11 +62,11 @@ export class OffersService {
   // }
 
   acceptApplication(applicationId: number): Observable<any> {
-    return this.http.get(`${this.OFFERS_API}/my/accept/${applicationId}`);
+    return this.http.get(`${this.OFFERS_API}/my/applications/${applicationId}/accept`);
   }
 
   rejectApplication(applicationId: number): Observable<any> {
-    return this.http.get(`${this.OFFERS_API}/my/reject/${applicationId}`);
+    return this.http.get(`${this.OFFERS_API}/my/applications/${applicationId}/reject`);
   }
 
   getOfferApplications(offerId: number, filter?: ApplicationsFilter, offset: number=0): Observable<Application[]> {

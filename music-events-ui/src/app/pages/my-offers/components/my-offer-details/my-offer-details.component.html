@@ -42,6 +42,7 @@
             </div>
         </h1>
 
+    <div *ngIf="applicationsLoaded">
         <div *ngFor="let userApplication of applications$ | async">
             <user-application-item 
                 [application]="userApplication"
@@ -49,7 +50,8 @@
             >
             </user-application-item>
         </div>
-
+    </div>   
+        
         <h4 class="list-info" 
             *ngIf="(allApplicationsLoaded$ | async) && (applications$ |async)?.length == 0">
             No applications found for this offer.

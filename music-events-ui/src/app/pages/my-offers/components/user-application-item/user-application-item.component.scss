@@ -6,6 +6,7 @@
     display: flex;
     margin-bottom: 1rem;
     display: inline-flex;
+    position: relative;
 }
 
 p {
@@ -23,7 +24,7 @@ p {
 }
 
 .appl-column {
-    width: 50%;
+    width: 40%;
     display: block;
 }
 
@@ -35,9 +36,37 @@ p {
 .organizer-actions {
     display: inline;
     width: 25%;
-    transform: translateY(20%);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 80%;
+    transform: translateY(-50%);
 
     button {
         margin-left: 1rem;
     }
+}
+
+.rejected {
+    color: darkred;
+}
+
+.accepted {
+     color: green;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+.status-app-info-usr {
+    display: flex;
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    align-items: center;
+    left: 84%;
 }

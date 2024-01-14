@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Application } from '../../models/application';
 import { ApplicationDetailsDialogComponent } from '../application-details-dialog/application-details-dialog.component';

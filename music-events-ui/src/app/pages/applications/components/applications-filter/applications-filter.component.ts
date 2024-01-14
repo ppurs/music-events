@@ -31,7 +31,7 @@ export class ApplicationsFilterComponent implements OnInit {
   filterForm = this.fb.group({
     startDate: [null],
     endDate: [null],
-    statuses: [[]]
+    statuses: [<number[]><unknown>[]]
   })
 
   private subscription?: Subscription;
@@ -65,8 +65,8 @@ export class ApplicationsFilterComponent implements OnInit {
 
   getFilter(): ApplicationsFilter {
     return {
-      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('DD/MM/YYYY') : undefined,      
-      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('DD/MM/YYYY') : undefined, 
+      startDate: this.startDate?.value ? _moment(this.startDate?.value).format('YYYY-MM-DD') : undefined,      
+      endDate: this.endDate?.value ? _moment(this.endDate?.value).format('YYYY-MM-DD') : undefined, 
       statusIds: this.statuses?.value ?? []
     }
   }

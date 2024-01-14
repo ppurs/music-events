@@ -41,7 +41,7 @@ export class EventsService {
   }
 
   bookTickets(eventId: number, noTickets: number): Observable<BookTicketsResponse>{
-    return this.http.put<BookTicketsResponse>(
+    return this.http.post<BookTicketsResponse>(
       `${this.EVENTS_API}/book/${eventId}`, 
       {
         noTickets: noTickets
@@ -50,6 +50,6 @@ export class EventsService {
   }
 
   confirmPayment(orderId: number): Observable<any> {
-    return this.http.put(`${this.EVENTS_API}/book/confirm/${orderId}`, {success: true})
+    return this.http.post(`${this.EVENTS_API}/book/confirm/${orderId}`, {success: true})
   }
 }

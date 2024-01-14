@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatChip, MatChipList } from '@angular/material/chips';
-import { Observable, Subject, forkJoin, switchMap } from 'rxjs';
+import { Observable, Subject, forkJoin, of, switchMap } from 'rxjs';
 
 import { Application } from 'src/app/pages/applications/models/application';
 import { ApplicationsFilter } from 'src/app/pages/applications/models/applications-filter';
@@ -22,6 +22,7 @@ export class MyOfferDetailsComponent implements OnInit {
   statuses: Option[];
   allApplicationsLoaded$: Observable<boolean>;
   isUpdating$: Observable<boolean>;
+  applicationsLoaded: boolean;
 
   private reloadTrigger: Subject<ApplicationsFilter>;
 
@@ -33,18 +34,21 @@ export class MyOfferDetailsComponent implements OnInit {
     this.allApplicationsLoaded$ = this.offersFacade.allApplicationsLoaded();
     this.isUpdating$ = this.offersFacade.isApplicationListUpdating();
 
+    this.applicationsLoaded = false;
     this.reloadTrigger = new Subject<ApplicationsFilter>();
   }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id)
     this.offersFacade.getOffer(id).subscribe( res => this.offer = res )
     
     forkJoin([
       this.offersFacade.getApplicationFilterOptions(),
       this.offersFacade.loadOfferApplications(id)
-    ]).subscribe(([options, applications]) => this.statuses = options.statuses);
+    ]).subscribe(([options, applications]) => {
+      this.statuses = options.statuses
+      this.applicationsLoaded = true;
+    });
 
     this.reloadTrigger
         .pipe(switchMap(filter => this.offersFacade.loadOfferApplications(this.offer.id!, filter)))
@@ -64,7 +68,6 @@ export class MyOfferDetailsComponent implements OnInit {
       .map(c => c.value);
 
     const filter: ApplicationsFilter = {statusIds: statusIds};
-    console.log(filter);
     this.applyFilter(filter);
   }
 
