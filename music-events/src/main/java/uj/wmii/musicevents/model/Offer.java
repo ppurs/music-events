@@ -42,5 +42,5 @@ public class Offer {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organizer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Organizer organizer;
+    private OrganizerAccount organizer;
 }

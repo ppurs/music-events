@@ -14,7 +14,7 @@ import uj.wmii.musicevents.dto.mapper.OfferMapper;
 import uj.wmii.musicevents.enums.ApplicationStatus;
 import uj.wmii.musicevents.model.Application;
 import uj.wmii.musicevents.model.Offer;
-import uj.wmii.musicevents.model.Organizer;
+import uj.wmii.musicevents.model.OrganizerAccount;
 import uj.wmii.musicevents.model.UserAccount;
 import uj.wmii.musicevents.repository.ApplicationRepository;
 import uj.wmii.musicevents.repository.OfferRepository;
@@ -62,7 +62,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     public int addOffer(Offer offer, int userId) {
-        offer.setOrganizer(entityManager.getReference(Organizer.class, userId));
+        offer.setOrganizer(entityManager.getReference(OrganizerAccount.class, userId));
         System.out.println(offer);
 
         return offerRepository.save(offer).getId();

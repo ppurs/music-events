@@ -5,6 +5,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import uj.wmii.musicevents.enums.AccountType;
 
 import java.util.List;
 import java.util.Set;
@@ -13,21 +14,21 @@ import java.util.Set;
 @DiscriminatorValue("ORGANIZER")
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class Organizer extends UserAccount {
+public class OrganizerAccount extends UserAccount {
     @Column(name = "organization_name")
     private String organizationName;
 
-    public Organizer(int id, String first, String last, String email, String password, Set<Role> roles, List<MusicProfile> profiles, String name) {
+    public OrganizerAccount(int id, String first, String last, String email, String password, Set<Role> roles, List<MusicProfile> profiles, String name) {
         super(id, first, last, email, password, roles, profiles);
         this.organizationName = name;
     }
 
-    public Organizer(int id, String first, String last, String email, String password, Set<Role> roles, List<MusicProfile> profiles) {
+    public OrganizerAccount(int id, String first, String last, String email, String password, Set<Role> roles, List<MusicProfile> profiles) {
         super(id, first, last, email, password, roles, profiles);
         this.organizationName = null;
     }
 
-    public Organizer() {
+    public OrganizerAccount() {
         super();
         this.organizationName = null;
     }
@@ -40,5 +41,10 @@ public class Organizer extends UserAccount {
                 .setLastName(this.lastname)
                 .setMusicProfiles(this.musicProfiles)
                 .setOrganizationName(this.organizationName);
+    }
+
+    @Override
+    public String getType() {
+        return AccountType.ORGANIZER;
     }
 }

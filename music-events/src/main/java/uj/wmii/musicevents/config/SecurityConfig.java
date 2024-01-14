@@ -49,7 +49,6 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
             authorizeHttpRequests
                 .requestMatchers(
-                        "/offers/list/user",
                         "/offers/delete/*",
                         "/offers/apply/*",
                         "/offers/add",
@@ -60,6 +59,12 @@ public class SecurityConfig {
                         "/applications/**")
                     .authenticated()
             );
+        http.authorizeHttpRequests((authorizeHttpRequests) ->
+                authorizeHttpRequests
+                        .requestMatchers(
+                                "/offers/list/user")
+                        .hasAuthority("ROLE_ORGANIZER")
+        );
         http.sessionManagement((sessionManagement) ->
             sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
