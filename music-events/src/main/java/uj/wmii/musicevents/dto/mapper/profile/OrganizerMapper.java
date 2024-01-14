@@ -2,7 +2,7 @@ package uj.wmii.musicevents.dto.mapper.profile;
 
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.dto.ProfileDTO;
-import uj.wmii.musicevents.enums.AccountType;
+import uj.wmii.musicevents.constants.AccountType;
 import uj.wmii.musicevents.model.Profile;
 
 @Component(AccountType.ORGANIZER)

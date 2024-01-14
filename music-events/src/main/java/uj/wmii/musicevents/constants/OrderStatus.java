@@ -1,4 +1,4 @@
-package uj.wmii.musicevents.enums;
+package uj.wmii.musicevents.constants;
 
 public enum OrderStatus {
     CREATED,

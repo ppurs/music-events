@@ -10,7 +10,7 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.EventDTO;
 import uj.wmii.musicevents.dto.EventFilterOptionsDTO;
 import uj.wmii.musicevents.dto.mapper.EventMapper;
-import uj.wmii.musicevents.enums.TicketsStatus;
+import uj.wmii.musicevents.constants.TicketsStatus;
 import uj.wmii.musicevents.model.Event;
 import uj.wmii.musicevents.repository.EventRepository;
 import uj.wmii.musicevents.repository.util.EventSpecifications;

@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.controller.request.OfferFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
-import uj.wmii.musicevents.enums.OfferSearchType;
+import uj.wmii.musicevents.constants.OfferSearchType;
 import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.repository.util.OfferSpecifications;
 import uj.wmii.musicevents.service.UserAccountDetails;

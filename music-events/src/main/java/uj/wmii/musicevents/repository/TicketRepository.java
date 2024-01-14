@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
-import uj.wmii.musicevents.enums.OrderStatus;
+import uj.wmii.musicevents.constants.OrderStatus;
 import uj.wmii.musicevents.model.Ticket;
 
 import java.util.List;

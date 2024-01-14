@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 
 import java.util.Date;
 

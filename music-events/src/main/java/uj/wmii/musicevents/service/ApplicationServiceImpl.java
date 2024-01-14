@@ -10,7 +10,7 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.ApplicationDTO;
 import uj.wmii.musicevents.dto.StatusDTO;
 import uj.wmii.musicevents.dto.mapper.ApplicationMapper;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 import uj.wmii.musicevents.model.Application;
 import uj.wmii.musicevents.repository.ApplicationRepository;
 import uj.wmii.musicevents.repository.util.ApplicationSpecifications;

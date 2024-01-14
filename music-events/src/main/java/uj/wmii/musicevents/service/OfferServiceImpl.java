@@ -11,7 +11,7 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.OfferDTO;
 import uj.wmii.musicevents.dto.OfferFilterOptionsDTO;
 import uj.wmii.musicevents.dto.mapper.OfferMapper;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 import uj.wmii.musicevents.model.Application;
 import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.model.OrganizerAccount;

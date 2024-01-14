@@ -12,7 +12,7 @@ import uj.wmii.musicevents.controller.request.TicketFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.TicketDTO;
 import uj.wmii.musicevents.dto.mapper.TicketMapper;
-import uj.wmii.musicevents.enums.OrderStatus;
+import uj.wmii.musicevents.constants.OrderStatus;
 import uj.wmii.musicevents.model.Event;
 import uj.wmii.musicevents.model.Order;
 import uj.wmii.musicevents.model.Ticket;

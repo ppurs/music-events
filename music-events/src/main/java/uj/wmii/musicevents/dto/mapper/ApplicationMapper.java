@@ -3,7 +3,7 @@ package uj.wmii.musicevents.dto.mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.dto.ApplicationDTO;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 import uj.wmii.musicevents.model.Application;
 
 @Component

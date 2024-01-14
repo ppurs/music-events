@@ -1,6 +1,5 @@
 package uj.wmii.musicevents.controller.API;
 
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +40,11 @@ public class OfferController {
         return ResponseEntity.ok(offerService.getOfferFilterOptions());
     }
 
-    @RolesAllowed({"ROLE_ORGANIZER", "ROLE_ADMIN"})
     @DeleteMapping("/delete/{offerId}")
     public void deleteOffer(@PathVariable int offerId) {
         offerService.deleteOffer(offerId);
     }
 
-    @RolesAllowed({"ROLE_ORGANIZER"})
     @PostMapping("/add")
     public ResponseEntity<AddResponse> addOffer(@AuthenticationPrincipal UserAccountDetails userDetails, @RequestBody Offer offer) {
         AddResponse response = new AddResponse();
@@ -57,25 +54,21 @@ public class OfferController {
         return ResponseEntity.ok(response);
     }
 
-    @RolesAllowed({"ROLE_USER"})
     @PostMapping("/apply/{offerId}")
     public void applyForOffer(@AuthenticationPrincipal UserAccountDetails userDetails, @PathVariable int offerId, @RequestBody Application request) {
         offerService.applyForOffer(request, offerId, userDetails.getId());
     }
 
-    @RolesAllowed({"ROLE_ORGANIZER"})
     @PostMapping("/my/{offerId}/applications")
     public ResponseEntity<List<ApplicationDTO>> getApplicationsForOffer(@PathVariable int offerId, @RequestBody SearchRequest<ApplicationFilterRequest> request) {
         return ResponseEntity.ok(applicationService.getApplicationsForOffer(request, offerId));
     }
 
-    @RolesAllowed({"ROLE_ORGANIZER"})
     @GetMapping("/my/applications/{applicationId}/accept")
     public void acceptApplication(@PathVariable int applicationId) {
         applicationService.acceptApplication(applicationId);
     }
 
-    @RolesAllowed({"ROLE_ORGANIZER"})
     @GetMapping("/my/applications/{applicationId}/reject")
     public void rejectApplication(@PathVariable int applicationId) {
         applicationService.rejectApplication(applicationId);

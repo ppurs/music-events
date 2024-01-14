@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import uj.wmii.musicevents.constants.AuthoritiesConstants;
 import uj.wmii.musicevents.filter.JwtAuthFilter;
 import uj.wmii.musicevents.service.UserAccountDetailsService;
 
@@ -49,26 +50,41 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
             authorizeHttpRequests
                 .requestMatchers(
-                        "/offers/delete/*",
-                        "/offers/apply/*",
-                        "/offers/add",
-                        "/offers/my/**",
-                        "/events/book/**",
-                        "/tickets/**",
-                        "/profile/**",
-                        "/applications/**")
+                        "/profile/**"
+                        )
                     .authenticated()
             );
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
                         .requestMatchers(
-                                "/offers/list/user")
-                        .hasAuthority("ROLE_ORGANIZER")
+                                "/offers/delete/*"
+                        )
+                        .hasAnyAuthority(AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN)
         );
+        http.authorizeHttpRequests((authorizeHttpRequests) ->
+                authorizeHttpRequests
+                        .requestMatchers(
+                                "/offers/apply/*",
+                                "/events/book/**",
+                                "/tickets/**"
+                        )
+                        .hasAuthority(AuthoritiesConstants.USER)
+        );
+        http.authorizeHttpRequests((authorizeHttpRequests) ->
+                authorizeHttpRequests
+                        .requestMatchers(
+                                "/offers/list/user",
+                                "/offers/my/**",
+                                "/offers/add"
+                                )
+                        .hasAuthority(AuthoritiesConstants.ORGANIZER)
+        );
+
         http.sessionManagement((sessionManagement) ->
             sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             );
+
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 

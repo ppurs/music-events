@@ -6,7 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import uj.wmii.musicevents.enums.AccountType;
+import uj.wmii.musicevents.constants.AccountType;
 
 import java.util.List;
 import java.util.Set;

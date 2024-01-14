@@ -3,7 +3,7 @@ package uj.wmii.musicevents.controller.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 
 import java.util.List;
 

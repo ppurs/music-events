@@ -5,7 +5,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import uj.wmii.musicevents.enums.AccountType;
+import uj.wmii.musicevents.constants.AccountType;
 
 import java.util.List;
 import java.util.Set;

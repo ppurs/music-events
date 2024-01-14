@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uj.wmii.musicevents.enums.TicketsStatus;
+import uj.wmii.musicevents.constants.TicketsStatus;
 
 import java.math.BigDecimal;
 import java.util.Date;

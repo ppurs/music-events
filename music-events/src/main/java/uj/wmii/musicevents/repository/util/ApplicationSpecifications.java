@@ -1,7 +1,7 @@
 package uj.wmii.musicevents.repository.util;
 
 import org.springframework.data.jpa.domain.Specification;
-import uj.wmii.musicevents.enums.ApplicationStatus;
+import uj.wmii.musicevents.constants.ApplicationStatus;
 import uj.wmii.musicevents.model.Application;
 
 import java.util.Date;

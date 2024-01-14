@@ -2,7 +2,7 @@ package uj.wmii.musicevents.dto.mapper;
 
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.dto.EventDTO;
-import uj.wmii.musicevents.enums.TicketsStatus;
+import uj.wmii.musicevents.constants.TicketsStatus;
 import uj.wmii.musicevents.model.Event;
 
 @Component
