@@ -1,0 +1,44 @@
+<app-details-dialog>
+    <ng-template #imgRef>
+        <img class="event-img" src="assets\img\example.png">
+    </ng-template>
+
+    <ng-template #detailsRef>
+        <h1 id="dialog-title">
+            {{data.offer!.title}}
+            <div id="tags">
+                <app-tag>{{data.offer!.type}}</app-tag>
+                <app-tag>{{data.offer!.genre}}</app-tag>
+            </div>
+        </h1>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">calendar_today</mat-icon>
+            {{data.offer!.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">location_on</mat-icon>
+            {{data.offer!.city}}<span id="location" *ngIf="data.offer!.location">,&nbsp; {{data.offer!.location}}</span>
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">info</mat-icon>
+            Organized by {{data.offer!.organizer}}
+        </h3>
+        <h3 class="desc-item" *ngIf="data.contact?.email">
+            <mat-icon class="desc-icon">mail_outline</mat-icon>
+            {{data.contact?.email}}
+        </h3>
+    </ng-template>
+
+    <ng-template #descRef>
+        <h4>{{data.offer!.description}}</h4>
+
+        <mat-divider></mat-divider>
+
+        <h2 id="submit-h">Submitted application</h2>
+        <p><span class="submit-p">Type:</span>&nbsp;{{data.type}}</p>
+        <p *ngIf="data.bandName"><span class="submit-p">Band:</span>&nbsp;{{data.bandName}}</p>
+        <p *ngIf="data.instrument"><span class="submit-p">Instrument:</span>&nbsp;{{data.instrument}}</p>
+        <p *ngIf="data.genre"><span class="submit-p">Genre:</span>&nbsp;{{data.genre}}</p>
+        
+    </ng-template>
+</app-details-dialog>

@@ -1,0 +1,43 @@
+.list-card-appl {
+    background-color: var(--secondary);
+    padding: 1rem;
+    height: 100%;
+    width: 98%;
+    display: flex;
+    margin-bottom: 1rem;
+    display: inline-flex;
+}
+
+p {
+    margin: 0 !important;
+    font-size: 1rem;
+}
+
+.submit-p {
+    font-weight: 500;
+}
+
+.contact-column {
+    width: 20%;
+    display: block;
+}
+
+.appl-column {
+    width: 50%;
+    display: block;
+}
+
+.application-info {
+    width: 100%;
+    display: inline-flex;
+}
+
+.organizer-actions {
+    display: inline;
+    width: 25%;
+    transform: translateY(20%);
+
+    button {
+        margin-left: 1rem;
+    }
+}

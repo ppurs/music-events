@@ -1,0 +1,17 @@
+<nav>
+    <div id="navbar">
+        <div class="nav-element" id="logo">
+            <button mat-flat-button color='primary' class="nav-btn" (click)="redirect('home')">MusicEvents</button>
+        </div>
+
+        <div class="nav-element" id="navigations">
+            <button mat-flat-button color='primary' class="nav-btn" (click)="redirect('events')">Events</button>
+            <button mat-flat-button color='primary' class="nav-btn" (click)="redirect('offers')">Offers</button>
+        </div>
+
+        <button mat-icon-button color='primary' class="nav-element" id="account-btn" (click)="toggleSubnav()">
+            <mat-icon id="account-icon">person</mat-icon>
+        </button>
+    </div>
+    <core-subnavbar #subnavbar></core-subnavbar>
+</nav>

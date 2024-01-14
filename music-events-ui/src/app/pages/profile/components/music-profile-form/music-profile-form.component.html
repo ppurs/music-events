@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>
+    Add new music profile
+    <button mat-icon-button class="close-btn" (click)="onClose()" [disableRipple]="true">
+        <mat-icon>close</mat-icon>
+    </button>
+</h2>
+
+<form [formGroup]="profileForm">
+    <div id="general-section">
+        <h3>General</h3>
+
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always"
+                        [hideRequiredMarker]="true">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type" placeholder="Choose a profile type">
+                <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="_type?.hasError('required')">
+                This field is required.
+            </mat-error> 
+        </mat-form-field>
+
+        <mat-form-field *ngIf="_type?.value == 'Band'" 
+                        [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always"
+                        [hideRequiredMarker]="true">
+            <mat-label>Band name</mat-label>
+            <input matInput formControlName="bandName" placeholder="Enter your band's name">
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always"
+                        [hideRequiredMarker]="true">
+            <mat-label>Profile name</mat-label>
+            <input matInput formControlName="profileName" placeholder="Name of the music profile">
+            <mat-error *ngIf="_profileName?.hasError('required')">
+                This field is required.
+            </mat-error> 
+        </mat-form-field>
+    </div>
+
+    <div id="details-section">
+        <h3>Details</h3>
+
+        <mat-form-field *ngIf="_type?.value == 'Instrumentalist'" 
+                        [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always"
+                        [hideRequiredMarker]="true">
+            <mat-label>Instrument</mat-label>
+            <mat-select formControlName="instrument" placeholder="Choose an instrument">
+                <mat-option *ngFor="let instr of instruments" [value]="instr">{{ instr }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always"
+                        [hideRequiredMarker]="true">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre" placeholder="Choose a genre">
+                <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+       
+    </div>
+</form>
+
+<div mat-dialog-actions align="end">
+    <app-status-info [hidden]="!isSubmitted" id="profile-status" #statusRef></app-status-info>
+    <button *ngIf="!isSubmitted" mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Submit</button>
+</div>

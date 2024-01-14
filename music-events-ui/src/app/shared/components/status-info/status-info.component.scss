@@ -1,0 +1,14 @@
+.success-icon {
+    color: darkgreen;
+  }
+  
+.failed-icon {
+    color: red;
+}
+
+.status-icon {
+  height: 100%;
+  align-items: center !important;
+  display: flex;
+  min-height: 2.3rem;
+}

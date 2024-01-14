@@ -1,0 +1,96 @@
+<h2 mat-dialog-title>
+    Add new offer
+    <button mat-icon-button class="close-btn" (click)="onClose()" [disableRipple]="true">
+        <mat-icon>close</mat-icon>
+    </button>
+</h2>
+
+<form [formGroup]="offerForm">
+    <div class="row">
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="Your offer's title">
+            <mat-error *ngIf="title?.hasError('required')">
+                This field is required.
+            </mat-error> 
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type" placeholder="Choose an event type">
+                <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="type?.hasError('required')">
+                This field is required.
+            </mat-error> 
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre" placeholder="Choose genre">
+                <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'date-field-offer-form'"
+                        floatLabel="always">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="date" [placeholder]="'Choose a date'">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" placeholder="Choose city">
+                <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="city?.hasError('required')">
+                This field is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Specify event location">
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field [appearance]="'outline'" 
+                        [ngClass]="'dialog-form-field'" 
+                        floatLabel="always">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+
+</form>
+
+<div mat-dialog-actions align="end">
+    <app-status-info [hidden]="!isSubmitted" id="profile-status" #statusRef></app-status-info>
+    <button *ngIf="!isSubmitted" mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Submit</button>
+</div>

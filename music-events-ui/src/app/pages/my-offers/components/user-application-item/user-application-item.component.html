@@ -1,0 +1,19 @@
+<mat-card class="list-card-appl">
+    <div class="application-info">
+        <div class="appl-column">
+            <p><span class="submit-p">Type:</span>&nbsp;{{application.type}}</p>
+            <p *ngIf="application.bandName"><span class="submit-p">Band:</span>&nbsp;{{application.bandName}}</p>
+            <p *ngIf="application.instrument"><span class="submit-p">Instrument:</span>&nbsp;{{application.instrument}}</p>
+            <p *ngIf="application.genre"><span class="submit-p">Genre:</span>&nbsp;{{application.genre}}</p>
+        </div>
+        <div class="contact-column">
+            <p><span class="submit-p">Name:</span>&nbsp;{{application.contact?.name ?? ""}}</p>
+            <p><span class="submit-p">Email:</span>&nbsp;{{application.contact?.email ?? ""}}</p>
+        </div>
+    </div>
+
+    <div class="organizer-actions">
+        <button mat-flat-button color="primary" (click)="changeApplicationStatus('accept')">Accept</button>
+        <button mat-flat-button color="warn" (click)="changeApplicationStatus('reject')">Reject</button>
+    </div>
+</mat-card>

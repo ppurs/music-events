@@ -1,0 +1,137 @@
+.page-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.event-img {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    object-fit: fill;
+}
+
+.event-list-item {
+    height: 11rem;
+    width: 80%;
+    display: block;
+    transform: scale(0.8) translateX(-12%);
+}
+
+.desc-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.desc-icon {
+    margin-right: 0.5rem;
+}
+
+#tags {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+#location {
+    font-weight: 400;
+}
+
+h3 { 
+    font-weight: 500;
+}
+
+::ng-deep .purchase-form-field {
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+        color: var(--dark-text);
+        border-width: 1px !important;
+        background-color: var(--primary);
+        opacity: 0.1;
+    }
+
+    .mat-form-field-appearance-outline,
+    .mat-form-field-infix {
+        padding-top: 0.35rem;
+        padding-bottom: 0.6rem;
+    }
+}
+
+#back-btn {
+    opacity: 0.6;
+}
+
+#summary-items {
+    span { 
+        display: inline-block;
+    }
+
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+#done-info {
+    font-weight: 400;
+    display: inline-block;
+}
+
+#done-icon {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    transform: scale(3) translateY(-15%);
+}
+
+#done-container {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.summary-item-title {
+    margin-top: 2rem;
+    margin-left: 12%;
+    width: 60%;
+}
+
+.summary-no-tickets {
+    width: 5%;
+}
+
+.summary-separator {
+    width: 5%;
+}
+
+#summary-total {
+    margin-left: 7.5%;
+    margin-right: 10%;
+    margin-bottom: 11rem;
+    border-top: 1px solid var(--secondary);
+    padding-top: 0.5rem;
+}
+
+#total-title {
+    display: inline-block;
+    margin-left: 5.5%;
+    width: 84.9%;
+}
+
+#payment-item {
+    margin-top: 2rem;
+    font-weight: 400;
+    margin-bottom: 14rem;
+    text-align: center;
+}
+

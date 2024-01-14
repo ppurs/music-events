@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$music-events-ui-primary: mat.define-palette(mat.$gray-palette, 900);
+$music-events-ui-secondary: mat.define-palette(mat.$gray-palette, 200);
+$music-events-ui-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$music-events-ui-warn: mat.define-palette(mat.$red-palette);
+
+$music-events-ui-theme: mat.define-light-theme((
+  color: (
+    primary: $music-events-ui-primary,
+    secondary: $music-events-ui-secondary,
+    accent: $music-events-ui-accent,
+    warn: $music-events-ui-warn,
+  )
+));
+
+@include mat.all-component-themes($music-events-ui-theme);

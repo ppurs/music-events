@@ -1,0 +1,36 @@
+<app-list-item class="event-list-item">
+    <ng-template #imgRef>
+        <img class="event-img" src="assets\img\example.png">
+    </ng-template>
+    <ng-template #descRef>
+        <div id="ticket-details">
+            <h2>
+                {{ticket.event.title}}
+            </h2>
+            <h3 class="desc-item">
+                <mat-icon class="desc-icon">calendar_today</mat-icon>
+                {{ticket.event.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+            </h3>
+            <h3 class="desc-item">
+                <mat-icon class="desc-icon">location_on</mat-icon>
+                {{ticket.event.city}},&nbsp; <span id="location">{{ticket.event.location}}</span>
+            </h3>
+            <h3 class="desc-item" *ngIf="ticket.event.price; else free">
+                <mat-icon class="desc-icon">attach_money</mat-icon>
+                {{ticket.event.price}}
+            </h3>
+        </div>
+        <div id="ticket-id-container">
+            <img src="assets\img\example-barcode.png">
+            <h3>{{ transformId(ticket.id) }}</h3>
+        </div>
+    </ng-template>
+</app-list-item>
+
+<ng-template #free>
+    <h3 class="desc-item">
+        <mat-icon class="desc-icon">attach_money</mat-icon>
+        Free entry
+    </h3>
+</ng-template>
+

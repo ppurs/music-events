@@ -1,0 +1,13 @@
+<div id="subnavbar" [@openClose]="expanded ? 'open' : 'closed'">
+    <div id="sub-navigations">
+        <button mat-flat-button class="subnav-btn" (click)="redirect('profile')" *forRoles="[ROLES.USER, ROLES.ORGANIZER]">Profile</button>
+        <button mat-flat-button class="subnav-btn" (click)="redirect('tickets')" *forRoles="[ROLES.USER]">Tickets</button>
+        <button mat-flat-button class="subnav-btn" (click)="redirect('applications')" *forRoles="[ROLES.USER]">Applications</button>
+        <button mat-flat-button class="subnav-btn" (click)="redirect('my-offers')" *forRoles="[ROLES.ORGANIZER]">My offers</button>
+    </div>
+    
+    <div>
+        <button mat-flat-button class="subnav-btn" id="log-btn" *ngIf="!isLogged" (click)="redirect('login')">Log in</button>
+        <button mat-flat-button class="subnav-btn" id="log-btn" *ngIf="isLogged" (click)="logout()">Log out</button>
+    </div>
+</div>

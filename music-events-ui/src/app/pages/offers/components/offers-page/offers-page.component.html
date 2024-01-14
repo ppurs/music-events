@@ -1,0 +1,21 @@
+<app-filtrable-page-layout>
+    <ng-template #filterRef>
+        <offers-filter [options]="filterOptions" (applyfilter)="applyFilter($event)"></offers-filter>
+    </ng-template>
+    <ng-template #contentRef>
+        <div *ngFor="let offerDetails of offers$ | async" class="list-elem">
+            <offers-list-item [offer]="offerDetails"></offers-list-item>
+        </div>
+
+        <h4 class="list-info" 
+            *ngIf="(allOffersLoaded$ | async) && (offers$ |async)?.length == 0">
+            No offers found.
+        </h4>
+    <button class="list-info" 
+            mat-button 
+            *ngIf="!(allOffersLoaded$ | async) && !(isUpdating$ | async) && (offers$ |async)?.length != 0" 
+            (click)="fetchMore()">
+            Load more offers
+    </button>
+    </ng-template>
+</app-filtrable-page-layout>

@@ -1,0 +1,51 @@
+<app-details-dialog>
+    <ng-template #imgRef>
+        <img class="event-img" src="assets\img\example.png">
+    </ng-template>
+
+    <ng-template #detailsRef>
+        <h1 id="dialog-title">
+            {{data.title}}
+            <div id="tags">
+                <app-tag>{{data.type}}</app-tag>
+                <app-tag *ngIf="data.genre">{{data.genre}}</app-tag>
+            </div>
+        </h1>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">calendar_today</mat-icon>
+            {{data.date | date:"dd MMM yyyy 'at' hh:mm a"}}
+        </h3>
+        <h3 class="desc-item">
+            <mat-icon class="desc-icon">location_on</mat-icon>
+            {{data.city}},&nbsp; <span id="location">{{data.location}}</span>
+        </h3>
+        <h3 class="desc-item" *ngIf="data.price; else free">
+            <mat-icon class="desc-icon">attach_money</mat-icon>
+            {{data.price}}
+        </h3>
+        <h3 class="desc-item" *ngIf="data.performers">
+            <mat-icon class="desc-icon">grade</mat-icon>
+            {{data.performers.join(', ')}}
+        </h3>
+    </ng-template>
+
+    <ng-template #descRef>
+        <h4>{{data.description}}</h4>
+    </ng-template>
+
+    <ng-template #actionsRef>
+        <button mat-raised-button 
+                [mat-dialog-close]="data.id" 
+                [color]="'primary'" 
+                [disabled]="!data.ticketsAvailable">
+                {{data.ticketsAvailable ? 'BOOK A TICKET' : 'NO TICKETS LEFT'}}
+        </button>
+    </ng-template>  
+</app-details-dialog>
+
+<ng-template #free>
+    <h3 class="desc-item">
+        <mat-icon class="desc-icon">attach_money</mat-icon>
+        Free entry
+    </h3>
+</ng-template>

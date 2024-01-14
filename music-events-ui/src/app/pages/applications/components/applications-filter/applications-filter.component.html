@@ -1,0 +1,29 @@
+<form [formGroup]="filterForm">
+    <app-filter-item [title]="'Application status'">
+        <mat-selection-list #citiesList [color]="'primary'" formControlName="statuses">
+            <mat-list-option *ngFor="let status of options.statuses" 
+                            [checkboxPosition]="'before'"
+                            class="multi-item"
+                            value={{status.id}}>
+                            {{status.value | titlecase}}
+            </mat-list-option>  
+        </mat-selection-list>
+    </app-filter-item>
+
+    <app-filter-item [title]="'Date'">
+        <mat-form-field [appearance]="'outline'" [ngClass]="'date-field-event'">
+            <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate [placeholder]="'Start date'" formControlName="startDate">
+            <input matEndDate [placeholder]="'End date'" formControlName="endDate">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker" class="mat-mdc-icon-button"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker>
+                <mat-date-range-picker-actions>
+                    <button mat-button matDateRangePickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                  </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+        </mat-form-field>
+    </app-filter-item>
+</form>
