@@ -39,44 +39,46 @@ public class EventServiceImpl implements EventService {
         Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset(), sort);
 
         EventFilterRequest filter = searchFilter.getFilter();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        if(filter != null) {
-            if (filter.getCities() != null && filter.getCities().length > 0) {
-                spec = spec.and(EventSpecifications.takePlaceInCities(Arrays.stream(filter.getCities()).toList()));
-            }
+        if(filter == null) {
+            filter = new EventFilterRequest();
+            filter.setStartDate(dateFormat.format(new Date()));
+        }
 
-            if (filter.getTypes() != null && filter.getTypes().length > 0) {
-                spec = spec.and(EventSpecifications.isOfTypes(Arrays.stream(filter.getTypes()).toList()));
-            }
+        if (filter.getCities() != null && filter.getCities().length > 0) {
+            spec = spec.and(EventSpecifications.takePlaceInCities(Arrays.stream(filter.getCities()).toList()));
+        }
 
-            if (filter.getGenres() != null && filter.getGenres().length > 0) {
-                spec = spec.and(EventSpecifications.isOfGenreTypes(Arrays.stream(filter.getGenres()).toList()));
-            }
+        if (filter.getTypes() != null && filter.getTypes().length > 0) {
+            spec = spec.and(EventSpecifications.isOfTypes(Arrays.stream(filter.getTypes()).toList()));
+        }
 
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (filter.getGenres() != null && filter.getGenres().length > 0) {
+            spec = spec.and(EventSpecifications.isOfGenreTypes(Arrays.stream(filter.getGenres()).toList()));
+        }
 
-            if (filter.getStartDate() != null) {
-                try {
-                    spec = spec.and(EventSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+        if (filter.getStartDate() != null) {
+            try {
+                spec = spec.and(EventSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
+            } catch (ParseException e) {
+                System.out.println("[ERROR]: " + e);
             }
-            else {
-                spec = spec.and(EventSpecifications.hasDateGTorEqual(new Date()));
-            }
+        }
+        else {
+            spec = spec.and(EventSpecifications.hasDateGTorEqual(new Date()));
+        }
 
-            if (filter.getEndDate() != null) {
-                try {
-                    spec = spec.and(EventSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+        if (filter.getEndDate() != null) {
+            try {
+                spec = spec.and(EventSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
+            } catch (ParseException e) {
+                System.out.println("[ERROR]: " + e);
             }
+        }
 
-            if (filter.getSearch() != null && !filter.getSearch().isEmpty()) {
-                spec = spec.and(EventSpecifications.findByPhrase(filter.getSearch()));
-            }
+        if (filter.getSearch() != null && !filter.getSearch().isEmpty()) {
+            spec = spec.and(EventSpecifications.findByPhrase(filter.getSearch()));
         }
 
         List<Event> events = repository.findAll(spec, page).getContent();

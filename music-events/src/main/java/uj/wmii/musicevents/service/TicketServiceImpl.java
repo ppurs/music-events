@@ -57,27 +57,30 @@ public class TicketServiceImpl implements TicketService {
 
         Specification<Ticket> spec = Specification.where(TicketSpecifications.orderedBy(userId));
         TicketFilterRequest filter = searchFilter.getFilter();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        if(filter != null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-            if (filter.getStartDate() != null) {
-                try {
-                    spec = spec.and(TicketSpecifications.hasEventDateLTorEqual(dateFormat.parse(filter.getStartDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+        if(filter == null) {
+            filter = new TicketFilterRequest();
+            filter.setStartDate(dateFormat.format(new Date()));
+        }
+
+        if (filter.getStartDate() != null) {
+            try {
+                spec = spec.and(TicketSpecifications.hasEventDateLTorEqual(dateFormat.parse(filter.getStartDate())));
+            } catch (ParseException e) {
+                System.out.println("[ERROR]: " + e);
             }
-            else {
-                spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(new Date()));
-            }
+        }
+        else {
+            spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(new Date()));
+        }
 
-            if (filter.getEndDate() != null) {
-                try {
-                    spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(dateFormat.parse(filter.getEndDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+        if (filter.getEndDate() != null) {
+            try {
+                spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(dateFormat.parse(filter.getEndDate())));
+            } catch (ParseException e) {
+                System.out.println("[ERROR]: " + e);
             }
         }
 
