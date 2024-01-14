@@ -80,17 +80,19 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     public int bookTickets(int eventId, int noTickets, int userId) {
         Event event = eventRepository.findById(eventId).get();
-        BookingSummaryRequest order = new BookingSummaryRequest(eventId, noTickets);
-
-        OrderStatus status = calculateOrderSummary(order).compareTo(BigDecimal.ZERO) == 0 ? OrderStatus.PAID : OrderStatus.CREATED;
 
         Order newOrder = new Order();
         newOrder.setCreationDate(new Date());
         newOrder.setUser(entityManager.getReference(UserAccount.class, userId));
-        newOrder.setStatus(status);
+        newOrder.setStatus(OrderStatus.CREATED);
         Order insertedOrder = orderRepository.save(newOrder);
 
-        generateTickets(eventId, noTickets, userId, insertedOrder);
+        List<Ticket> tickets = generateTickets(eventId, noTickets, userId, insertedOrder);
+        insertedOrder.setTickets(tickets);
+
+        if(insertedOrder.calculateTotal().compareTo(BigDecimal.ZERO) == 0) {
+            confirmPayment(insertedOrder.getId());
+        }
 
         event.reduceAvailableTickets(noTickets);
         eventRepository.save(event);
@@ -144,11 +146,21 @@ public class TicketServiceImpl implements TicketService {
 
     public BigDecimal calculateOrderSummary(BookingSummaryRequest request) {
         Event event = eventRepository.findById(request.getEventId()).get();
+        Ticket newTicket = new Ticket();
+        newTicket.setPrice(event.getPrice());
 
-        return event.getPrice().multiply(new BigDecimal(request.getNoTickets()));
+        List<Ticket> tickets = new ArrayList<>();
+        for(int i = 0; i < request.getNoTickets(); i++) {
+            tickets.add(new Ticket(newTicket));
+        }
+
+        Order order = new Order();
+        order.setTickets(tickets);
+
+        return order.calculateTotal();
     }
 
-    private void generateTickets(int eventId, int noTickets, int userId, Order order) {
+    private List<Ticket> generateTickets(int eventId, int noTickets, int userId, Order order) {
         Event event = eventRepository.findById(eventId).get();
 
         Ticket newTicket = new Ticket();
@@ -163,5 +175,6 @@ public class TicketServiceImpl implements TicketService {
         }
 
         ticketRepository.saveAll(tickets);
+        return tickets;
     }
 }

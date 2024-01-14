@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uj.wmii.musicevents.constants.OrderStatus;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,4 +32,10 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false)
     private UserAccount user;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    List<Ticket> tickets;
+
+    public BigDecimal calculateTotal() {
+        return tickets.stream().map(Ticket::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }
