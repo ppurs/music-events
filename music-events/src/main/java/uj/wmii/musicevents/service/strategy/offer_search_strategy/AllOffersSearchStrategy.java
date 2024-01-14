@@ -2,12 +2,15 @@ package uj.wmii.musicevents.service.strategy.offer_search_strategy;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import uj.wmii.musicevents.controller.request.OfferFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.constants.OfferSearchType;
 import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.repository.util.OfferSpecifications;
+import uj.wmii.musicevents.service.UserAccountDetails;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -18,6 +21,13 @@ public class AllOffersSearchStrategy implements OfferSearchStrategy {
         Specification<Offer> spec = Specification.where(null);
 
         OfferFilterRequest filter = searchFilter.getFilter();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication.getPrincipal() != "anonymousUser") {
+            int userId = ((UserAccountDetails)authentication.getPrincipal()).getId();
+            spec = spec.and(Specification.not(OfferSpecifications.organizedBy(userId)));
+        }
 
         if(filter == null) {
             filter = new OfferFilterRequest();
