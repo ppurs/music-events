@@ -1,3 +1,5 @@
+import * as _moment from 'moment';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -106,7 +108,7 @@ export class AddOfferFormComponent implements OnInit {
         description: this.description?.value ?? "",
         city: this.city?.value ?? "",
         location: this.location?.value ?? "",
-        date: this.date?.value ? new Date(this.date.value) : new Date(),
+        date: _moment(this.date!.value).format('DD/MM/YYYY'),
         type: this.type?.value ?? "",
         genre: this.genre?.value ?? ""
       }
