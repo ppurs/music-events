@@ -65,6 +65,7 @@ public class SecurityConfig {
                 authorizeHttpRequests
                         .requestMatchers(
                                 "/offers/apply/*",
+                                "/offers/music-profile-list",
                                 "/events/book/**",
                                 "/tickets/**"
                         )

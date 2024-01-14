@@ -10,11 +10,13 @@ import uj.wmii.musicevents.controller.request.OfferFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.controller.response.AddResponse;
 import uj.wmii.musicevents.dto.ApplicationDTO;
+import uj.wmii.musicevents.dto.MusicProfileDTO;
 import uj.wmii.musicevents.dto.OfferDTO;
 import uj.wmii.musicevents.dto.OfferFilterOptionsDTO;
 import uj.wmii.musicevents.model.Application;
 import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.service.ApplicationService;
+import uj.wmii.musicevents.service.MusicProfileService;
 import uj.wmii.musicevents.service.OfferService;
 import uj.wmii.musicevents.service.UserAccountDetails;
 
@@ -26,9 +28,10 @@ import java.util.List;
 public class OfferController {
     @Autowired
     private OfferService offerService;
-
     @Autowired
     private ApplicationService applicationService;
+    @Autowired
+    MusicProfileService mProfileService;
 
     @PostMapping(value = {"/list/{strategy:all|user}"})
     public ResponseEntity<List<OfferDTO>> getOffersList(@PathVariable String strategy, @RequestBody SearchRequest<OfferFilterRequest> request) {
@@ -72,5 +75,10 @@ public class OfferController {
     @GetMapping("/my/applications/{applicationId}/reject")
     public void rejectApplication(@PathVariable int applicationId) {
         applicationService.rejectApplication(applicationId);
+    }
+
+    @GetMapping("music-profile-list")
+    public ResponseEntity<List<MusicProfileDTO>> geMusicProfiles(@AuthenticationPrincipal UserAccountDetails userDetails) {
+        return ResponseEntity.ok(mProfileService.getUserMusicProfiles(userDetails.getId()));
     }
 }
