@@ -11,5 +11,4 @@ public class MusicEventsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MusicEventsApplication.class, args);
 	}
-
 }

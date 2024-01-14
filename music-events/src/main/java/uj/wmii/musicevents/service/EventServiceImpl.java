@@ -16,9 +16,6 @@ import uj.wmii.musicevents.repository.EventRepository;
 import uj.wmii.musicevents.repository.util.EventSpecifications;
 import uj.wmii.musicevents.repository.util.OffsetBasedPageRequest;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -39,11 +36,10 @@ public class EventServiceImpl implements EventService {
         Pageable page = new OffsetBasedPageRequest(searchFilter.getOffset(), sort);
 
         EventFilterRequest filter = searchFilter.getFilter();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         if(filter == null) {
             filter = new EventFilterRequest();
-            filter.setStartDate(dateFormat.format(new Date()));
+            filter.setStartDate(new Date());
         }
 
         if (filter.getCities() != null && filter.getCities().length > 0) {
@@ -59,22 +55,14 @@ public class EventServiceImpl implements EventService {
         }
 
         if (filter.getStartDate() != null) {
-            try {
-                spec = spec.and(EventSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
-            } catch (ParseException e) {
-                System.out.println("[ERROR]: " + e);
-            }
+            spec = spec.and(EventSpecifications.hasDateGTorEqual(filter.getStartDate()));
         }
         else {
             spec = spec.and(EventSpecifications.hasDateGTorEqual(new Date()));
         }
 
         if (filter.getEndDate() != null) {
-            try {
-                spec = spec.and(EventSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
-            } catch (ParseException e) {
-                System.out.println("[ERROR]: " + e);
-            }
+            spec = spec.and(EventSpecifications.hasDateLTorEqual(filter.getEndDate()));
         }
 
         if (filter.getSearch() != null && !filter.getSearch().isEmpty()) {

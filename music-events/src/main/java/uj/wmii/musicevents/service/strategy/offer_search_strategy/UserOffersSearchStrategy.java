@@ -12,9 +12,6 @@ import uj.wmii.musicevents.model.Offer;
 import uj.wmii.musicevents.repository.util.OfferSpecifications;
 import uj.wmii.musicevents.service.UserAccountDetails;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @Component(OfferSearchType.USER)
@@ -42,22 +39,12 @@ public class UserOffersSearchStrategy implements OfferSearchStrategy {
                 spec = spec.and(OfferSpecifications.isOfGenreTypes(Arrays.stream(filter.getGenres()).toList()));
             }
 
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
             if (filter.getStartDate() != null) {
-                try {
-                    spec = spec.and(OfferSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+                spec = spec.and(OfferSpecifications.hasDateGTorEqual(filter.getStartDate()));
             }
 
             if (filter.getEndDate() != null) {
-                try {
-                    spec = spec.and(OfferSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+                spec = spec.and(OfferSpecifications.hasDateLTorEqual(filter.getEndDate()));
             }
         }
 

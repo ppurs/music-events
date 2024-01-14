@@ -24,9 +24,6 @@ import uj.wmii.musicevents.repository.util.OffsetBasedPageRequest;
 import uj.wmii.musicevents.repository.util.TicketSpecifications;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,31 +54,21 @@ public class TicketServiceImpl implements TicketService {
 
         Specification<Ticket> spec = Specification.where(TicketSpecifications.orderedBy(userId));
         TicketFilterRequest filter = searchFilter.getFilter();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
 
         if(filter == null) {
             filter = new TicketFilterRequest();
-            filter.setStartDate(dateFormat.format(new Date()));
+            filter.setStartDate(new Date());
         }
 
         if (filter.getStartDate() != null) {
-            try {
-                spec = spec.and(TicketSpecifications.hasEventDateLTorEqual(dateFormat.parse(filter.getStartDate())));
-            } catch (ParseException e) {
-                System.out.println("[ERROR]: " + e);
-            }
+            spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(filter.getStartDate()));
         }
         else {
             spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(new Date()));
         }
 
         if (filter.getEndDate() != null) {
-            try {
-                spec = spec.and(TicketSpecifications.hasEventDateGTorEqual(dateFormat.parse(filter.getEndDate())));
-            } catch (ParseException e) {
-                System.out.println("[ERROR]: " + e);
-            }
+            spec = spec.and(TicketSpecifications.hasEventDateLTorEqual(filter.getEndDate()));
         }
 
         return ticketRepository

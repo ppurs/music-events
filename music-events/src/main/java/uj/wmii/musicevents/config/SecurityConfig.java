@@ -67,7 +67,8 @@ public class SecurityConfig {
                                 "/offers/apply/*",
                                 "/offers/music-profile-list",
                                 "/events/book/**",
-                                "/tickets/**"
+                                "/tickets/**",
+                                "/applications/**"
                         )
                         .hasAuthority(AuthoritiesConstants.USER)
         );
@@ -75,8 +76,8 @@ public class SecurityConfig {
                 authorizeHttpRequests
                         .requestMatchers(
                                 "/offers/list/user",
-                                "/offers/my/**",
-                                "/offers/add"
+                                "/offers/add",
+                                "/offers/my/**"
                                 )
                         .hasAuthority(AuthoritiesConstants.ORGANIZER)
         );

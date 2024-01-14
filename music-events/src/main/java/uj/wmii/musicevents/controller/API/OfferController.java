@@ -9,6 +9,7 @@ import uj.wmii.musicevents.controller.request.ApplicationFilterRequest;
 import uj.wmii.musicevents.controller.request.OfferFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.controller.response.AddResponse;
+import uj.wmii.musicevents.controller.response.Response;
 import uj.wmii.musicevents.dto.ApplicationDTO;
 import uj.wmii.musicevents.dto.MusicProfileDTO;
 import uj.wmii.musicevents.dto.OfferDTO;
@@ -68,13 +69,17 @@ public class OfferController {
     }
 
     @GetMapping("/my/applications/{applicationId}/accept")
-    public void acceptApplication(@PathVariable int applicationId) {
+    public ResponseEntity<Response> acceptApplication(@PathVariable int applicationId) {
         applicationService.acceptApplication(applicationId);
+
+        return ResponseEntity.ok(new Response(true));
     }
 
     @GetMapping("/my/applications/{applicationId}/reject")
-    public void rejectApplication(@PathVariable int applicationId) {
+    public ResponseEntity<Response> rejectApplication(@PathVariable int applicationId) {
         applicationService.rejectApplication(applicationId);
+
+        return ResponseEntity.ok(new Response(true));
     }
 
     @GetMapping("music-profile-list")

@@ -1,5 +1,6 @@
 package uj.wmii.musicevents.service;
 
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,10 @@ import java.util.Optional;
 @Service
 public class UserAccountDetailsService implements UserDetailsService {
     @Autowired
-    private AccountRepository userRepository;
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private MusicProfileService musicProfileService;
@@ -30,20 +34,20 @@ public class UserAccountDetailsService implements UserDetailsService {
     private PasswordEncoder encoder;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Account> userDetail = userRepository.findByEmail(email);
+        Optional<Account> userDetail = accountRepository.findByEmail(email);
 
         return userDetail.map(UserAccountDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User with email: " + email + " not found." ));
     }
 
     public ProfileDTO getProfileDetails(int userId) {
-        Optional<Account> account = userRepository.findById(userId);
+        Optional<Account> account = accountRepository.findById(userId);
 
         return mapper.mapToDTO(account.get());
     }
 
     public int addMusicProfile(int userId, MusicProfile profile) {
-        profile.setUser((UserAccount) userRepository.getReferenceById(userId));
+        profile.setUser(entityManager.getReference(UserAccount.class, userId));
 
         return musicProfileService.addMusicProfile(profile);
     }

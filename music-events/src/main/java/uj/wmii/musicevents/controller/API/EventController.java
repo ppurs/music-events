@@ -12,6 +12,7 @@ import uj.wmii.musicevents.controller.request.EventFilterRequest;
 import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.controller.response.BookResponse;
 import uj.wmii.musicevents.controller.response.BookingSummaryResponse;
+import uj.wmii.musicevents.controller.response.Response;
 import uj.wmii.musicevents.dto.EventDTO;
 import uj.wmii.musicevents.dto.EventFilterOptionsDTO;
 import uj.wmii.musicevents.service.EventService;
@@ -51,14 +52,16 @@ public class EventController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/book/confirm/{orderId}")
-    public void confirmPaymentForTickets(@PathVariable int orderId, @RequestBody ConfirmationRequest request) {
+    @PostMapping("/book/confirm/{orderId}")
+    public ResponseEntity<Response> confirmPaymentForTickets(@PathVariable int orderId, @RequestBody ConfirmationRequest request) {
         if (request.isSuccess()){
             this.ticketService.confirmPayment(orderId);
         }
         else {
             this.ticketService.cancelOrder(orderId);
         }
+
+        return ResponseEntity.ok(new Response(true));
     }
 
     @PostMapping("/book/summary")

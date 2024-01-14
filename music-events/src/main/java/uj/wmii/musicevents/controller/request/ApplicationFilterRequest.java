@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uj.wmii.musicevents.constants.ApplicationStatus;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApplicationFilterRequest {
-    private String startDate;
-    private String endDate;
-    private List<ApplicationStatus> statuses;
+    private Date startDate;
+    private Date endDate;
+    private List<ApplicationStatus> statusIds;
 }

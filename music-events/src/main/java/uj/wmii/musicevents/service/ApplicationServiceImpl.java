@@ -16,9 +16,6 @@ import uj.wmii.musicevents.repository.ApplicationRepository;
 import uj.wmii.musicevents.repository.util.ApplicationSpecifications;
 import uj.wmii.musicevents.repository.util.OffsetBasedPageRequest;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,8 +34,8 @@ public class ApplicationServiceImpl implements ApplicationService{
         ApplicationFilterRequest filter = searchFilter.getFilter();
 
         if(filter != null) {
-            if (filter.getStatuses() != null && filter.getStatuses().size() > 0) {
-                spec = spec.and(ApplicationSpecifications.hasStatus(filter.getStatuses()));
+            if (filter.getStatusIds() != null && filter.getStatusIds().size() > 0) {
+                spec = spec.and(ApplicationSpecifications.hasStatus(filter.getStatusIds()));
             }
         }
 
@@ -54,26 +51,16 @@ public class ApplicationServiceImpl implements ApplicationService{
         ApplicationFilterRequest filter = searchFilter.getFilter();
 
         if(filter != null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
             if (filter.getStartDate() != null) {
-                try {
-                    spec = spec.and(ApplicationSpecifications.hasDateGTorEqual(dateFormat.parse(filter.getStartDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+                spec = spec.and(ApplicationSpecifications.hasDateGTorEqual(filter.getStartDate()));
             }
 
             if (filter.getEndDate() != null) {
-                try {
-                    spec = spec.and(ApplicationSpecifications.hasDateLTorEqual(dateFormat.parse(filter.getEndDate())));
-                } catch (ParseException e) {
-                    System.out.println("[ERROR]: " + e);
-                }
+                spec = spec.and(ApplicationSpecifications.hasDateLTorEqual(filter.getEndDate()));
             }
 
-            if (filter.getStatuses() != null && filter.getStatuses().size() > 0) {
-                spec = spec.and(ApplicationSpecifications.hasStatus(filter.getStatuses()));
+            if (filter.getStatusIds() != null && filter.getStatusIds().size() > 0) {
+                spec = spec.and(ApplicationSpecifications.hasStatus(filter.getStatusIds()));
             }
         }
 
