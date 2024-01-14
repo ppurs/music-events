@@ -26,9 +26,7 @@ export class OffersListItemComponent {
 
   openDetails(): void {
     this.dialog.open(OfferDetailsDialogComponent, {
-      data: { offer: this.offer,
-              musicProfiles: [{id: 1, name: 'Band'}, {id: 2, name:"solo"}]
-            },
+      data: this.offer,
       autoFocus: false 
     });
   }

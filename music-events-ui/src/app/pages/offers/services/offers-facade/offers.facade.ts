@@ -2,6 +2,7 @@ import { Observable, catchError, first, shareReplay, tap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { LoadOffersStrategy } from '../../models/load-offers-startegy';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -18,13 +19,16 @@ export class OffersFacade {
   private instruments$: Observable<string[]>
   private musicGenres$: Observable<string[]>
   private musicProfileTypes$: Observable<string[]>
+  private musicProfiles$: Observable<MusicProfile[]>
 
 
   constructor(private offersService: OffersService,
               private offersState: OffersState,
               private sharedService: SharedService) {
     this.filterOptions$ = this.offersService.getFilterOptions()
-                                            .pipe(shareReplay(1))
+                                            .pipe(shareReplay(1));
+    this.musicProfiles$ = this.offersService.getUserMusicProfiles()
+                                            .pipe(shareReplay(1));
     this.instruments$ = this.sharedService.getInstruments().pipe(shareReplay(1));
     this.musicGenres$ = this.sharedService.getMusicGenres().pipe(shareReplay(1));
     this.musicProfileTypes$ = this.sharedService.getMusicProfileTypes().pipe(shareReplay(1));
@@ -48,6 +52,10 @@ export class OffersFacade {
 
   getMusicProfileTypes(): Observable<string[]> {
     return this.musicProfileTypes$;
+  }
+
+  getUserMusicProfiles(): Observable<MusicProfile[]> {
+    return this.musicProfiles$;
   }
 
   loadOffers(filter?: OffersFilter) {

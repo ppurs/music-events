@@ -3,5 +3,5 @@ export interface OfferApplicationPayload {
     type?: string,
     bandName?: string,
     instrument?: string,
-    genre?: string[]
+    genre?: string
 }

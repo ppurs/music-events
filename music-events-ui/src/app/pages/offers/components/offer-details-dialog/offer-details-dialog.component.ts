@@ -31,10 +31,11 @@ export class OfferDetailsDialogComponent implements OnInit {
   types?: string[];
   instruments?: string[];
   genres?: string[];
+  musicProfiles: MusicProfile[];
 
   private logSubscription?: Subscription;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {offer: Offer, musicProfiles?: MusicProfile[]},
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Offer,
               private fb: FormBuilder,
               private auth: AuthService,
               private offersFacade: OffersFacade) {
@@ -42,10 +43,12 @@ export class OfferDetailsDialogComponent implements OnInit {
     this.isFormExpanded = false;
     this.isSubmitted = false;
     this.strategy = new ProfileApplyStrategy(fb);
+    this.musicProfiles = [];
   }
 
   ngOnInit(): void {
     this.logSubscription = this.auth.isLoggedIn$.subscribe(val => this.isLogged = val);
+    this.offersFacade.getUserMusicProfiles().subscribe( val => this.musicProfiles = val);
   }
 
   ngDestroy(): void {
@@ -94,7 +97,7 @@ export class OfferDetailsDialogComponent implements OnInit {
     this.isSubmitted = true;
     this.strategy.applicationForm.disable();
 
-    this.offersFacade.applyForOffer(this.data.offer.id!, this.strategy.getFormValue())
+    this.offersFacade.applyForOffer(this.data.id!, this.strategy.getFormValue())
       .subscribe({ 
         next: res => {
           this.status.setStatus(RequestStatus.SUCCESSFUL);

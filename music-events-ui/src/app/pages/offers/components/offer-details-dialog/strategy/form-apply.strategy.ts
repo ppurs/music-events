@@ -7,7 +7,7 @@ export class FormApplyStrategy extends ApplyStrategy {
         type: ["", Validators.required],
         bandName: [""],
         instrument: [""],
-        genres: [[]]
+        genre: [""]
     })
 
     constructor (private fb: FormBuilder) {
@@ -19,7 +19,7 @@ export class FormApplyStrategy extends ApplyStrategy {
             type: this.applicationForm.get('type')?.value ?? "",
             bandName: this.applicationForm.get('bandName')?.value ?? "",
             instrument: this.applicationForm.get('instrument')?.value ?? "",
-            genres: this.applicationForm.get('genres')?.value ?? "",
+            genre: this.applicationForm.get('genre')?.value ?? "",
         }
 
         return payload;

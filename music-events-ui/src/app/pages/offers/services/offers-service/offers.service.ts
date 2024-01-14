@@ -8,6 +8,7 @@ import { CreateResponse } from 'src/app/shared/models/create-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoadOffersStrategy } from '../../models/load-offers-startegy';
+import { MusicProfile } from 'src/app/pages/profile/models/music-profile';
 import { Offer } from '../../models/offer';
 import { OfferApplicationPayload } from '../../models/offer-application-payload';
 import { OffersFilter } from '../../models/offers-filter';
@@ -39,7 +40,11 @@ export class OffersService {
     return this.http.post(
       `${this.OFFERS_API}/apply/${offerId}`, 
       {
-        profile: profile  //TODOOO
+        profileId: profile.profileId,
+        type: profile.type,
+        bandName: profile.bandName,
+        instrument: profile.instrument,
+        genre: profile.genre
       }
     );
   }
@@ -73,4 +78,9 @@ export class OffersService {
       },
     );
   }
+
+  getUserMusicProfiles(): Observable<MusicProfile[]> {
+    return this.http.get<MusicProfile[]>(`${this.OFFERS_API}/music-profile-list`);
+  }
+
 }
