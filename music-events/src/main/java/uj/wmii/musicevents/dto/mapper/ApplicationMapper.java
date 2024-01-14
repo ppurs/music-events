@@ -17,7 +17,7 @@ public class ApplicationMapper {
 
         return new ApplicationDTO()
                 .setId(application.getId())
-                .setOffer(offerMapper.mapToDTO(application.getOffer()))
+                .setOffer(null)
                 .setType(application.getType())
                 .setGenre(application.getGenre())
                 .setBandName(application.getBandName())
