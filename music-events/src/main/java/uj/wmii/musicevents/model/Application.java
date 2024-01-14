@@ -45,6 +45,5 @@ public class Application {
     private Date submitDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 10)
     private ApplicationStatus status;
 }

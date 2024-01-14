@@ -70,13 +70,13 @@ public class OfferController {
     }
 
     @RolesAllowed({"ROLE_ORGANIZER"})
-    @PutMapping("/my/applications/{applicationId}/accept")
+    @GetMapping("/my/applications/{applicationId}/accept")
     public void acceptApplication(@PathVariable int applicationId) {
         applicationService.acceptApplication(applicationId);
     }
 
     @RolesAllowed({"ROLE_ORGANIZER"})
-    @PutMapping("/my/applications/{applicationId}/reject")
+    @GetMapping("/my/applications/{applicationId}/reject")
     public void rejectApplication(@PathVariable int applicationId) {
         applicationService.rejectApplication(applicationId);
     }

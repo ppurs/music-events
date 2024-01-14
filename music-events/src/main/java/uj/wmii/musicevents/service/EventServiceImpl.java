@@ -10,6 +10,7 @@ import uj.wmii.musicevents.controller.request.template.SearchRequest;
 import uj.wmii.musicevents.dto.EventDTO;
 import uj.wmii.musicevents.dto.EventFilterOptionsDTO;
 import uj.wmii.musicevents.dto.mapper.EventMapper;
+import uj.wmii.musicevents.enums.TicketsStatus;
 import uj.wmii.musicevents.model.Event;
 import uj.wmii.musicevents.repository.EventRepository;
 import uj.wmii.musicevents.repository.util.EventSpecifications;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -28,7 +30,8 @@ public class EventServiceImpl implements EventService {
     private EventRepository repository;
     @Autowired
     private EventMapper mapper;
-
+    @Autowired
+    private TicketService ticketService;
 
     public List<EventDTO> getFilteredEvents(SearchRequest<EventFilterRequest> searchFilter) {
         Specification<Event> spec = Specification.where(null);
@@ -76,9 +79,13 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        return repository.findAll(spec, page)
+        List<Event> events = repository.findAll(spec, page).getContent();
+
+        events.forEach(this::checkTicketsAvailability);
+
+        return events.stream()
                 .map(mapper::mapToDTO)
-                .getContent();
+                .collect(Collectors.toList());
     }
 
     public EventFilterOptionsDTO getFilterOptions() {
@@ -86,5 +93,28 @@ public class EventServiceImpl implements EventService {
                 .setCities(repository.findCities())
                 .setTypes(repository.findTypes())
                 .setGenres(repository.findGenres());
+    }
+
+    private void checkTicketsAvailability(Event event) {
+        if(event.getTicketsStatus() == TicketsStatus.NOT_AVAILABLE) {
+            return;
+        }
+
+        if(event.getNoAvailableTickets() > 0) {
+            return;
+        }
+
+        if(ticketService.checkAllTicketsSold(event.getId())) {
+            event.setTicketsStatus(TicketsStatus.NOT_AVAILABLE);
+        }
+        else {
+            int availableTickets = ticketService.findNoAvailableTickets(event.getId());
+
+            if(availableTickets > 0) {
+                event.setNoAvailableTickets(availableTickets);
+            }
+        }
+
+        repository.save(event);
     }
 }

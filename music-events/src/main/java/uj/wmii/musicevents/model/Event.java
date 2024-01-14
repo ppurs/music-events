@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uj.wmii.musicevents.enums.TicketsStatus;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -43,6 +44,18 @@ public class Event {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(nullable = false)
-    private int noTickets;
+    @Column(name = "no_available_tickets", nullable = false)
+    private int noAvailableTickets;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tickets_status", nullable = false)
+    private TicketsStatus ticketsStatus;
+
+    public void reduceAvailableTickets(int num) {
+        this.noAvailableTickets -= num;
+    }
+
+    public void increaseAvailableTickets(int num) {
+        this.noAvailableTickets += num;
+    }
 }

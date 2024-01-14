@@ -19,6 +19,13 @@ public class LoginResponse extends Response {
         this.roles = roles;
         this.token = token;
     }
+
+    public LoginResponse(Collection<String> roles, Token token, boolean result, String error) {
+        super(result, error);
+
+        this.roles = roles;
+        this.token = token;
+    }
 }
 
 

@@ -9,9 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import uj.wmii.musicevents.model.Event;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EventRepository extends JpaRepository<Event, Integer>, JpaSpecificationExecutor<Event> {
     Page<Event> findAll(Specification<Event> spec, Pageable pageable);
+    Optional<Event> findById(Integer id);
 
     @Query("SELECT DISTINCT e.city FROM Event e")
     List<String> findCities();

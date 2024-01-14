@@ -25,6 +25,18 @@ public class Ticket {
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
     @Column(nullable = false)
     private BigDecimal price;
+
+    public Ticket(Ticket obj) {
+        this.id = obj.id;
+        this.userId = obj.userId;
+        this.event = obj.event;
+        this.order = obj.order;
+        this.price = obj.price;
+    }
 }

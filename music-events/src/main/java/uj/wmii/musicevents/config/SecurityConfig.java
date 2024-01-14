@@ -54,6 +54,7 @@ public class SecurityConfig {
                         "/offers/apply/*",
                         "/offers/add",
                         "/offers/my/**",
+                        "/events/book/**",
                         "/tickets/**",
                         "/profile/**",
                         "/applications/**")

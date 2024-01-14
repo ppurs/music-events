@@ -8,5 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Response {
-    boolean result;
+    private boolean result;
+    private String error;
+
+    public Response (boolean result) {
+        this.result = result;
+    }
 }
