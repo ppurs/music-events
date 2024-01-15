@@ -43,8 +43,11 @@ const routes: Routes = [
       roles: [Role.ORGANIZER]
     },  
     loadChildren: () => import('./pages/my-offers/my-offers.module').then(m => m.MyOffersModule)
+  },
+  { path: '', 
+    pathMatch: 'full',  
+    redirectTo: 'events' 
   }
-  //{ path: '**', redirectTo: '' }
 ]
 
 @NgModule({
