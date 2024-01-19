@@ -44,10 +44,16 @@ public class EventController {
     @PostMapping("/book/{eventId}")
     public ResponseEntity<?> bookTicketsForEvent(@AuthenticationPrincipal UserAccountDetails userDetails, @PathVariable int eventId, @RequestBody BookTicketsRequest request) {
         BookResponse response = new BookResponse();
-        response.setResult(true);
 
         int orderId = this.ticketService.bookTickets(eventId, request.getNoTickets(), userDetails.getId());
-        response.setOrderId(orderId);
+        response.setResult(orderId > -1);
+
+        if(orderId == -1) {
+            response.setError("There is less tickets available than selected.");
+        }
+        else {
+            response.setOrderId(orderId);
+        }
 
         return ResponseEntity.ok(response);
     }

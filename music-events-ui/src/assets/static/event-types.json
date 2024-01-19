@@ -1,5 +1,8 @@
 {
     "eventTypes": [
-        "Festival"
+        "Charity concert",
+        "Concert",
+        "Festival",
+        "Symphonic concert"
     ]
 }

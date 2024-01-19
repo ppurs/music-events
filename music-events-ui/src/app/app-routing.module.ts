@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'profile',
     canActivate: [AppGuard],
     data: {
-      roles: [Role.USER]
+      roles: [Role.USER, Role.ADMIN]
     },  
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
   },

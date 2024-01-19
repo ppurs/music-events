@@ -8,7 +8,7 @@
                 {{offer.title}}
                 <div id="tags">
                     <app-tag>{{offer.type}}</app-tag>
-                    <app-tag>{{offer.genre}}</app-tag>
+                    <app-tag *ngIf="offer.genre">{{offer.genre}}</app-tag>
                 </div>
             </h2>
             <button mat-icon-button class="delete-btn" (click)="onDelete($event)">

@@ -81,6 +81,10 @@ public class TicketServiceImpl implements TicketService {
     public int bookTickets(int eventId, int noTickets, int userId) {
         Event event = eventRepository.findById(eventId).get();
 
+        if(event.getNoAvailableTickets() < noTickets) {
+            return -1;
+        }
+
         Order newOrder = new Order();
         newOrder.setCreationDate(new Date());
         newOrder.setUser(entityManager.getReference(UserAccount.class, userId));

@@ -7,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FilterItemComponent implements OnInit {
   @Input() title!: string;
-
-  types = [1, 2, 3, 4, 5]
-
+  
   constructor() { }
 
   ngOnInit(): void {

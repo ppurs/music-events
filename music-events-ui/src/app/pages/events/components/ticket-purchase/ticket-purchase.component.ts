@@ -19,7 +19,7 @@ export class TicketPurchaseComponent implements OnInit {
   summary: number = -1;
 
   purchaseForm = this.fb.group({
-    noTickets: [1, [Validators.required, Validators.pattern(/^[1-9]*$/)]]
+    noTickets: [1, [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]]
   })
 
   private orderId?: number;
